@@ -1,5 +1,5 @@
 lang = {
-	'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/python3\n\t',
+	'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t',
 	'name': 'PythonLang 3',
 	'scopeName': 'source.python',
 	'fileTypes': ['py'],
@@ -85,13 +85,28 @@ lang = {
 			'name' : 'keyword.operator.assignment.python',
 			'match': r'=|->'
 		},
-		# {
-		# 	'name' : 'meta.class.python',
-		# 	'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*\s*(\((metaclass\s*=\s*)?\)\s)?*:)',
-		# 	'end'  : r''
-		# }
 		{
-			# new: function annotation assignment
+			'name' : 'meta.class.python',
+			'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*)',
+			'end'  : r'((\(.*\))?\s*:)|\s*($\n?|#.*$\n?)',
+			'beginCaptures':
+			{
+				1: {'name': 'storage.type.class.python'}
+			},
+			'patterns':
+			[
+				{
+					'include': '#entity_name_class'  # #entity_name_function
+				}
+			],
+			'endCaptures':
+			{
+				1: {'name': 'punctuation.section_and_inheritance.class.python'},
+				2: {'name': 'invalid.illegal.missing_section_begin.python'}
+			}
+		},
+		{
+			# todo: add `...` Ellipsis somehow
 			'name' : 'constant.language.python',
 			'match': r'\b(None|True|False|Ellipsis|NotImplemented)\b'
 		}
@@ -143,9 +158,89 @@ lang = {
 				r'property|reversed|set|slice|staticmethod|str|super|tuple|type'
 				r')\b'
 			)
+		},
+		'entity_name_class':
+		{
+			'patterns':
+			[
+				{'include': '#illegal_names'},
+				{'include': '#generic_names'}
+			]
+		},
+		'entity_name_function':
+		{
+			'patterns':
+			[
+				{'include': '#magic_function_names'},
+				{'include': '#illegal_names'},
+				{'include': '#generic_names'}
+			]
+		},
+		'generic_names':
+		{
+			'match': r'[a-zA-Z_]\w*'
+		},
+		'illegal_names':
+		{
+			'name' : 'invalid.illegal_names.name.python',
+			'match':
+			(
+				r'\b('
+				r'and|as|assert|break|class|continue|def|del|elif|else|except|'
+				r'finally|for|from|global|if|import|in|is|lambda|nonlocal|not|'
+				r'or|pass|raise|return|try|while|with|yield'
+				r')\b'
+			)
+		},
+		'magic_function_names':
+		{
+			'name' : 'support.function.magic.python',
+			'match':
+			(
+				r'(?x)\b(__(?:'
+				r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
+				r'deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|'
+				r'exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
+				r'getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|'
+				r'iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|'
+				r'int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|'
+				r'lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|'
+				r'pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|'
+				r'repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|'
+				r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
+				r'setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|'
+				r'trunc|unicode|weakref|xor'
+				r')__)\b'
+			)
+		},
+		# todo: what is magic function and what is magic variable?
+		'magic_variable_names':
+		{
+			'name' : 'support.variable.magic.python',
+			'match':
+			(
+				r'\b__('
+				r'all|bases|class|debug|dict|doc|file|members|'
+				r'metaclass|mro|name|qualname|slots|weakref'
+				r')__\b'
+			)
+		},
+		'language_variables':
+		{
+			'name' : 'variable.language.python',
+			'match': r'\b(self|cls)\b'
+		},
+		'line_continuation':
+		{
+			'match': r'(\\)(.*)$\n?',
+			'captures':
+			{
+				1: {'name': 'punctuation.separator.continuation.line.python'},
+				2: {'name': 'invalid.illegal.unexpected_text.python'}
+			}
 		}
 	},
-	'uuid': '851b1429-b8b4-4c1e-8030-399bda994393'
+	'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
 }
 
 if __name__ == '__main__':
@@ -159,7 +254,13 @@ if __name__ == '__main__':
 
 	# Create json file
 	with open('{}.json'.format(FILE), 'w') as f:
-		f.write(json.dumps(lang))
+		f.write(
+			json.dumps(
+				obj = lang,
+				indent = 4,
+				separators = (',', ': ')
+			)
+		)
 	# Convert JSON file to PropertyList XML
 	os.system(('plutil -convert xml1 {0}.json -o ' + PATH).format(FILE))
 	os.system(('plutil -convert xml1 {0}.json -o {0}.tmLanguage').format(FILE))

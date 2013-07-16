@@ -5,7 +5,7 @@
 	<key>comment</key>
 	<string>
 		Written by Peter Varo (c)2013
-		http://github.com/petervaro/python3
+		http://github.com/petervaro/Python3
 	</string>
 	<key>fileTypes</key>
 	<array>
@@ -118,6 +118,42 @@
 			<string>keyword.operator.assignment.python</string>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>^\s*(class)\s+(?=[a-zA-Z_]\w*)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.class.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>((\(.*\))?\s*:)|\s*($\n?|#.*$\n?)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section_and_inheritance.class.python</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.missing_section_begin.python</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.class.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#entity_name_class</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b(None|True|False|Ellipsis|NotImplemented)\b</string>
 			<key>name</key>
@@ -147,10 +183,93 @@
 			<key>name</key>
 			<string>support.type.python</string>
 		</dict>
+		<key>entity_name_class</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#illegal_names</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#generic_names</string>
+				</dict>
+			</array>
+		</dict>
+		<key>entity_name_function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#magic_function_names</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#illegal_names</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#generic_names</string>
+				</dict>
+			</array>
+		</dict>
+		<key>generic_names</key>
+		<dict>
+			<key>match</key>
+			<string>[a-zA-Z_]\w*</string>
+		</dict>
+		<key>illegal_names</key>
+		<dict>
+			<key>match</key>
+			<string>\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b</string>
+			<key>name</key>
+			<string>invalid.illegal_names.name.python</string>
+		</dict>
+		<key>language_variables</key>
+		<dict>
+			<key>match</key>
+			<string>\b(self|cls)\b</string>
+			<key>name</key>
+			<string>variable.language.python</string>
+		</dict>
+		<key>line_continuation</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.continuation.line.python</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.unexpected_text.python</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(\\)(.*)$\n?</string>
+		</dict>
+		<key>magic_function_names</key>
+		<dict>
+			<key>match</key>
+			<string>(?x)\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
+			<key>name</key>
+			<string>support.function.magic.python</string>
+		</dict>
+		<key>magic_variable_names</key>
+		<dict>
+			<key>match</key>
+			<string>\b__(all|bases|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\b</string>
+			<key>name</key>
+			<string>support.variable.magic.python</string>
+		</dict>
 	</dict>
 	<key>scopeName</key>
 	<string>source.python</string>
 	<key>uuid</key>
-	<string>851b1429-b8b4-4c1e-8030-399bda994393</string>
+	<string>851B1429-B8B4-4C1E-8030-399BDA994393</string>
 </dict>
 </plist>
