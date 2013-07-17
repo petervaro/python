@@ -1,6 +1,6 @@
 lang = {
-	'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t',
 	'name': 'PythonLang 3',
+	'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t',
 	'scopeName': 'source.python',
 	'fileTypes': ['py'],
 	# hashbang
@@ -13,9 +13,17 @@ lang = {
 	# Patterns
 	'patterns':
 	[
+#-- COMMENT -------------------------------------------------------------------#
 		{
 			'name' : 'comment.line.hashmark.python',
 			'match': r'#.*$\n?'
+		},
+
+
+#-- NUMBERS -------------------------------------------------------------------#
+		{
+			'name' : 'constant.numeric.integer.binary.python',
+			'match': r'\b0b[01]+'
 		},
 		{
 			'name' : 'constant.numeric.integer.hexadecimal.python',
@@ -44,6 +52,9 @@ lang = {
 			'name' : 'constant.numeric.integer_and_complex.decimal.python',
 			'match': r'\b(?<!\.)([1-9]\d*|0)[jJ]?'
 		},
+
+
+#-- KEYWORDS ------------------------------------------------------------------#
 		{
 			'name' : 'storage.modifier.declaration.python',
 			'match': r'\b(global|nonlocal)\b'
@@ -68,6 +79,9 @@ lang = {
 			'name' : 'keyword.other.python',
 			'match': r'\b(as|assert|del)\b'
 		},
+
+
+#-- OPERATORS -----------------------------------------------------------------#
 		{
 			'name' : 'keyword.operator.comparison.python',
 			'match': r'<=|>=|==|<|>|!='
@@ -85,6 +99,9 @@ lang = {
 			'name' : 'keyword.operator.assignment.python',
 			'match': r'=|->'
 		},
+
+
+#-- CLASS ---------------------------------------------------------------------#
 		{
 			'name' : 'meta.class.python',
 			'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*)',
@@ -101,14 +118,44 @@ lang = {
 			],
 			'endCaptures':
 			{
-				1: {'name': 'punctuation.section_and_inheritance.class.python'},
-				2: {'name': 'invalid.illegal.missing_section_begin.python'}
+				2: {'name': 'punctuation.section_and_inheritance.class.python'},
+				3: {'name': 'invalid.illegal.missing_section_begin.python'}
 			}
 		},
+
+
+#-- FUNCTION ------------------------------------------------------------------#
 		{
-			# todo: add `...` Ellipsis somehow
-			'name' : 'constant.language.python',
+			'name' : 'meta.function.python',
+			'begin': r'^\s*(def)\s+(?=[A-Za-z_]\w*\s*\()',
+			'end': r'(\))\s*(?:(\:)|(.*$\n?))',
+			'beginCaptures':
+			{
+				1: {'name': 'storage.type.function.python'}
+			},
+			'patterns':
+			[
+				{
+					'include': '#entity_name_function'
+				}
+			],
+			'endCaptures':
+			{
+				1: {'name': 'punctuation.definition.parameters.end.python'},
+				2: {'name': 'punctuation.section.function.begin.python'},
+				3: {'name': 'invalid.illegal.missing-section-begin.python'}
+			}
+		},
+
+
+#-- CONSTANTS -----------------------------------------------------------------#
+		{
+			'name' : 'constant.language.word_like.python',
 			'match': r'\b(None|True|False|Ellipsis|NotImplemented)\b'
+		},
+		{
+			'name' : 'constant.language.symbol_like.python',
+			'match': r'(?<=\W|^)\.\.\.(?=\W|$)'
 		}
 	],
 	'repository':
@@ -220,8 +267,8 @@ lang = {
 			'match':
 			(
 				r'\b__('
-				r'all|bases|class|debug|dict|doc|file|members|'
-				r'metaclass|mro|name|qualname|slots|weakref'
+				r'all|annotations|bases|class|debug|dict|doc|file|'
+				r'members|metaclass|mro|name|qualname|slots|weakref'
 				r')__\b'
 			)
 		},
@@ -239,28 +286,19 @@ lang = {
 				2: {'name': 'invalid.illegal.unexpected_text.python'}
 			}
 		}
+		# todo: Tuple parameter unpacking removed.
+		#		You can no longer write def foo(a, (b, c)): ....
+		#		Use def foo(a, b_c): b, c = b_c instead.
+
+		# todo: [uU][bB][rR]
 	},
 	'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
 }
 
 if __name__ == '__main__':
-	# Import python modules
-	import os
-	import json
-
-	# Constants
-	FILE = 'PythonLang'
-	PATH = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/{0}.tmLanguage'
-
-	# Create json file
-	with open('{}.json'.format(FILE), 'w') as f:
-		f.write(
-			json.dumps(
-				obj = lang,
-				indent = 4,
-				separators = (',', ': ')
-			)
-		)
-	# Convert JSON file to PropertyList XML
-	os.system(('plutil -convert xml1 {0}.json -o ' + PATH).format(FILE))
-	os.system(('plutil -convert xml1 {0}.json -o {0}.tmLanguage').format(FILE))
+	import converter
+	converter.dict_to_plist(
+		dictionary = lang,
+		file_name  = 'PythonLang',
+		file_path  = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/{0}.tmLanguage'
+	)

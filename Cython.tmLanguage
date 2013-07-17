@@ -9,16 +9,18 @@
 	</string>
 	<key>fileTypes</key>
 	<array>
-		<string>py</string>
+		<string>pyx</string>
+		<string>pxi</string>
+		<string>pxd</string>
 	</array>
 	<key>firstLineMatch</key>
 	<string>^#!/.*\bpython[\d.-]*\b</string>
 	<key>foldingStartMarker</key>
-	<string>^\s*(def|class)\s+([.\w&gt;]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")</string>
+	<string>^\s*((cp?)?def|class|property|struct|enum|union)\s+([.\w&gt;]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")</string>
 	<key>foldingStopMarker</key>
 	<string>^\s*$|^\s*\}|^\s*\]|^\s*\)|^\s*"""\s*$</string>
 	<key>name</key>
-	<string>PythonLang 3</string>
+	<string>Cython</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -321,8 +323,8 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.python</string>
+	<string>source.cython</string>
 	<key>uuid</key>
-	<string>851B1429-B8B4-4C1E-8030-399BDA994393</string>
+	<string>D085155B-E40A-40B3-8FEC-6865318CDEEA</string>
 </dict>
 </plist>

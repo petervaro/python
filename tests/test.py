@@ -1,6 +1,7 @@
 # this is a comment
 0x12
 0o2
+0b0010101011110000
 1
 17256134
 .3634
@@ -30,6 +31,15 @@ print(.012)
 hello12 = .344
 hello_12 = 12.
 
+True
+False
+None
+Ellipsis
+NotImplemented
+[...]
+...
+
+
 global x
 x = 2
 def f():
@@ -50,7 +60,7 @@ else:
 class Hello:
     pass
 
-class World(object):
+class World(object):  #
     pass
 
 class Spam(metaclass=type):
@@ -70,3 +80,9 @@ def life(*, hello, world):
     print(hello, world)
 
 life(hello='a', world='b')
+
+def h() -> {i:j for i,j in [(1, 2), (3, 4), (5, 6)]}:
+    pass
+
+print(h.__annotations__['return'])
+print('#{:-<78}#'.format('-- constants '.upper()))
