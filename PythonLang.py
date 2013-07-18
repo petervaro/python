@@ -95,30 +95,65 @@ lang = {
 			'match': r'\+|-|\*|\*\*|/|//|%|<<|>>|&|\||\^|~'
 		},
 		{
-			# new: function annotation assignment
-			'name' : 'keyword.operator.assignment.python',
-			'match': r'=|->'
+			'name' : 'keyword.operator.value_and_annotation_assignment.python',
+			'match': r'=|->'  # todo: use `:` as assignment ?
 		},
 
 
 #-- CLASS ---------------------------------------------------------------------#
 		{
 			'name' : 'meta.class.python',
-			'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*)',
-			'end'  : r'((\(.*\))?\s*:)|\s*($\n?|#.*$\n?)',
+			'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)',
+			'patterns':
+			[
+				{
+					'contentName': 'entity.name.type.class.python',
+					'begin': r'(?=[a-zA-Z_]\w*)',
+					'patterns':
+					[
+						{
+							'include': '#entity_name_class'  # #entity_name_function
+						}
+					],
+					'end': r'(?!\w)'
+				},
+				{
+					'contentName': 'meta.class.inheritance.python',
+					'begin': r'\(',
+					'patterns':
+					[
+						{
+							'contentName': 'entity.other.inherited-class.python',
+							'begin': r'(?<=\(|,)\s*',
+							'patterns':
+							[
+								{
+									'include': '$self'
+								}
+							],
+							'end': r'\s*(?:,|(?=\)))',
+							'endCaptures':
+							{
+								1: {'name': 'punctuation.separator.inheritance.python'}
+							}
+						}
+					],
+					'end': r'\)|:',
+					'beginCaptures':
+					{
+						1: {'name': 'punctuation.definition.inheritance.begin.python'}
+					}
+				}
+			],
+			'end'  : r'(\)?\s*(:)|\s+([\w#\s:]+))',
 			'beginCaptures':
 			{
 				1: {'name': 'storage.type.class.python'}
 			},
-			'patterns':
-			[
-				{
-					'include': '#entity_name_class'  # #entity_name_function
-				}
-			],
 			'endCaptures':
 			{
-				2: {'name': 'punctuation.section_and_inheritance.class.python'},
+				1: {'name': 'punctuation.inheritance.class.python'},
+				2: {'name': 'punctuation.section.class.python'},
 				3: {'name': 'invalid.illegal.missing_section_begin.python'}
 			}
 		},
@@ -127,26 +162,84 @@ lang = {
 #-- FUNCTION ------------------------------------------------------------------#
 		{
 			'name' : 'meta.function.python',
-			'begin': r'^\s*(def)\s+(?=[A-Za-z_]\w*\s*\()',
-			'end': r'(\))\s*(?:(\:)|(.*$\n?))',
+			'begin': r'^\s*(def)\s+(?=[a-zA-Z_]\w*\s*\()',
 			'beginCaptures':
 			{
 				1: {'name': 'storage.type.function.python'}
 			},
 			'patterns':
 			[
+				# Function name
 				{
-					'include': '#entity_name_function'
+					'contentName': 'entity.name.function.python',
+					'begin': r'(?=[a-zA-Z_]\w*)',
+					'patterns':
+					[
+						{
+							'include': '#entity_name_function'
+						}
+					],
+					'end': r'(?!\w)'
+				},
+				# Arguments
+				{
+					'begin': r'\(',
+					'patterns':
+					[
+						# Positional arguments
+						{
+							'name' : 'variable.parameter.function.python',
+							'match': r'\b([a-zA-Z_]\w*)\s*(?:,|(?=[\n)]))'
+						},
+						# Positional arguments annotation
+						{
+							'begin': r'\b([a-zA-Z_]\w*)\s*:',
+							'beginCaptures':
+							{
+								1: {'name': 'variable.parameter.function.python'}
+							},
+							'patterns':
+							[
+								{
+									'include': '$self'
+								}
+							],
+							'end': r'(?:,|(?=[\n)]))',
+						}
+						# Keyword arguments
+						# {
+						# 	'include': '#keyword_arguments'
+						# },
+						# {
+						# 	'include': '#annotated_arguments'
+						# }
+					],
+					'end': r'(?=\))'
+				},
+				# Function annotation
+				{
+					'begin': r'(?<=\))\s*(->)\s*',
+					'beginCaptures':
+					{
+						1: {'name': 'keyword.operator.annotation.assignment.python'}
+					},
+					'patterns':
+					[
+						{
+							'include': '$self'
+						}
+					],
+					'end': r'(?=\s*:)'
 				}
 			],
+			# todo: add illegal
+			'end': r'(\s*:)',
 			'endCaptures':
 			{
-				1: {'name': 'punctuation.definition.parameters.end.python'},
-				2: {'name': 'punctuation.section.function.begin.python'},
-				3: {'name': 'invalid.illegal.missing-section-begin.python'}
+				# 1: {'name': 'punctuation.section.function.python'},
+				1: {'name': 'invalid.illegal.missing_section_begin.python'}
 			}
 		},
-
 
 #-- CONSTANTS -----------------------------------------------------------------#
 		{
@@ -239,6 +332,49 @@ lang = {
 				r')\b'
 			)
 		},
+		'keyword_arguments':
+		{
+			'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
+			'patterns':
+			[
+				{
+					# Recursively includes the current syntax definition.
+					'include': '$self'
+				}
+			],
+			'end': r'\s*(?:,|(?=$\n?|[):]))',
+			'beginCaptures':
+			{
+				1: {'name': 'variable.parameter.function.python'},
+				2: {'name': 'keyword.operator.assignment.python'}
+			},
+			'endCaptures':
+			{
+				1: {'name': 'punctuation.separator.parameter.python'}
+			}
+		},
+		'annotated_arguments':
+		{
+			'begin': r'\b([a-zA-Z_]\w*)\s*(:)',
+			'patterns':
+			[
+				{
+					'include': '$self'
+				}
+			],
+			'end': r'\s*(?:,|(?=$\n?|[):]))',
+			'beginCaptures':
+			{
+				1: {'name': 'variable.parameter.function.python'},
+				2: {'name': 'keyword.operator.annotation_assignment.python'},
+				# 3: {'name': 'keyword.operator.variable_assignment.python'},
+				# 4: {'name': ''}
+			},
+			'endCaptures':
+			{
+				1: {'name': 'punctuation.separator.parameter.python'}
+			}
+		},
 		'magic_function_names':
 		{
 			'name' : 'support.function.magic.python',
@@ -291,13 +427,14 @@ lang = {
 		#		Use def foo(a, b_c): b, c = b_c instead.
 
 		# todo: [uU][bB][rR]
+		# todo: (r'string' r'string' r'string')
 	},
 	'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
 }
 
 if __name__ == '__main__':
-	import converter
-	converter.dict_to_plist(
+	import convert
+	convert.dict_to_plist(
 		dictionary = lang,
 		file_name  = 'PythonLang',
 		file_path  = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/{0}.tmLanguage'

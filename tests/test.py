@@ -40,6 +40,88 @@ NotImplemented
 ...
 
 
+
+def hello():
+    pass
+
+def hello() -> (i for i in range(10)):
+    pass
+
+def hello(world):
+    pass
+
+def hello(world) -> True:
+    pass
+
+def hello(world, you):
+    pass
+
+def hello(world, you) -> (12, 13, 14):
+    pass
+
+def hello(world: None):
+    pass
+
+def hello(world: None) -> True:
+    pass
+
+def hello(world: None, you):
+    pass
+
+def hello(world: None, you) -> (12, 13, 14):
+    pass
+
+def hello(world: [None, 12], hex, help):
+    pass
+
+def hello(world: [None, 12]) -> True:
+    pass
+
+def hello(world: None, you: range(1, 10, 2), a):
+    pass
+
+def hello(world: None, you: [(1, 2), (3, 4), (5, 6)]) -> (12, 13, 14):
+    pass
+
+# def hello(world):
+#     pass
+
+# def hello(world, come, on):
+#     pass
+
+# def hello(world=12):
+#     pass
+
+# def hello(world=(12, 23)):
+#     pass
+
+# def hello(world, come=0, on=1):
+#     pass
+
+# def hello(world, come, on=1, you=2):
+#     pass
+
+# def hello(*args, **kwargs):
+#     pass
+
+# def hello(world, come, *args, on=1, you=3, **kwargs):
+#     pass
+
+# def hello(world: True):
+#     pass
+
+# def hello(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
+#     pass
+
+# def hello(world) -> None:
+#     pass
+
+# def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> :
+#     pass
+
+
+
+
 global x
 x = 2
 def f():
@@ -58,9 +140,15 @@ else:
     print()
 
 class Hello:
+    def __init__(self, other):
+        pass
+    def testing(self):
+        pass
+
+class World(object):  # this is some comment
     pass
 
-class World(object):  #
+class Python(list, Hello, World):
     pass
 
 class Spam(metaclass=type):
@@ -75,6 +163,9 @@ def mul_str(s: 'string', n: 'multiplier' = 'hello') -> 'doubled each string':
     return ''.join(c*n for c in s)
 
 print(mul_str.__annotations__)
+
+def func(some, arguments, *args, other='keywords', **kwargs):
+    pass
 
 def life(*, hello, world):
     print(hello, world)
