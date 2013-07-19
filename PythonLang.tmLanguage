@@ -389,6 +389,66 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>\b(lambda)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.anonymous.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>:</string>
+			<key>name</key>
+			<string>meta.function.anonymous.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\s+</string>
+					<key>end</key>
+					<string>(?=,|:)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>variable.parameter.function.python</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.python</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=,|:)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>\b[a-zA-Z_]\w*</string>
+							<key>name</key>
+							<string>variable.parameter.function.python</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b(None|True|False|Ellipsis|NotImplemented)\b</string>
 			<key>name</key>

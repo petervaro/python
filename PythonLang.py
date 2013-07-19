@@ -266,6 +266,51 @@ lang = {
 			}
 		},
 
+
+#-- LAMBDA --------------------------------------------------------------------#
+		{
+			'name' : 'meta.function.anonymous.python',
+			'begin': r'\b(lambda)',
+			'beginCaptures':
+			{
+				1: {'name': 'storage.type.function.anonymous.python'}
+			},
+			'patterns':
+			[
+				{
+					'begin': r'\s+',
+					'patterns':
+					[
+						# Keyword arguments
+						{
+							'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
+							'beginCaptures':
+							{
+								1: {'name': 'variable.parameter.function.python'},
+								2: {'name': 'keyword.operator.assignment.python'}
+							},
+							'patterns':
+							[
+								{'include': '$self'}
+							],
+							'end': r'(?=,|:)'
+						},
+						# Positional arguments
+						{
+							'name' : 'variable.parameter.function.python',
+							'match': r'\b[a-zA-Z_]\w*'
+						}
+					],
+					'end': r'(?=,|:)'
+				}
+			],
+			'end': r':'
+		},
+
+
+#-- DECORATOR -----------------------------------------------------------------#
+
+
 #-- CONSTANTS -----------------------------------------------------------------#
 		{
 			'name' : 'constant.language.word_like.python',
@@ -275,6 +320,8 @@ lang = {
 			'name' : 'constant.language.symbol_like.python',
 			'match': r'(?<=\W|^)\.\.\.(?=\W|$)'
 		},
+
+
 #-- STORAGES ------------------------------------------------------------------#
 		{
 			'name' : 'storage.type.function.python',
@@ -284,6 +331,7 @@ lang = {
 			'name' : 'storage.type.class.python',
 			'match': r'\b(class)\b'
 		},
+
 
 #-- BUILTINS ------------------------------------------------------------------#
 		{
@@ -296,6 +344,7 @@ lang = {
 			'include': '#builtin_exceptions'
 		},
 
+
 #-- MAGIC STUFFS --------------------------------------------------------------#
 		{
 			'include': '#magic_function_names'
@@ -304,6 +353,7 @@ lang = {
 			'include': '#magic_variable_names'
 		},
 
+
 #-- ETC -----------------------------------------------------------------------#
 		{
 			'include': '#line_continuation'
@@ -311,6 +361,7 @@ lang = {
 		{
 			'include': '#language_variables'
 		},
+
 
 #-- STRUCTURES ----------------------------------------------------------------#
 		{
@@ -366,11 +417,14 @@ lang = {
 			'end'  : r'}'
 		}
 
+
 #-- STRING --------------------------------------------------------------------#
 
 #-- REGEX ---------------------------------------------------------------------#
 
 	],
+
+
 #-- REPOSITORY ----------------------------------------------------------------#
 	'repository':
 	{
@@ -516,5 +570,6 @@ if __name__ == '__main__':
 	convert.dict_to_plist(
 		dictionary = lang,
 		file_name  = 'PythonLang',
-		file_path  = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/{0}.tmLanguage'
+		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
+		local_copy = True
 	)

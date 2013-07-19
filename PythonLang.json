@@ -1,73 +1,149 @@
 {
+    "repository": {
+        "illegal_names": {
+            "name": "invalid.illegal_names.name.python",
+            "match": "\\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\\b"
+        },
+        "magic_variable_names": {
+            "name": "support.variable.magic.python",
+            "match": "\\b__(all|annotations|bases|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\\b"
+        },
+        "generic_names": {
+            "match": "[a-zA-Z_]\\w*"
+        },
+        "builtin_exceptions": {
+            "name": "support.type.exception.python",
+            "match": "(?x)\\b((Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|Unicode(Encode|Decode|Translate)?|Value|ZeroDivision|Environment|IO|VMS|Windows|BlockingIO|ChildProcess|BrokenPipe|Connection(Aborted|Refused|Reset)?|FileExists|FileNotFound|Interrupted|(Is|Not)ADirectory|Permission|ProcessLookup|Timeout)Error|(User|Deprecation|PendingDeprecation|Syntax|Runtime|Future|Import|Bytes|Resource)Warning|(Base)?Exception|(Generator|System)Exit|KeyboardInterrupt|StopIteration|Warning)\\b"
+        },
+        "language_variables": {
+            "name": "variable.language.python",
+            "match": "\\b(self|cls)\\b"
+        },
+        "entity_name_class": {
+            "patterns": [
+                {
+                    "include": "#illegal_names"
+                },
+                {
+                    "include": "#generic_names"
+                }
+            ]
+        },
+        "builtin_functions": {
+            "name": "support.function.builtin.python",
+            "match": "(?x)\\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|vars|zip)\\b"
+        },
+        "entity_name_function": {
+            "patterns": [
+                {
+                    "include": "#magic_function_names"
+                },
+                {
+                    "include": "#illegal_names"
+                },
+                {
+                    "include": "#generic_names"
+                }
+            ]
+        },
+        "line_continuation": {
+            "match": "(\\\\)(.*)$\\n?",
+            "captures": {
+                "1": {
+                    "name": "punctuation.separator.continuation.line.python"
+                },
+                "2": {
+                    "name": "invalid.illegal.unexpected_text.python"
+                }
+            }
+        },
+        "builtin_types": {
+            "name": "support.type.python",
+            "match": "(?x)\\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|float|frozenset|int|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\\b"
+        },
+        "magic_function_names": {
+            "name": "support.function.magic.python",
+            "match": "(?x)\\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\\b"
+        }
+    },
+    "uuid": "851B1429-B8B4-4C1E-8030-399BDA994393",
+    "foldingStopMarker": "^\\s*$|^\\s*\\}|^\\s*\\]|^\\s*\\)|^\\s*\"\"\"\\s*$",
+    "foldingStartMarker": "^\\s*(def|class)\\s+([.\\w>]+)\\s*(\\((.*)\\))?\\s*:|\\{\\s*$|\\(\\s*$|\\[\\s*$|^\\s*\"\"\"(?=.)(?!.*\"\"\")",
     "comment": "\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t",
+    "firstLineMatch": "^#!/.*\\bpython[\\d.-]*\\b",
+    "name": "PythonLang 3",
+    "scopeName": "source.python",
+    "fileTypes": [
+        "py"
+    ],
     "patterns": [
         {
-            "match": "#.*$\\n?",
-            "name": "comment.line.hashmark.python"
+            "name": "comment.line.hashmark.python",
+            "match": "#.*$\\n?"
         },
         {
-            "match": "\\b0b[01]+",
-            "name": "constant.numeric.integer.binary.python"
+            "name": "constant.numeric.integer.binary.python",
+            "match": "\\b0b[01]+"
         },
         {
-            "match": "\\b0x\\h+",
-            "name": "constant.numeric.integer.hexadecimal.python"
+            "name": "constant.numeric.integer.hexadecimal.python",
+            "match": "\\b0x\\h+"
         },
         {
-            "match": "\\b0o[0-7]+",
-            "name": "constant.numeric.integer.octal.python"
+            "name": "constant.numeric.integer.octal.python",
+            "match": "\\b0o[0-7]+"
         },
         {
-            "match": "(?<=\\W|^)\\.\\d+([eE][+-]?\\d+)?[jJ]?",
-            "name": "constant.numeric.float_and_complex.decimal.floatnumber.python"
+            "name": "constant.numeric.float_and_complex.decimal.floatnumber.python",
+            "match": "(?<=\\W|^)\\.\\d+([eE][+-]?\\d+)?[jJ]?"
         },
         {
-            "match": "\\d+\\.(\\d+([eE][+-]?\\d+)?)?[jJ]?",
-            "name": "constant.numeric.float_and_complex.decimal.pointfloat.python"
+            "name": "constant.numeric.float_and_complex.decimal.pointfloat.python",
+            "match": "\\d+\\.(\\d+([eE][+-]?\\d+)?)?[jJ]?"
         },
         {
-            "match": "(?<![\\.\\d])\\d+[eE][+-]?\\d+[jJ]?",
-            "name": "constant.numeric.float_and_complex.decimal.exponent.python"
+            "name": "constant.numeric.float_and_complex.decimal.exponent.python",
+            "match": "(?<![\\.\\d])\\d+[eE][+-]?\\d+[jJ]?"
         },
         {
-            "match": "\\b(?<!\\.)([1-9]\\d*|0)[jJ]?",
-            "name": "constant.numeric.integer_and_complex.decimal.python"
+            "name": "constant.numeric.integer_and_complex.decimal.python",
+            "match": "\\b(?<!\\.)([1-9]\\d*|0)[jJ]?"
         },
         {
-            "match": "\\b(global|nonlocal)\\b",
-            "name": "storage.modifier.declaration.python"
+            "name": "storage.modifier.declaration.python",
+            "match": "\\b(global|nonlocal)\\b"
         },
         {
-            "match": "\\b(import|from)\\b",
-            "name": "keyword.control.import_and_import_from.python"
+            "name": "keyword.control.import_and_import_from.python",
+            "match": "\\b(import|from)\\b"
         },
         {
-            "match": "\\b(elif|else|except|finally|for|if|try|while|with|break|continue|pass|raise|return|yield)\\b",
-            "name": "keyword.control.flow_block_delimiters.python"
+            "name": "keyword.control.flow_block_delimiters.python",
+            "match": "\\b(elif|else|except|finally|for|if|try|while|with|break|continue|pass|raise|return|yield)\\b"
         },
         {
-            "match": "\\b(and|in|is|not|or)\\b",
-            "name": "keyword.operator.bool.logical.python"
+            "name": "keyword.operator.bool.logical.python",
+            "match": "\\b(and|in|is|not|or)\\b"
         },
         {
-            "match": "\\b(as|assert|del)\\b",
-            "name": "keyword.other.python"
+            "name": "keyword.other.python",
+            "match": "\\b(as|assert|del)\\b"
         },
         {
-            "match": "<=|>=|==|<|>|!=",
-            "name": "keyword.operator.comparison.python"
+            "name": "keyword.operator.comparison.python",
+            "match": "<=|>=|==|<|>|!="
         },
         {
-            "match": "\\+=|-=|\\*=|/=|//=|%=|&=|\\|=|\\^=|<<=|>>=|\\*\\*=",
-            "name": "keyword.operator.assignment.augmented.python"
+            "name": "keyword.operator.assignment.augmented.python",
+            "match": "\\+=|-=|\\*=|/=|//=|%=|&=|\\|=|\\^=|<<=|>>=|\\*\\*="
         },
         {
-            "match": "\\+|-|\\*|\\*\\*|/|//|%|<<|>>|&|\\||\\^|~",
-            "name": "keyword.operator.arithmetic.python"
+            "name": "keyword.operator.arithmetic.python",
+            "match": "\\+|-|\\*|\\*\\*|/|//|%|<<|>>|&|\\||\\^|~"
         },
         {
-            "match": "=|->",
-            "name": "keyword.operator.value_and_annotation_assignment.python"
+            "name": "keyword.operator.value_and_annotation_assignment.python",
+            "match": "=|->"
         },
         {
             "beginCaptures": {
@@ -75,33 +151,31 @@
                     "name": "storage.type.class.python"
                 }
             },
+            "name": "meta.class.python",
+            "begin": "^\\s*(class)\\s+(?=[a-zA-Z_]\\w*(\\s*\\()?)",
             "patterns": [
                 {
+                    "contentName": "entity.name.type.class.python",
                     "begin": "(?=[a-zA-Z_]\\w*)",
                     "patterns": [
                         {
                             "include": "#entity_name_class"
                         }
                     ],
-                    "contentName": "entity.name.type.class.python",
                     "end": "(?!\\w)"
                 },
                 {
+                    "contentName": "meta.class.inheritance.python",
                     "begin": "\\(",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "punctuation.definition.inheritance.begin.python"
-                        }
-                    },
                     "patterns": [
                         {
+                            "contentName": "entity.other.inherited-class.python",
                             "begin": "(?<=\\(|,)\\s*",
                             "patterns": [
                                 {
                                     "include": "$self"
                                 }
                             ],
-                            "contentName": "entity.other.inherited-class.python",
                             "end": "\\s*(?:,|(?=\\)))",
                             "endCaptures": {
                                 "1": {
@@ -110,13 +184,15 @@
                             }
                         }
                     ],
-                    "contentName": "meta.class.inheritance.python",
-                    "end": "\\)|:"
+                    "end": "\\)|:",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.definition.inheritance.begin.python"
+                        }
+                    }
                 }
             ],
             "end": "(\\)?\\s*(:)|\\s+([\\w#\\s:]+))",
-            "name": "meta.class.python",
-            "begin": "^\\s*(class)\\s+(?=[a-zA-Z_]\\w*(\\s*\\()?)",
             "endCaptures": {
                 "1": {
                     "name": "punctuation.inheritance.class.python"
@@ -135,15 +211,17 @@
                     "name": "storage.type.function.python"
                 }
             },
+            "name": "meta.function.python",
+            "begin": "^\\s*(def)\\s+(?=[a-zA-Z_]\\w*\\s*\\()",
             "patterns": [
                 {
+                    "contentName": "entity.name.function.python",
                     "begin": "(?=[a-zA-Z_]\\w*)",
                     "patterns": [
                         {
                             "include": "#entity_name_function"
                         }
                     ],
-                    "contentName": "entity.name.function.python",
                     "end": "(?!\\w)"
                 },
                 {
@@ -159,6 +237,7 @@
                                     "name": "keyword.operator.assignment.python"
                                 }
                             },
+                            "end": "(?=,|[\\n)])",
                             "patterns": [
                                 {
                                     "begin": "(?<=(=))\\s*",
@@ -167,12 +246,12 @@
                                             "name": "keyword.operator.assignment.python"
                                         }
                                     },
+                                    "end": "(?=,|[\\n)])",
                                     "patterns": [
                                         {
                                             "include": "$self"
                                         }
-                                    ],
-                                    "end": "(?=,|[\\n)])"
+                                    ]
                                 },
                                 {
                                     "begin": "(?<=:)\\s*",
@@ -188,8 +267,7 @@
                                         }
                                     }
                                 }
-                            ],
-                            "end": "(?=,|[\\n)])"
+                            ]
                         },
                         {
                             "begin": "\\b([a-zA-Z_]\\w*)\\s*",
@@ -198,6 +276,7 @@
                                     "name": "variable.parameter.function.python"
                                 }
                             },
+                            "end": "(?=,|[\\n)])",
                             "patterns": [
                                 {
                                     "begin": "(?<=:)\\s*",
@@ -208,8 +287,7 @@
                                     ],
                                     "end": "(?=,|[\\n)])"
                                 }
-                            ],
-                            "end": "(?=,|[\\n)])"
+                            ]
                         }
                     ],
                     "end": "(?=\\))"
@@ -221,17 +299,15 @@
                             "name": "keyword.operator.annotation.assignment.python"
                         }
                     },
+                    "end": "(?=\\s*:)",
                     "patterns": [
                         {
                             "include": "$self"
                         }
-                    ],
-                    "end": "(?=\\s*:)"
+                    ]
                 }
             ],
             "end": "(\\s*:)",
-            "name": "meta.function.python",
-            "begin": "^\\s*(def)\\s+(?=[a-zA-Z_]\\w*\\s*\\()",
             "endCaptures": {
                 "1": {
                     "name": "punctuation.section.function.python"
@@ -242,20 +318,59 @@
             }
         },
         {
-            "match": "\\b(None|True|False|Ellipsis|NotImplemented)\\b",
-            "name": "constant.language.word_like.python"
+            "name": "meta.function.anonymous.python",
+            "begin": "\\b(lambda)",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type.function.anonymous.python"
+                }
+            },
+            "end": ":",
+            "patterns": [
+                {
+                    "begin": "\\s+",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_]\\w*)\\s*(=)",
+                            "beginCaptures": {
+                                "1": {
+                                    "name": "variable.parameter.function.python"
+                                },
+                                "2": {
+                                    "name": "keyword.operator.assignment.python"
+                                }
+                            },
+                            "end": "(?=,|:)",
+                            "patterns": [
+                                {
+                                    "include": "$self"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "variable.parameter.function.python",
+                            "match": "\\b[a-zA-Z_]\\w*"
+                        }
+                    ],
+                    "end": "(?=,|:)"
+                }
+            ]
         },
         {
-            "match": "(?<=\\W|^)\\.\\.\\.(?=\\W|$)",
-            "name": "constant.language.symbol_like.python"
+            "name": "constant.language.word_like.python",
+            "match": "\\b(None|True|False|Ellipsis|NotImplemented)\\b"
         },
         {
-            "match": "\\b(def|lambda)\\b",
-            "name": "storage.type.function.python"
+            "name": "constant.language.symbol_like.python",
+            "match": "(?<=\\W|^)\\.\\.\\.(?=\\W|$)"
         },
         {
-            "match": "\\b(class)\\b",
-            "name": "storage.type.class.python"
+            "name": "storage.type.function.python",
+            "match": "\\b(def|lambda)\\b"
+        },
+        {
+            "name": "storage.type.class.python",
+            "match": "\\b(class)\\b"
         },
         {
             "include": "#builtin_types"
@@ -279,6 +394,7 @@
             "include": "#language_variables"
         },
         {
+            "name": "meta.structure.list.python",
             "begin": "\\[",
             "patterns": [
                 {
@@ -291,8 +407,7 @@
                     "end": "\\s*(?:,|(?=\\]))"
                 }
             ],
-            "end": "\\]",
-            "name": "meta.structure.list.python"
+            "end": "\\]"
         },
         {
             "begin": "\\(",
@@ -304,6 +419,7 @@
             "end": "\\)"
         },
         {
+            "name": "meta.structure.dictionary.python",
             "begin": "{",
             "patterns": [
                 {
@@ -325,84 +441,7 @@
                     "end": "\\s*(?:(?=}|,))"
                 }
             ],
-            "end": "}",
-            "name": "meta.structure.dictionary.python"
+            "end": "}"
         }
-    ],
-    "uuid": "851B1429-B8B4-4C1E-8030-399BDA994393",
-    "foldingStopMarker": "^\\s*$|^\\s*\\}|^\\s*\\]|^\\s*\\)|^\\s*\"\"\"\\s*$",
-    "fileTypes": [
-        "py"
-    ],
-    "name": "PythonLang 3",
-    "foldingStartMarker": "^\\s*(def|class)\\s+([.\\w>]+)\\s*(\\((.*)\\))?\\s*:|\\{\\s*$|\\(\\s*$|\\[\\s*$|^\\s*\"\"\"(?=.)(?!.*\"\"\")",
-    "repository": {
-        "builtin_functions": {
-            "match": "(?x)\\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|vars|zip)\\b",
-            "name": "support.function.builtin.python"
-        },
-        "builtin_types": {
-            "match": "(?x)\\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|float|frozenset|int|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\\b",
-            "name": "support.type.python"
-        },
-        "illegal_names": {
-            "match": "\\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\\b",
-            "name": "invalid.illegal_names.name.python"
-        },
-        "line_continuation": {
-            "captures": {
-                "1": {
-                    "name": "punctuation.separator.continuation.line.python"
-                },
-                "2": {
-                    "name": "invalid.illegal.unexpected_text.python"
-                }
-            },
-            "match": "(\\\\)(.*)$\\n?"
-        },
-        "builtin_exceptions": {
-            "match": "(?x)\\b((Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|Unicode(Encode|Decode|Translate)?|Value|ZeroDivision|Environment|IO|VMS|Windows|BlockingIO|ChildProcess|BrokenPipe|Connection(Aborted|Refused|Reset)?|FileExists|FileNotFound|Interrupted|(Is|Not)ADirectory|Permission|ProcessLookup|Timeout)Error|(User|Deprecation|PendingDeprecation|Syntax|Runtime|Future|Import|Bytes|Resource)Warning|(Base)?Exception|(Generator|System)Exit|KeyboardInterrupt|StopIteration|Warning)\\b",
-            "name": "support.type.exception.python"
-        },
-        "magic_function_names": {
-            "match": "(?x)\\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\\b",
-            "name": "support.function.magic.python"
-        },
-        "generic_names": {
-            "match": "[a-zA-Z_]\\w*"
-        },
-        "magic_variable_names": {
-            "match": "\\b__(all|annotations|bases|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\\b",
-            "name": "support.variable.magic.python"
-        },
-        "language_variables": {
-            "match": "\\b(self|cls)\\b",
-            "name": "variable.language.python"
-        },
-        "entity_name_function": {
-            "patterns": [
-                {
-                    "include": "#magic_function_names"
-                },
-                {
-                    "include": "#illegal_names"
-                },
-                {
-                    "include": "#generic_names"
-                }
-            ]
-        },
-        "entity_name_class": {
-            "patterns": [
-                {
-                    "include": "#illegal_names"
-                },
-                {
-                    "include": "#generic_names"
-                }
-            ]
-        }
-    },
-    "scopeName": "source.python",
-    "firstLineMatch": "^#!/.*\\bpython[\\d.-]*\\b"
+    ]
 }

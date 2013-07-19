@@ -14,5 +14,6 @@ if __name__ == '__main__':
 	convert.dict_to_plist(
 		dictionary = lang,
 		file_name  = 'Cython',
-		file_path  = '~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/{0}.tmLanguage'
+		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
+		local_copy = True
 	)

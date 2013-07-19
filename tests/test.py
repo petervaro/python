@@ -115,10 +115,15 @@ def hello(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
 def hello(world) -> None:
     pass
 
-def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> :
+def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> '':
     pass
 
-
+(lambda e, f, g: e + f + g)
+lambda: 12**2
+lambda alfa: True if alfa else False
+lambda *args, **kwargs: None
+lambda a=12, b=23: a+b
+lambda a = [(1, 2), (3, 4)], b=[(5, 6)]: zip(a,b)
 
 global x
 x = 2
@@ -146,16 +151,36 @@ class Hello:
         cls.var = b
 
 class World(object):  # this is some comment
-    pass
+    def __init__(self, other):
+        pass
+    def testing(self):
+        self.a = NotImplemented
+    def hahaha(cls, b):
+        cls.var = b
 
 class Python(list, Hello, World):
-    pass
+    def __init__(self, other):
+        pass
+    def testing(self):
+        self.a = NotImplemented
+    def hahaha(cls, b):
+        cls.var = b
 
 class Spam(metaclass=type):
-    pass
+    def __init__(self, other):
+        pass
+    def testing(self):
+        self.a = NotImplemented
+    def hahaha(cls, b):
+        cls.var = b
 
 class Hey():
-    pass
+    def __init__(self, other):
+        pass
+    def testing(self):
+        self.a = NotImplemented
+    def hahaha(cls, b):
+        cls.var = b
 
 string = 'abcde'
 
@@ -176,4 +201,4 @@ def h() -> {i:j for i,j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
 print(h.__annotations__['return'])
-print('#{:-<78}#'.format('-- regex '.upper()))
+print('#{:-<78}#'.format('-- decorator '.upper()))

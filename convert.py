@@ -1,18 +1,24 @@
-# Import python modules
 import os
-import json
+import plistlib
 
-def dict_to_plist(dictionary, file_name, file_path):
-    # Create JSON file
-    with open('{}.json'.format(file_name), 'w') as f:
-        f.write(
-            json.dumps(
-                obj = dictionary,
-                indent = 4,
-                separators = (',', ': ')
-            )
-        )
-    # Convert JSON file to PropertyList XML
-    os.system(('plutil -convert xml1 {0}.json -o ' + file_path).format(file_name))
-    os.system(('plutil -convert xml1 {0}.json -o {0}.tmLanguage').format(file_name))
-    print(file_name, 'has been converted.')
+def int_to_str(obj):
+        try:
+            for key, value in obj.items():
+                obj[key] = int_to_str(obj[key])
+                if isinstance(key, int):
+                    obj[str(key)] = obj.pop(key)
+        except AttributeError:
+            if isinstance(obj, list):
+                for i, item in enumerate(obj):
+                    obj[i] = int_to_str(item)
+        return obj
+
+def dict_to_plist(dictionary, file_name, file_path=None, local_copy=False):
+    d = int_to_str(dictionary)
+    if file_path:
+        with open('{}.tmLanguage'.format(os.path.join(os.path.expanduser(file_path), file_name)), 'w+b') as f:
+            plistlib.writePlist(d, f)
+    if local_copy:
+        with open('{}.tmLanguage'.format(file_name), 'w+b') as f:
+            plistlib.writePlist(d, f)
+    print(file_name, 'has been converted and placed.')

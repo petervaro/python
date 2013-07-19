@@ -1,4 +1,4 @@
-# Python 3 and Cython language bundles
+# Python and Cython language bundles
 
 This package is about language related bundles for Python 3.3+ & Cython 0.19.1+
 
