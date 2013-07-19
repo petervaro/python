@@ -40,7 +40,6 @@ NotImplemented
 ...
 
 
-
 def hello():
     pass
 
@@ -71,7 +70,7 @@ def hello(world: None, you):
 def hello(world: None, you) -> (12, 13, 14):
     pass
 
-def hello(world: [None, 12], hex, help):
+def hello(world: [None, 12], hex, help, jelp, huh: [12, 23, 45], huhu, hah):
     pass
 
 def hello(world: [None, 12]) -> True:
@@ -83,42 +82,41 @@ def hello(world: None, you: range(1, 10, 2), a):
 def hello(world: None, you: [(1, 2), (3, 4), (5, 6)]) -> (12, 13, 14):
     pass
 
-# def hello(world):
-#     pass
+def hello(world):
+    pass
 
-# def hello(world, come, on):
-#     pass
+def hello(world, come, on):
+    pass
 
-# def hello(world=12):
-#     pass
+def hello(world=12):
+    pass
 
-# def hello(world=(12, 23)):
-#     pass
+def hello(world=(12, 23)):
+    pass
 
-# def hello(world, come=0, on=1):
-#     pass
+def hello(world, come=0, on=1):
+    pass
 
-# def hello(world, come, on=1, you=2):
-#     pass
+def hello(world, come, on=1, you=2):
+    pass
 
-# def hello(*args, **kwargs):
-#     pass
+def hello(*args, **kwargs):
+    pass
 
-# def hello(world, come, *args, on=1, you=3, **kwargs):
-#     pass
+def hello(world, come, *args, on=1, you=3, **kwargs):
+    pass
 
-# def hello(world: True):
-#     pass
+def hello(world: True):
+    pass
 
-# def hello(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
-#     pass
+def hello(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
+    pass
 
-# def hello(world) -> None:
-#     pass
+def hello(world) -> None:
+    pass
 
-# def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> :
-#     pass
-
+def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> :
+    pass
 
 
 
@@ -143,7 +141,9 @@ class Hello:
     def __init__(self, other):
         pass
     def testing(self):
-        pass
+        self.a = NotImplemented
+    def hahaha(cls, b):
+        cls.var = b
 
 class World(object):  # this is some comment
     pass
@@ -176,4 +176,4 @@ def h() -> {i:j for i,j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
 print(h.__annotations__['return'])
-print('#{:-<78}#'.format('-- constants '.upper()))
+print('#{:-<78}#'.format('-- regex '.upper()))

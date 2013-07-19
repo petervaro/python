@@ -111,9 +111,7 @@ lang = {
 					'begin': r'(?=[a-zA-Z_]\w*)',
 					'patterns':
 					[
-						{
-							'include': '#entity_name_class'  # #entity_name_function
-						}
+						{'include': '#entity_name_class'}
 					],
 					'end': r'(?!\w)'
 				},
@@ -127,9 +125,7 @@ lang = {
 							'begin': r'(?<=\(|,)\s*',
 							'patterns':
 							[
-								{
-									'include': '$self'
-								}
+								{'include': '$self'}
 							],
 							'end': r'\s*(?:,|(?=\)))',
 							'endCaptures':
@@ -175,9 +171,7 @@ lang = {
 					'begin': r'(?=[a-zA-Z_]\w*)',
 					'patterns':
 					[
-						{
-							'include': '#entity_name_function'
-						}
+						{'include': '#entity_name_function'}
 					],
 					'end': r'(?!\w)'
 				},
@@ -186,37 +180,70 @@ lang = {
 					'begin': r'\(',
 					'patterns':
 					[
+						# Keyword arguments
+						{
+							'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
+							'beginCaptures':
+							{
+								1: {'name': 'variable.parameter.function.python'},
+								2: {'name': 'keyword.operator.assignment.python'}
+							},
+							'patterns':
+							[
+								# Keyword assignment
+								{
+									'begin': r'(?<=(=))\s*',
+									'beginCaptures':
+									{
+										1: {'name': 'keyword.operator.assignment.python'}
+									},
+									'patterns':
+									[
+										{'include': '$self'}
+									],
+									'end': r'(?=,|[\n)])',
+								},
+								# Annotation assignment (kwargs)
+								{
+									'begin': r'(?<=:)\s*',
+									'patterns':
+									[
+										{'include': '$self'}
+									],
+									'end': r'(?=,|(=)|[\n)])',
+									'endCaptures':
+									{
+										1: {'name': 'keyword.operator.assignment.python'}
+									}
+								}
+							],
+							'end': r'(?=,|[\n)])'
+						},
 						# Positional arguments
 						{
-							'name' : 'variable.parameter.function.python',
-							'match': r'\b([a-zA-Z_]\w*)\s*(?:,|(?=[\n)]))'
-						},
-						# Positional arguments annotation
-						{
-							'begin': r'\b([a-zA-Z_]\w*)\s*:',
+							'begin': r'\b([a-zA-Z_]\w*)\s*',
 							'beginCaptures':
 							{
 								1: {'name': 'variable.parameter.function.python'}
 							},
 							'patterns':
 							[
+								# Annotation assignment (args)
 								{
-									'include': '$self'
+									'begin': r'(?<=:)\s*',
+									'patterns':
+									[
+										{'include': '$self'}
+									],
+									'end': r'(?=,|[\n)])',
 								}
 							],
-							'end': r'(?:,|(?=[\n)]))',
+							'end': r'(?=,|[\n)])'
 						}
-						# Keyword arguments
-						# {
-						# 	'include': '#keyword_arguments'
-						# },
-						# {
-						# 	'include': '#annotated_arguments'
-						# }
 					],
 					'end': r'(?=\))'
 				},
-				# Function annotation
+				# Annotation assignment (function)
 				{
 					'begin': r'(?<=\))\s*(->)\s*',
 					'beginCaptures':
@@ -225,9 +252,7 @@ lang = {
 					},
 					'patterns':
 					[
-						{
-							'include': '$self'
-						}
+						{'include': '$self'}
 					],
 					'end': r'(?=\s*:)'
 				}
@@ -236,8 +261,8 @@ lang = {
 			'end': r'(\s*:)',
 			'endCaptures':
 			{
-				# 1: {'name': 'punctuation.section.function.python'},
-				1: {'name': 'invalid.illegal.missing_section_begin.python'}
+				1: {'name': 'punctuation.section.function.python'},
+				2: {'name': 'invalid.illegal.missing_section_begin.python'}
 			}
 		},
 
@@ -249,8 +274,104 @@ lang = {
 		{
 			'name' : 'constant.language.symbol_like.python',
 			'match': r'(?<=\W|^)\.\.\.(?=\W|$)'
+		},
+#-- STORAGES ------------------------------------------------------------------#
+		{
+			'name' : 'storage.type.function.python',
+			'match': r'\b(def|lambda)\b'
+		},
+		{
+			'name' : 'storage.type.class.python',
+			'match': r'\b(class)\b'
+		},
+
+#-- BUILTINS ------------------------------------------------------------------#
+		{
+			'include': '#builtin_types'
+		},
+		{
+			'include': '#builtin_functions'
+		},
+		{
+			'include': '#builtin_exceptions'
+		},
+
+#-- MAGIC STUFFS --------------------------------------------------------------#
+		{
+			'include': '#magic_function_names'
+		},
+		{
+			'include': '#magic_variable_names'
+		},
+
+#-- ETC -----------------------------------------------------------------------#
+		{
+			'include': '#line_continuation'
+		},
+		{
+			'include': '#language_variables'
+		},
+
+#-- STRUCTURES ----------------------------------------------------------------#
+		{
+			'name': 'meta.structure.list.python',
+			'begin': r'\[',
+			'patterns':
+			[
+				{
+					'begin': r'(?<=\[|,)\s*(?![\],])',
+					'patterns':
+					[
+						{'include': '$self'}
+					],
+					'end'  : r'\s*(?:,|(?=\]))'
+				}
+			],
+			'end'  : r'\]'
+		},
+		{
+			'begin': r'\(',
+			'patterns':
+			[
+				{'include': '$self'}
+			],
+			'end': r'\)'
+		},
+		{
+			'name': 'meta.structure.dictionary.python',
+			'begin': r'{',
+			'patterns':
+			[
+				{
+					'begin': r'(?<={|,|^)\s*(?![,}])',
+					'patterns':
+					[
+						{
+							'include': '$self'
+						}
+					],
+					'end'  : r'\s*(?:(?=}|:))'
+				},
+				{
+					'begin': r'(?<=:|^)\s*',
+					'patterns':
+					[
+						{
+							'include': '$self'
+						}
+					],
+					'end'  : r'\s*(?:(?=}|,))'
+				}
+			],
+			'end'  : r'}'
 		}
+
+#-- STRING --------------------------------------------------------------------#
+
+#-- REGEX ---------------------------------------------------------------------#
+
 	],
+#-- REPOSITORY ----------------------------------------------------------------#
 	'repository':
 	{
 		'builtin_exceptions':
@@ -332,49 +453,6 @@ lang = {
 				r')\b'
 			)
 		},
-		'keyword_arguments':
-		{
-			'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
-			'patterns':
-			[
-				{
-					# Recursively includes the current syntax definition.
-					'include': '$self'
-				}
-			],
-			'end': r'\s*(?:,|(?=$\n?|[):]))',
-			'beginCaptures':
-			{
-				1: {'name': 'variable.parameter.function.python'},
-				2: {'name': 'keyword.operator.assignment.python'}
-			},
-			'endCaptures':
-			{
-				1: {'name': 'punctuation.separator.parameter.python'}
-			}
-		},
-		'annotated_arguments':
-		{
-			'begin': r'\b([a-zA-Z_]\w*)\s*(:)',
-			'patterns':
-			[
-				{
-					'include': '$self'
-				}
-			],
-			'end': r'\s*(?:,|(?=$\n?|[):]))',
-			'beginCaptures':
-			{
-				1: {'name': 'variable.parameter.function.python'},
-				2: {'name': 'keyword.operator.annotation_assignment.python'},
-				# 3: {'name': 'keyword.operator.variable_assignment.python'},
-				# 4: {'name': ''}
-			},
-			'endCaptures':
-			{
-				1: {'name': 'punctuation.separator.parameter.python'}
-			}
-		},
 		'magic_function_names':
 		{
 			'name' : 'support.function.magic.python',
@@ -431,6 +509,7 @@ lang = {
 	},
 	'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
 }
+
 
 if __name__ == '__main__':
 	import convert

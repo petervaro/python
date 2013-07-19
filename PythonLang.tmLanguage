@@ -235,6 +235,11 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>punctuation.section.function.python</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>invalid.illegal.missing_section_begin.python</string>
 				</dict>
 			</dict>
@@ -265,14 +270,72 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>match</key>
-							<string>\b([a-zA-Z_]\w*)\s*(?:,|(?=[\n)]))</string>
-							<key>name</key>
-							<string>variable.parameter.function.python</string>
+							<key>begin</key>
+							<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>variable.parameter.function.python</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.python</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=,|[\n)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>begin</key>
+									<string>(?&lt;=(=))\s*</string>
+									<key>beginCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.operator.assignment.python</string>
+										</dict>
+									</dict>
+									<key>end</key>
+									<string>(?=,|[\n)])</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>$self</string>
+										</dict>
+									</array>
+								</dict>
+								<dict>
+									<key>begin</key>
+									<string>(?&lt;=:)\s*</string>
+									<key>end</key>
+									<string>(?=,|(=)|[\n)])</string>
+									<key>endCaptures</key>
+									<dict>
+										<key>1</key>
+										<dict>
+											<key>name</key>
+											<string>keyword.operator.assignment.python</string>
+										</dict>
+									</dict>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>$self</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>\b([a-zA-Z_]\w*)\s*:</string>
+							<string>\b([a-zA-Z_]\w*)\s*</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
@@ -282,12 +345,21 @@
 								</dict>
 							</dict>
 							<key>end</key>
-							<string>(?:,|(?=[\n)]))</string>
+							<string>(?=,|[\n)])</string>
 							<key>patterns</key>
 							<array>
 								<dict>
-									<key>include</key>
-									<string>$self</string>
+									<key>begin</key>
+									<string>(?&lt;=:)\s*</string>
+									<key>end</key>
+									<string>(?=,|[\n)])</string>
+									<key>patterns</key>
+									<array>
+										<dict>
+											<key>include</key>
+											<string>$self</string>
+										</dict>
+									</array>
 								</dict>
 							</array>
 						</dict>
@@ -328,36 +400,75 @@
 			<key>name</key>
 			<string>constant.language.symbol_like.python</string>
 		</dict>
-	</array>
-	<key>repository</key>
-	<dict>
-		<key>annotated_arguments</key>
+		<dict>
+			<key>match</key>
+			<string>\b(def|lambda)\b</string>
+			<key>name</key>
+			<string>storage.type.function.python</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(class)\b</string>
+			<key>name</key>
+			<string>storage.type.class.python</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#builtin_types</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#builtin_functions</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#builtin_exceptions</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#magic_function_names</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#magic_variable_names</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#line_continuation</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#language_variables</string>
+		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b([a-zA-Z_]\w*)\s*(:)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter.function.python</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.annotation_assignment.python</string>
-				</dict>
-			</dict>
+			<string>\[</string>
 			<key>end</key>
-			<string>\s*(?:,|(?=$\n?|[):]))</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
+			<string>\]</string>
+			<key>name</key>
+			<string>meta.structure.list.python</string>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>name</key>
-					<string>punctuation.separator.parameter.python</string>
+					<key>begin</key>
+					<string>(?&lt;=\[|,)\s*(?![\],])</string>
+					<key>end</key>
+					<string>\s*(?:,|(?=\]))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
 				</dict>
-			</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -366,6 +477,46 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>begin</key>
+			<string>{</string>
+			<key>end</key>
+			<string>}</string>
+			<key>name</key>
+			<string>meta.structure.dictionary.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;={|,|^)\s*(?![,}])</string>
+					<key>end</key>
+					<string>\s*(?:(?=}|:))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=:|^)\s*</string>
+					<key>end</key>
+					<string>\s*(?:(?=}|,))</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
 		<key>builtin_exceptions</key>
 		<dict>
 			<key>match</key>
@@ -430,41 +581,6 @@
 			<string>\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b</string>
 			<key>name</key>
 			<string>invalid.illegal_names.name.python</string>
-		</dict>
-		<key>keyword_arguments</key>
-		<dict>
-			<key>begin</key>
-			<string>\b([a-zA-Z_]\w*)\s*(=)(?!=)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter.function.python</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.assignment.python</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>\s*(?:,|(?=$\n?|[):]))</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.separator.parameter.python</string>
-				</dict>
-			</dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$self</string>
-				</dict>
-			</array>
 		</dict>
 		<key>language_variables</key>
 		<dict>
