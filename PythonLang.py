@@ -1,4 +1,14 @@
-lang = {
+#-- CHEASHEET -----------------------------------------------------------------#
+# HOWTO: http://sublimetext.info/docs/en/reference/syntaxdefs.html
+# REGEX: http://manual.macromates.com/en/regular_expressions
+
+# Generate Separator
+def separator(string):
+	print('#{:-<78}#'.format('-- {} '.format(string.upper())))
+
+
+# Syntax Definition
+syntax = {
 	'name': 'PythonLang 3',
 	'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t',
 	'scopeName': 'source.python',
@@ -462,6 +472,7 @@ lang = {
 				r')\b'
 			)
 		},
+		# todo: rearrange -> what is builtin function and what is builtin type?
 		'builtin_types':
 		{
 			'name' : 'support.type.python',
@@ -528,7 +539,7 @@ lang = {
 				r')__)\b'
 			)
 		},
-		# todo: what is magic function and what is magic variable?
+		# todo: rearrange -> what is magic function and what is magic variable?
 		'magic_variable_names':
 		{
 			'name' : 'support.variable.magic.python',
@@ -568,7 +579,7 @@ lang = {
 if __name__ == '__main__':
 	import convert
 	convert.dict_to_plist(
-		dictionary = lang,
+		dictionary = syntax,
 		file_name  = 'PythonLang',
 		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
 		local_copy = True

@@ -201,4 +201,3 @@ def h() -> {i:j for i,j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
 print(h.__annotations__['return'])
-print('#{:-<78}#'.format('-- decorator '.upper()))
