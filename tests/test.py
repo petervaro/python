@@ -40,6 +40,43 @@ NotImplemented
 ...
 
 
+r'raw'
+u'unicode.'
+rB'raw byte' + Br'raw byte'
+'\b\r\n\t\v\'\"'
+'''hello\x78'''
+'hello\x78'
+'''\\'''
+"hello\x78"
+"""khj
+"""
+
+
+r'[a-z]'
+
+r'^hello$'
+r'a{4,}b'
+r'a+?(?#this is a comment)'
+
+r'(?<!\b|$)\d'
+
+{
+    'hello':
+    {
+        'you':
+        {
+            'little':
+            {
+                'somebody':
+                (
+                    r'x{2}',
+                    r'\u78ff'
+                )
+            }
+        }
+    }
+}
+
 def hello():
     pass
 

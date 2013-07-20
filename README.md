@@ -53,8 +53,11 @@ amazing [`Rainbow.js`](http://craig.is/making/rainbows/) it is also possible!
 - New exceptions added
 - Function annotations are supported
 - Language variable `cls` added
-- Byte notation is added to strings
+- String and byte literals:
+	- Byte notation added
+	- Proper string prefixes added
 - Format mini-language is supported in strings
+- Traceback message is supported
 - All the unused builtin and magic functions/methods are removed
 
 ### Contribute

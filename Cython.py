@@ -1,19 +1,20 @@
-from PythonLang import lang
+from Python import syntax
 
-lang['name'] = 'Cython'
-lang['scopeName'] = 'source.cython'
-lang['fileTypes'] = ['pyx', 'pxi', 'pxd']
-lang['foldingStartMarker'] = (
+syntax['name'] = 'Cython'
+syntax['scopeName'] = 'source.cython'
+syntax['fileTypes'] = ['pyx', 'pxi', 'pxd']
+syntax['keyEquivalent'] = '^~C'
+syntax['foldingStartMarker'] = (
 	r'^\s*((cp?)?def|class|property|struct|enum|union)'
 	r'\s+([.\w>]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")'
 )
-lang['uuid'] = 'D085155B-E40A-40B3-8FEC-6865318CDEEA'
+syntax['uuid'] = 'D085155B-E40A-40B3-8FEC-6865318CDEEA'
 
 if __name__ == '__main__':
 	import convert
 	convert.dict_to_plist(
-		dictionary = lang,
+		dictionary = syntax,
 		file_name  = 'Cython',
-		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
+		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',
 		local_copy = True
 	)
