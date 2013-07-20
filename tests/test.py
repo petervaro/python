@@ -59,6 +59,7 @@ r'a{4,}b'
 r'a+?(?#this is a comment)'
 
 r'(?<!\b|$)\d'
+'''(?<!\b|$)\d'''
 
 {
     'hello':
@@ -80,79 +81,79 @@ r'(?<!\b|$)\d'
 def hello():
     pass
 
-def hello() -> (i for i in range(10)):
+def hello0() -> (i for i in range(10)):
     pass
 
-def hello(world):
+def hello1(world):
     pass
 
-def hello(world) -> True:
+def hello2(world) -> True:
     pass
 
-def hello(world, you):
+def hello3(world, you):
     pass
 
-def hello(world, you) -> (12, 13, 14):
+def hello4(world, you) -> (12, 13, 14):
     pass
 
-def hello(world: None):
+def hello5(world: None):
     pass
 
-def hello(world: None) -> True:
+def hello6(world: None) -> True:
     pass
 
-def hello(world: None, you):
+def hello7(world: None, you):
     pass
 
-def hello(world: None, you) -> (12, 13, 14):
+def hello8(world: None, you) -> (12, 13, 14):
     pass
 
-def hello(world: [None, 12], hex, help, jelp, huh: [12, 23, 45], huhu, hah):
+def hello9(world: [None, 12], hex, help, jelp, huh: [12, 23, 45], huhu, hah):
     pass
 
-def hello(world: [None, 12]) -> True:
+def hello10(world: [None, 12]) -> True:
     pass
 
-def hello(world: None, you: range(1, 10, 2), a):
+def hello11(world: None, you: range(1, 10, 2), a):
     pass
 
-def hello(world: None, you: [(1, 2), (3, 4), (5, 6)]) -> (12, 13, 14):
+def hello12(world: None, you: [(1, 2), (3, 4), (5, 6)]) -> (12, 13, 14):
     pass
 
-def hello(world):
+def hello13(world):
     pass
 
-def hello(world, come, on):
+def hello14(world, come, on):
     pass
 
-def hello(world=12):
+def hello15(world=12):
     pass
 
-def hello(world=(12, 23)):
+def hello16(world=(12, 23)):
     pass
 
-def hello(world, come=0, on=1):
+def hello17(world, come=0, on=1):
     pass
 
-def hello(world, come, on=1, you=2):
+def hello18(world, come, on=1, you=2):
     pass
 
-def hello(*args, **kwargs):
+def hello19(*args, **kwargs):
     pass
 
-def hello(world, come, *args, on=1, you=3, **kwargs):
+def hello20(world, come, *args, on=1, you=3, **kwargs):
     pass
 
-def hello(world: True):
+def hello21(world: True):
     pass
 
-def hello(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
+def hello22(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
     pass
 
-def hello(world) -> None:
+def hello23(world) -> None:
     pass
 
-def hello(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> '':
+def hello24(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> '':
     pass
 
 (lambda e, f, g: e + f + g)
@@ -160,7 +161,7 @@ lambda: 12**2
 lambda alfa: True if alfa else False
 lambda *args, **kwargs: None
 lambda a=12, b=23: a+b
-lambda a = [(1, 2), (3, 4)], b=[(5, 6)]: zip(a,b)
+lambda a = [(1, 2), (3, 4)], b=[(5, 6)]: zip(a, b)
 
 global x
 x = 2
@@ -168,9 +169,13 @@ def f():
     y = 10
     def ff():
         nonlocal y
+        y**2
 
 import math
+math.sqrt(4)
+
 from math import sqrt
+sqrt(4)
 
 if x >= 1:
     print()
@@ -234,7 +239,7 @@ def life(*, hello, world):
 
 life(hello='a', world='b')
 
-def h() -> {i:j for i,j in [(1, 2), (3, 4), (5, 6)]}:
+def h() -> {i: j for i, j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
 print(h.__annotations__['return'])

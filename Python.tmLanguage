@@ -577,6 +577,21 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.function_call.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>include</key>
 			<string>#string_quoted</string>
 		</dict>
@@ -668,6 +683,33 @@
 			<string>\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b</string>
 			<key>name</key>
 			<string>invalid.illegal_names.name.python</string>
+		</dict>
+		<key>keyword_arguments</key>
+		<dict>
+			<key>begin</key>
+			<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.python</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.assignment.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=,|[\n)])</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
 		</dict>
 		<key>language_variables</key>
 		<dict>
@@ -840,10 +882,6 @@
 					<key>include</key>
 					<string>#escaped_unicode_characters</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#regular_expressions</string>
-				</dict>
 			</array>
 		</dict>
 		<key>string_quoted</key>
@@ -852,7 +890,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?'''</string>
+					<string>([bB]|[uU])?'''</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -883,7 +921,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?'</string>
+					<string>([rR][bB]|[bB][rR]|[rR])'''</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>'''|('|'')</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.block.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bB]|[uU])?'</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -914,7 +987,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?"""</string>
+					<string>([rR][bB]|[bB][rR]|[rR])'</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>'|(\n)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.line.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bB]|[uU])?"""</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -945,7 +1053,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?"</string>
+					<string>([rR][bB]|[bB][rR]|[rR])"""</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>"""|("|"")</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.block.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bB]|[uU])?"</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -971,6 +1114,41 @@
 						<dict>
 							<key>include</key>
 							<string>#string_patterns</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([rR][bB]|[bB][rR]|[rR])"</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>"|(\n)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.line.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
 						</dict>
 					</array>
 				</dict>

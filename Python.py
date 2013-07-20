@@ -429,6 +429,18 @@ syntax = {
         },
 
 
+#-- ACCESS --------------------------------------------------------------------#
+        {
+            'name' : 'meta.function_call.python',
+            'begin': r'(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(',
+            'patterns':
+            [
+                {'include': '#keyword_arguments'}
+            ],
+            'end': r'\)'
+        },
+
+
 #-- STRING --------------------------------------------------------------------#
         {
             'include': '#string_quoted'
@@ -524,6 +536,22 @@ syntax = {
             )
         },
 
+#-- KEYWORDS ------------------------------------------------------------------#
+        'keyword_arguments':
+        {
+            'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
+            'beginCaptures':
+            {
+                1: {'name': 'variable.parameter.function.python'},
+                2: {'name': 'keyword.operator.assignment.python'}
+            },
+            'patterns':
+            [
+                {'include': '$self'}
+            ],
+            'end': r'(?=,|[\n)])'
+        },
+
 #-- MAGIC STUFFS --------------------------------------------------------------#
         'magic_function_names':
         {
@@ -583,7 +611,7 @@ syntax = {
             [
                 {
                     'name' : 'string.quoted.single.block.python',
-                    'begin': r"(([rR][bB]?|[bB][rR]?)|[uU])?'''",
+                    'begin': r"([bB]|[uU])?'''",
                     'beginCaptures':
                     {
                         1: {'name': 'storage.type.string.prefix.python'}
@@ -599,8 +627,8 @@ syntax = {
                     }
                 },
                 {
-                    'name' : 'string.quoted.single.line.python',
-                    'begin': r"(([rR][bB]?|[bB][rR]?)|[uU])?'",
+                    'name' : 'string.quoted.single.block.python',
+                    'begin': r"([rR][bB]|[bB][rR]|[rR])'''",
                     'beginCaptures':
                     {
                         1: {'name': 'storage.type.string.prefix.python'}
@@ -608,6 +636,42 @@ syntax = {
                     'patterns':
                     [
                         {'include': '#string_patterns'},
+                        {'include': '#regular_expressions'}
+                    ],
+                    'end': r"'''|('|'')",
+                    'endCaptures':
+                    {
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                    }
+                },
+                {
+                    'name' : 'string.quoted.single.line.python',
+                    'begin': r"([bB]|[uU])?'",
+                    'beginCaptures':
+                    {
+                        1: {'name': 'storage.type.string.prefix.python'}
+                    },
+                    'patterns':
+                    [
+                        {'include': '#string_patterns'}
+                    ],
+                    'end': r"'|(\n)",
+                    'endCaptures':
+                    {
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                    }
+                },
+                {
+                    'name' : 'string.quoted.single.line.python',
+                    'begin': r"([rR][bB]|[bB][rR]|[rR])'",
+                    'beginCaptures':
+                    {
+                        1: {'name': 'storage.type.string.prefix.python'}
+                    },
+                    'patterns':
+                    [
+                        {'include': '#string_patterns'},
+                        {'include': '#regular_expressions'}
                     ],
                     'end': r"'|(\n)",
                     'endCaptures':
@@ -617,7 +681,7 @@ syntax = {
                 },
                 {
                     'name' : 'string.quoted.double.block.python',
-                    'begin': r'(([rR][bB]?|[bB][rR]?)|[uU])?"""',
+                    'begin': r'([bB]|[uU])?"""',
                     'beginCaptures':
                     {
                         1: {'name': 'storage.type.string.prefix.python'}
@@ -633,8 +697,8 @@ syntax = {
                     }
                 },
                 {
-                    'name' : 'string.quoted.double.line.python',
-                    'begin': r'(([rR][bB]?|[bB][rR]?)|[uU])?"',
+                    'name' : 'string.quoted.double.block.python',
+                    'begin': r'([rR][bB]|[bB][rR]|[rR])"""',
                     'beginCaptures':
                     {
                         1: {'name': 'storage.type.string.prefix.python'}
@@ -642,6 +706,42 @@ syntax = {
                     'patterns':
                     [
                         {'include': '#string_patterns'},
+                        {'include': '#regular_expressions'}
+                    ],
+                    'end': r'"""|("|"")',
+                    'endCaptures':
+                    {
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                    }
+                },
+                {
+                    'name' : 'string.quoted.double.line.python',
+                    'begin': r'([bB]|[uU])?"',
+                    'beginCaptures':
+                    {
+                        1: {'name': 'storage.type.string.prefix.python'}
+                    },
+                    'patterns':
+                    [
+                        {'include': '#string_patterns'},
+                    ],
+                    'end': r'"|(\n)',
+                    'endCaptures':
+                    {
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                    }
+                },
+                {
+                    'name' : 'string.quoted.double.line.python',
+                    'begin': r'([rR][bB]|[bB][rR]|[rR])"',
+                    'beginCaptures':
+                    {
+                        1: {'name': 'storage.type.string.prefix.python'}
+                    },
+                    'patterns':
+                    [
+                        {'include': '#string_patterns'},
+                        {'include': '#regular_expressions'}
                     ],
                     'end': r'"|(\n)',
                     'endCaptures':
@@ -657,8 +757,7 @@ syntax = {
             [
                 {'include': '#constant_placeholder'},
                 {'include': '#escaped_characters'},
-                {'include': '#escaped_unicode_characters'},
-                {'include': '#regular_expressions'}
+                {'include': '#escaped_unicode_characters'}
             ]
         },
         'constant_placeholder':
@@ -672,9 +771,10 @@ syntax = {
         # },
         'escaped_characters':
         {
-            # escape: hex | octal | newline | double-quote|
-            # single-quote | bell | backspace | formfeed |
-            # line-feed | return | tab | vertical-tab | escape char
+            # escape:
+            # hex          | octal  | newline   | double-quote |
+            # single-quote | bell   | backspace | formfeed     |
+            # line-feed    | return | tab       | vertical-tab | escape char
             'name' : 'constant.character.escaped.special.python',
             'match': r'\\(x\h{2}|[0-7]{3}|\n|\"|\'|a|b|f|n|r|t|v|\\)'
         },
@@ -791,11 +891,11 @@ syntax = {
 }
 
 if __name__ == '__main__':
-    #separator('string')
+    #separator('keywords')
     import convert
     convert.dict_to_plist(
         dictionary = syntax,
-        file_name  = 'Python3',
+        file_name  = 'Python',
         file_path  = '~/Library/Application Support/Sublime Text 3/Packages/Python/',
         local_copy = True
     )
