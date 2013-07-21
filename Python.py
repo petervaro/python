@@ -102,7 +102,7 @@ syntax = {
         },
         {
             'name' : 'keyword.operator.value_and_annotation_assignment.python',
-            'match': r'=|->'  # todo: use `:` as assignment ?
+            'match': r'=|->'
         },
 
 
@@ -315,7 +315,29 @@ syntax = {
 
 
 #-- DECORATOR -----------------------------------------------------------------#
-
+        {
+            'name' : 'meta.function.decorator.with_arguments.python',
+            'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(',
+            'beginCaptures':
+            {
+                1: {'name': 'support.function.decorator.python'}
+            },
+            'patterns':
+            [
+                {'include': '#keyword_arguments'},
+                {'include': '$self'}
+            ],
+            'end': r'\)'
+        },
+        {
+            'name' : 'meta.function.decorator.without_arguments.python',
+            'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)',
+            'beginCaptures':
+            {
+                1: {'name': 'support.function.decorator.python'}
+            },
+            'end': r'(?=\s|$\n?|#)'
+        },
 
 #-- CONSTANTS -----------------------------------------------------------------#
         {
@@ -601,9 +623,9 @@ syntax = {
         # todo: decide if source.sql and special words, like SELECT and INSERT needed
         'string_quoted':
         {
-            # stringprefix  ::=  "r"  | "u"  | "R"  | "U"
-            # bytesprefix   ::=  "b"  | "B"  | "br" | "Br" | "bR" |
-            #                    "BR" | "rb" | "rB" | "Rb" | "RB"
+            # stringprefix:  "r"  | "u"  | "R"  | "U"  |
+            # bytesprefix :  "b"  | "B"  | "br" | "Br" | "bR" |
+            #                "BR" | "rb" | "rB" | "Rb" | "RB" |
             'patterns':
             [
                 # Single BLOCK
@@ -765,24 +787,24 @@ syntax = {
                 #     ],
                 #     'end': r'\)'
                 # },
-                {
-                    'name' : 'string.quoted.double.format.python',
-                    'begin': r'([uUbB]?)"',
-                    'beginCaptures':
-                    {
-                        1: {'name': 'storage.type.string.prefix.python'}
-                    },
-                    'patterns':
-                    [
-                        {'include': '#string_patterns'},
-                        {'include': '#format_mini_language'}
-                    ],
-                    'end': r'"\.format',  # |(\n)',
-                    'endCaptures':
-                    {
-                        2: {'name': 'invalid.illegal.unclosed_string.python'}
-                    }
-                },
+                # {
+                #     'name' : 'string.quoted.double.format.python',
+                #     'begin': r'([uUbB]?)"',
+                #     'beginCaptures':
+                #     {
+                #         1: {'name': 'storage.type.string.prefix.python'}
+                #     },
+                #     'patterns':
+                #     [
+                #         {'include': '#string_patterns'},
+                #         {'include': '#format_mini_language'}
+                #     ],
+                #     'end': r'"\.format',  # |(\n)',
+                #     'endCaptures':
+                #     {
+                #         2: {'name': 'invalid.illegal.unclosed_string.python'}
+                #     }
+                # },
                 {
                     'name' : 'string.quoted.double.line.python',
                     'begin': r'([rR][bB]|[bB][rR]|[rR])"',

@@ -451,6 +451,49 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.decorator.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.function.decorator.with_arguments.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.decorator.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=\s|$\n?|#)</string>
+			<key>name</key>
+			<string>meta.function.decorator.without_arguments.python</string>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b(None|True|False|Ellipsis|NotImplemented)\b</string>
 			<key>name</key>
@@ -1133,41 +1176,6 @@
 						<dict>
 							<key>include</key>
 							<string>#string_patterns</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>([uUbB]?)"</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>"\.format</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
-					<key>name</key>
-					<string>string.quoted.double.format.python</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#string_patterns</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#format_mini_language</string>
 						</dict>
 					</array>
 				</dict>

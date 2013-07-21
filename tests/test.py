@@ -40,15 +40,16 @@ NotImplemented
 ...
 
 
+
 r'[a-zA-Z_\]]'
 
 import re
-s = 'this is [some] text'
-print(re.findall(r'[]', s))
+s = 'this is ]]]]]] text'
+print(re.findall(r'[]]', s))
 
 "hello {}".format("python")
 
-format("hello {}", 'python')
+#format("hello {}", 'python')
 print(str.format("hello {}", 'python'))
 
 r'raw'
@@ -144,12 +145,14 @@ def hello14(world, come, on):
 def hello15(world=12):
     pass
 
+def decorator(func):
+    return func
+
+@decorator
 def hello16(world=(12, 23)):
     pass
 
-def hello17(world, come=0, on=1):
-    pass
-
+@property(some, var)
 def hello18(world, come, on=1, you=2):
     pass
 

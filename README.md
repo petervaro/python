@@ -53,12 +53,12 @@ amazing [`Rainbow.js`](http://craig.is/making/rainbows/) it is also possible!
 - New exceptions added
 - Function annotations are supported
 - Language variable `cls` added
+- Better regex support
 - String and byte literals:
 	- Byte notation added
 	- Proper string prefixes added
 - Format mini-language is supported in strings
-- Traceback message is supported
-- All the unused builtin and magic functions/methods are removed
+- All the unused built-in and magic functions/methods are removed
 
 ### Contribute
 
@@ -75,7 +75,7 @@ please use the following conventions:
 
 ### Appreciation
 
-Thanks **Jon Clements** for all the support!
+*Thank you Jon Clements for all the support and answers on python and regex!*
 
 ### MIT LICENSE
 
