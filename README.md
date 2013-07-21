@@ -73,6 +73,10 @@ please use the following conventions:
 - each line tries to fit in the width 80 columns
 - comment separators are generated with the `separator()` function
 
+### Appreciation
+
+Thanks **Jon Clements** for all the support!
+
 ### MIT LICENSE
 
 The MIT License (MIT)

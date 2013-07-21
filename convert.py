@@ -1,7 +1,13 @@
 import os
 import plistlib
 
-def int_to_str(obj):
+# Generate and print separator comments
+def str_to_separator(string) -> None:
+    print('#{:-<78}#'.format('-- {} '.format(string.upper())))
+
+
+# Convert integer dictionary keys into string literals
+def int_to_str(obj) -> None:
         try:
             for key, value in obj.items():
                 obj[key] = int_to_str(obj[key])
@@ -13,12 +19,14 @@ def int_to_str(obj):
                     obj[i] = int_to_str(item)
         return obj
 
-def dict_to_plist(dictionary, file_name, file_path=None, local_copy=False):
+# Convert dictionary into property list file
+def dict_to_plist(dictionary: dict, name: str, path: str = None, local: bool = False) -> None:
     d = int_to_str(dictionary)
-    if file_path:
-        with open('{}.tmLanguage'.format(os.path.join(os.path.expanduser(file_path), file_name)), 'w+b') as f:
+    p = os.path.join(os.path.expanduser(path))
+    if p:
+        with open('{}.tmLanguage'.format(p, name), 'w+b') as f:
             plistlib.writePlist(d, f)
-    if local_copy:
-        with open('{}.tmLanguage'.format(file_name), 'w+b') as f:
+    if local:
+        with open('{}.tmLanguage'.format(name), 'w+b') as f:
             plistlib.writePlist(d, f)
-    print(file_name, 'has been converted and placed.')
+    print(name, 'syntax dictionary has been converted and placed.')

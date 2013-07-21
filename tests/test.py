@@ -40,6 +40,17 @@ NotImplemented
 ...
 
 
+r'[a-zA-Z_\]]'
+
+import re
+s = 'this is [some] text'
+print(re.findall(r'[]', s))
+
+"hello {}".format("python")
+
+format("hello {}", 'python')
+print(str.format("hello {}", 'python'))
+
 r'raw'
 u'unicode.'
 rB'raw byte' + Br'raw byte'
@@ -60,6 +71,10 @@ r'a+?(?#this is a comment)'
 
 r'(?<!\b|$)\d'
 '''(?<!\b|$)\d'''
+
+a = r"""(?x)\d +  (?# the integral part)
+            \.    (?# the decimal point)
+            \d *  (?# some fractional digits)"""
 
 {
     'hello':

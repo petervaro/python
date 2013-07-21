@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	import convert
 	convert.dict_to_plist(
 		dictionary = syntax,
-		file_name  = 'Cython',
-		file_path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',
-		local_copy = True
+		name  = 'Cython',
+		path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',
+		local = True
 	)
