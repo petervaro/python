@@ -110,6 +110,10 @@ syntax = {
         {
             'name' : 'meta.class.python',
             'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)',
+            'beginCaptures':
+            {
+                1: {'name': 'storage.type.class.python'}
+            },
             'patterns':
             [
                 {
@@ -140,22 +144,12 @@ syntax = {
                             }
                         }
                     ],
-                    'end': r'\)|:',
-                    'beginCaptures':
-                    {
-                        1: {'name': 'punctuation.definition.inheritance.begin.python'}
-                    }
+                    'end': r'\)|:'
                 }
             ],
-            'end'  : r'(\)?\s*(:)|\s+([\w#\s:]+))',
-            'beginCaptures':
-            {
-                1: {'name': 'storage.type.class.python'}
-            },
+            'end'  : r'(\)?\s*:|\s+([\w#\s:]+))',
             'endCaptures':
             {
-                1: {'name': 'punctuation.inheritance.class.python'},
-                2: {'name': 'punctuation.section.class.python'},
                 3: {'name': 'invalid.illegal.missing_section_begin.python'}
             }
         },
@@ -267,7 +261,6 @@ syntax = {
             'end': r'(\s*:)',
             'endCaptures':
             {
-                1: {'name': 'punctuation.section.function.python'},
                 2: {'name': 'invalid.illegal.missing_section_begin.python'}
             }
         },
@@ -315,6 +308,7 @@ syntax = {
 
 
 #-- DECORATOR -----------------------------------------------------------------#
+        # Decorator with arguments
         {
             'name' : 'meta.function.decorator.with_arguments.python',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(',
@@ -329,6 +323,7 @@ syntax = {
             ],
             'end': r'\)'
         },
+        # Decorator without arguments
         {
             'name' : 'meta.function.decorator.without_arguments.python',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)',
@@ -392,6 +387,7 @@ syntax = {
 
 
 #-- STRUCTURES ----------------------------------------------------------------#
+        # LIST
         {
             'name': 'meta.structure.list.python',
             'begin': r'\[',
@@ -408,6 +404,7 @@ syntax = {
             ],
             'end'  : r'\]'
         },
+        # GROUP
         {
             'begin': r'\(',
             'patterns':
@@ -416,6 +413,7 @@ syntax = {
             ],
             'end': r'\)'
         },
+        # DICTINARY
         {
             'name': 'meta.structure.dictionary.python',
             'begin': r'{',
@@ -975,7 +973,7 @@ syntax = {
 
 if __name__ == '__main__':
     import convert
-    convert.dict_to_plist(
+    convert.dict_to_lang(
         dictionary = syntax,
         name  = 'Python',
         path  = '~/Library/Application Support/Sublime Text 3/Packages/Python/',

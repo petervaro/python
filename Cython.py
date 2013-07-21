@@ -12,7 +12,7 @@ syntax['uuid'] = 'D085155B-E40A-40B3-8FEC-6865318CDEEA'
 
 if __name__ == '__main__':
 	import convert
-	convert.dict_to_plist(
+	convert.dict_to_lang(
 		dictionary = syntax,
 		name  = 'Cython',
 		path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',

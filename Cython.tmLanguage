@@ -453,6 +453,49 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.decorator.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.function.decorator.with_arguments.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.decorator.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=\s|$\n?|#)</string>
+			<key>name</key>
+			<string>meta.function.decorator.without_arguments.python</string>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>\b(None|True|False|Ellipsis|NotImplemented)\b</string>
 			<key>name</key>
@@ -579,6 +622,25 @@
 			</array>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.function_call.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#keyword_arguments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>include</key>
 			<string>#string_quoted</string>
 		</dict>
@@ -595,7 +657,7 @@
 		<key>builtin_functions</key>
 		<dict>
 			<key>match</key>
-			<string>\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|vars|zip)\b</string>
+			<string>(?&lt;!\.)\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|vars|zip)\b</string>
 			<key>name</key>
 			<string>support.function.builtin.python</string>
 		</dict>
@@ -655,9 +717,21 @@
 		<key>escaped_unicode_characters</key>
 		<dict>
 			<key>match</key>
-			<string>\\(u\h{4}|U\h{8}|N{[a-zA-Z\s]+})</string>
+			<string>\\(u\h{4}|U\h{8}|N\{[a-zA-Z\s]+\})</string>
 			<key>name</key>
 			<string>constant.character.escaped.python</string>
+		</dict>
+		<key>format_mini_language</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\{\}</string>
+					<key>name</key>
+					<string>constant.other.placeholder.format.python</string>
+				</dict>
+			</array>
 		</dict>
 		<key>generic_names</key>
 		<dict>
@@ -670,6 +744,33 @@
 			<string>\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b</string>
 			<key>name</key>
 			<string>invalid.illegal_names.name.python</string>
+		</dict>
+		<key>keyword_arguments</key>
+		<dict>
+			<key>begin</key>
+			<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.python</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.assignment.python</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=,|[\n)])</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
 		</dict>
 		<key>language_variables</key>
 		<dict>
@@ -775,13 +876,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#regular_expressions_character_classes</string>
+					<string>#regular_expressions_escaped_characters</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\])</string>
-					<key>name</key>
-					<string>constant.character.escaped.special.regex.python</string>
+					<key>include</key>
+					<string>#regular_expressions_character_classes</string>
 				</dict>
 			</array>
 		</dict>
@@ -817,14 +916,19 @@
 							<string>#regular_expressions_character_classes</string>
 						</dict>
 						<dict>
-							<key>match</key>
-							<string>((\\.)|.)-((\\.)|[^\]])</string>
-							<key>name</key>
-							<string>constant.other.character_class.range.regex.python</string>
+							<key>include</key>
+							<string>#regular_expressions_escaped_characters</string>
 						</dict>
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>regular_expressions_escaped_characters</key>
+		<dict>
+			<key>match</key>
+			<string>\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
+			<key>name</key>
+			<string>constant.character.escaped.special.regex.python</string>
 		</dict>
 		<key>string_patterns</key>
 		<dict>
@@ -842,10 +946,6 @@
 					<key>include</key>
 					<string>#escaped_unicode_characters</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#regular_expressions</string>
-				</dict>
 			</array>
 		</dict>
 		<key>string_quoted</key>
@@ -854,7 +954,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?'''</string>
+					<string>([bBuU]?)'''</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -885,7 +985,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?'</string>
+					<string>([rR][bB]|[bB][rR]|[rR])'''</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>'''|('|'')</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.block.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bBuU]?)'</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -916,7 +1051,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?"""</string>
+					<string>([rR][bB]|[bB][rR]|[rR])'</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>'|(\n)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.single.line.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bBuU]?)"""</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -947,7 +1117,42 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(([rR][bB]?|[bB][rR]?)|[uU])?"</string>
+					<string>([rR][bB]|[bB][rR]|[rR])"""</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>"""|("|"")</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.block.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([bBuU]?)"</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -973,6 +1178,41 @@
 						<dict>
 							<key>include</key>
 							<string>#string_patterns</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>([rR][bB]|[bB][rR]|[rR])"</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.string.prefix.python</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>"|(\n)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.unclosed_string.python</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.quoted.double.line.python</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#string_patterns</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#regular_expressions</string>
 						</dict>
 					</array>
 				</dict>

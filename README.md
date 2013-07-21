@@ -1,15 +1,16 @@
 # Python and Cython language bundles
 
 This repo is about Python 3.3+ and Cython 0.19.1+ related bundles for Sublime
-Text 2/3 and TextMate editors and for web presentations.
+Text 2/3 and TextMate editors and for online usage.
 
 ### Python 3.3
 
 Python 3.3 is a truly powerful version of python, with a lot new and creative
-features inside! Sadly, the only available `tmLanguage` syntax-highlight
-definition file is pretty old (only supports 2.x) and buggy -- and the some of
-the new features' syntaxes brake the full syntax highlighting of the code, not
-to mention the lack of new keywords.
+features inside -- and some of them are syntax related! Sadly, the only
+available `tmLanguage` syntax-highlight definition file is pretty old (only
+supports 2.x) and has some annoying bugs inside -- and because of that, the
+syntax of these new features brake the full syntax highlighting of the code, not
+to mention the lack of new keywords and notations.
 
 I do belive, that a good syntax highlighter for software developers has to be as
 much help as an auto-complete popup or a code linter script in a text editor.
@@ -19,10 +20,12 @@ created especially for Python 3.3 and above. I did this with a python
 dictionary plus a little converter script and not in `JSON` (ugly double escape
 characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone, who
 likes to read-and-write that?). The result is a dynamic, reuseable, easy to read
-(syntax highlighted regexes - comments and variables!) and easy to maintain and
-also pretty short syntax definition!
+(syntax highlighted regexes - comments and variables!) and maintain and pretty
+short (old: 3331 lines, new: 1226 lines) syntax definition file!
 
 ### Cython support
+
+***WORK IN PROGRESS***
 
 Unfortunately cython syntax highlighter definitions are also lack of updated,
 fully working and 100% python compatible syntax definitions! To solve this
@@ -40,25 +43,26 @@ amazing [`Rainbow.js`](http://craig.is/making/rainbows/) it is also possible!
 
 ### New is better
 
+Below some of the improvements:
+
 - Added better number highlight:
 	- all types of floating point notations are working now
 	- all types of complex number notations are working now
 	- new types of binary and octal number notations are supported
 	- long integer is removed
-- List of constants are supported:
-	- the `...` syntax notation of `Ellipsis` is supported now
-- Declaration rules are extended:
-	- `nonlocal` added
-- Ex-statements-now-functions (like `print` or `exec`) are supported
+- The `...` syntax notation of `Ellipsis` is supported now
+- Declaration rules are extended with `nonlocal`
+- Ex-statements-now-functions (like `print`) are supported
 - New exceptions added
 - Function annotations are supported
 - Language variable `cls` added
-- Better regex support
+- Better regex support (grouping and comments improved)
 - String and byte literals:
 	- Byte notation added
 	- Proper string prefixes added
-- Format mini-language is supported in strings
+- Format mini-language is supported in strings ***WORK IN PROGRESS***
 - All the unused built-in and magic functions/methods are removed
+- All the unused keywords and notations are removed
 
 ### Contribute
 
@@ -71,11 +75,12 @@ please use the following conventions:
 - `=` and `:` operators are aligned if length of variable names are similar
 - `(`, `[` and `{` start a new line, if possible and reasonable
 - each line tries to fit in the width 80 columns
-- comment separators are generated with the `separator()` function
+- comment separators can be easily generated with the `str_to_separator()`
+function
 
 ### Appreciation
 
-*Thank you Jon Clements for all the support and answers on python and regex!*
+*Thank you Jon Clements for all the support and answers about python and regex!*
 
 ### MIT LICENSE
 

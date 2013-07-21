@@ -39,7 +39,7 @@ NotImplemented
 [...]
 ...
 
-
+'\x78ff'
 
 r'[a-zA-Z_\]]'
 
@@ -93,6 +93,7 @@ a = r"""(?x)\d +  (?# the integral part)
         }
     }
 }
+
 
 def hello():
     pass
@@ -152,7 +153,12 @@ def decorator(func):
 def hello16(world=(12, 23)):
     pass
 
-@property(some, var)
+def deco(a, b):
+    def wrap(func):
+        pass
+    return wrap
+
+@deco(12**2, b=34)
 def hello18(world, come, on=1, you=2):
     pass
 
@@ -194,6 +200,7 @@ math.sqrt(4)
 
 from math import sqrt
 sqrt(4)
+
 
 if x >= 1:
     print()
@@ -260,4 +267,5 @@ life(hello='a', world='b')
 def h() -> {i: j for i, j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
+property
 print(h.__annotations__['return'])

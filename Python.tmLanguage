@@ -137,19 +137,9 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(\)?\s*(:)|\s+([\w#\s:]+))</string>
+			<string>(\)?\s*:|\s+([\w#\s:]+))</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.inheritance.class.python</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.section.class.python</string>
-				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
@@ -178,14 +168,6 @@
 				<dict>
 					<key>begin</key>
 					<string>\(</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.inheritance.begin.python</string>
-						</dict>
-					</dict>
 					<key>contentName</key>
 					<string>meta.class.inheritance.python</string>
 					<key>end</key>
@@ -234,11 +216,6 @@
 			<string>(\s*:)</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.section.function.python</string>
-				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
