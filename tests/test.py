@@ -42,6 +42,8 @@ NotImplemented
 [...]
 ...
 
+'some text %(name)s and all the other' % {'name': 'other_text'}
+
 '\x78ff'
 
 r'[a-zA-Z_\]]'

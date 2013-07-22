@@ -57,7 +57,6 @@ def hex_to_rgba(hexa: str) -> str:
         int(hexa[7:], 16)/255
     )
 
-
 # Convert dictionary to css
 def dict_to_css(d, fname):
     # todo: decide if we need `word-wrap: break-word;` or not?

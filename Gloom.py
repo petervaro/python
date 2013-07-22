@@ -158,6 +158,14 @@ style = {
             }
         },
         {
+            name : 'String Interpolated',
+            scope: 'string.interpolated',
+            prefs:
+            {
+                fg: hsba(120, .10, .85)
+            }
+        },
+        {
             name : 'Support Function',
             scope: 'support.function',
             prefs:
@@ -257,4 +265,3 @@ if __name__ == '__main__':
     )
     with open('{}.css'.format(NAME), 'w') as f:
         f.write(convert.dict_to_css(style, NAME))
-

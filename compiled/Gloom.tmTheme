@@ -165,6 +165,17 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>String Interpolated</string>
+			<key>scope</key>
+			<string>string.interpolated</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#C3D8C3</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Support Function</string>
 			<key>scope</key>
 			<string>support.function</string>

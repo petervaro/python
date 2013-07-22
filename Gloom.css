@@ -27,8 +27,8 @@ pre, code
 
 pre .comment
 {
-	color: #595959;
 	font-style: italic;
+	color: #595959;
 }
 
 pre .constant
@@ -78,13 +78,18 @@ pre .invalid.illegal
 
 pre .entity.other.inherited-class
 {
-	color: #995A2D;
 	font-style: italic;
+	color: #995A2D;
 }
 
 pre .string constant
 {
 	color: #E0F2A9;
+}
+
+pre .string.interpolated
+{
+	color: #C3D8C3;
 }
 
 pre .support.function

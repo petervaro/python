@@ -837,7 +837,7 @@ syntax = {
         },
         'constant_placeholder':
         {
-            'name' : 'constant.other.placeholder.python',
+            'name' : 'string.interpolated.placeholder.python',
             'match': r'%(\(\w+\))?#?0?-?[ ]?\+?(\d*|\*)(\.(\d*|\*))?[hlL]?[diouxXeEfFgGcrs%]'
         },
         'format_mini_language':

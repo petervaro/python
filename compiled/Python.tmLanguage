@@ -648,7 +648,7 @@
 			<key>match</key>
 			<string>%(\(\w+\))?#?0?-?[ ]?\+?(\d*|\*)(\.(\d*|\*))?[hlL]?[diouxXeEfFgGcrs%]</string>
 			<key>name</key>
-			<string>constant.other.placeholder.python</string>
+			<string>string.interpolated.placeholder.python</string>
 		</dict>
 		<key>entity_name_class</key>
 		<dict>
