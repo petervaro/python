@@ -1,0 +1,142 @@
+/*
+*Peter Varo (c)2013
+*Gloom syntax highlight theme
+*
+*Based on the Twilight theme of Michael Sheets
+*/
+
+body
+{
+	background: #282828;
+}
+
+pre, code
+{
+	margin: 0px;
+	padding-left: 20px;
+	font-size: 12.5px;
+	font-family: 'Menlo', monospace;
+	background: #141414;
+	color: #F2F2F2;
+}
+
+::selection
+{
+	background: rgba(255, 255, 255, 0.08);
+}
+
+pre .comment
+{
+	font-style: italic;
+	color: #595959;
+}
+
+pre .constant
+{
+	color: #CC6847;
+}
+
+pre .entity
+{
+	color: #996B3D;
+}
+
+pre .keyword
+{
+	color: #CCAA66;
+}
+
+pre .storage
+{
+	color: #F2E291;
+}
+
+pre .string
+{
+	color: #8D996B;
+}
+
+pre .support
+{
+	color: #978299;
+}
+
+pre .variable
+{
+	color: #7484A5;
+}
+
+pre .invalid.deprecated
+{
+	background-color: rgba(204, 161, 153, 0.25);
+}
+
+pre .invalid.illegal
+{
+	background-color: rgba(89, 44, 89, 0.60);
+}
+
+pre .entity.other.inherited-class
+{
+	font-style: italic;
+	color: #995A2D;
+}
+
+pre .string constant
+{
+	color: #E0F2A9;
+}
+
+pre .support.function
+{
+	color: #D8D182;
+}
+
+pre .constant.character.escape
+{
+	color: #CC7F33;
+}
+
+pre .storage.modifier
+{
+	color: #CC935B;
+}
+
+pre .sublimelinter.annotations
+{
+	background-color: #FFFFAA;
+	color: #FFFFFF;
+}
+
+pre .sublimelinter.outline.illegal
+{
+	background-color: #99471E;
+	color: #FFFFFF;
+}
+
+pre .sublimelinter.underline.illegal
+{
+	background-color: #F27130;
+}
+
+pre .sublimelinter.outline.warning
+{
+	background-color: #7F6A3F;
+	color: #FFFFFF;
+}
+
+pre .sublimelinter.underline.warning
+{
+	background-color: #D8B46C;
+}
+
+pre .sublimelinter.outline.violation
+{
+	background-color: #505935;
+	color: #FFFFFF;
+}
+
+pre .sublimelinter.underline.violation
+{
+	background-color: #A0B26B;
+}

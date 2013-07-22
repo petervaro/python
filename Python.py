@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf8 -*-
+
 #-- CHEASHEET -----------------------------------------------------------------#
 # HOWTO: http://sublimetext.info/docs/en/reference/syntaxdefs.html
 # REGEX: http://manual.macromates.com/en/regular_expressions

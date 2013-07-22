@@ -1,6 +1,11 @@
-#!/usr/bin/python3
-# -*- coding: utf8 -*-
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Syntax Highlighting</title>
+<link href="Gloom.css" rel="stylesheet" type="text/css" media="screen">
+<body>
 
+<pre>
+<code data-language="python">
 # this is a comment
 0x12
 0o2
@@ -63,8 +68,6 @@ rB'raw byte' + Br'raw byte'
 'hello\x78'
 '''\\'''
 "hello\x78"
-"""khj
-"""
 
 
 r'[a-z]'
@@ -73,12 +76,12 @@ r'^hello$'
 r'a{4,}b'
 r'a+?(?#this is a comment)'
 
-r'(?<!\b|$)\d'
-'''(?<!\b|$)\d'''
+r'(?&lt;!\b|$)\d'
+'''(?&lt;!\b|$)\d'''
 
-a = r"""(?x)\d +  (?# the integral part)
+a = r'''(?x)\d +  (?# the integral part)
             \.    (?# the decimal point)
-            \d *  (?# some fractional digits)"""
+            \d *  (?# some fractional digits)'''
 
 {
     'hello':
@@ -101,43 +104,43 @@ a = r"""(?x)\d +  (?# the integral part)
 def hello():
     pass
 
-def hello0() -> (i for i in range(10)):
+def hello0() -&gt; (i for i in range(10)):
     pass
 
 def hello1(world):
     pass
 
-def hello2(world) -> True:
+def hello2(world) -&gt; True:
     pass
 
 def hello3(world, you):
     pass
 
-def hello4(world, you) -> (12, 13, 14):
+def hello4(world, you) -&gt; (12, 13, 14):
     pass
 
 def hello5(world: None):
     pass
 
-def hello6(world: None) -> True:
+def hello6(world: None) -&gt; True:
     pass
 
 def hello7(world: None, you):
     pass
 
-def hello8(world: None, you) -> (12, 13, 14):
+def hello8(world: None, you) -&gt; (12, 13, 14):
     pass
 
 def hello9(world: [None, 12], hex, help, jelp, huh: [12, 23, 45], huhu, hah):
     pass
 
-def hello10(world: [None, 12]) -> True:
+def hello10(world: [None, 12]) -&gt; True:
     pass
 
 def hello11(world: None, you: range(1, 10, 2), a):
     pass
 
-def hello12(world: None, you: [(1, 2), (3, 4), (5, 6)]) -> (12, 13, 14):
+def hello12(world: None, you: [(1, 2), (3, 4), (5, 6)]) -&gt; (12, 13, 14):
     pass
 
 def hello13(world):
@@ -177,10 +180,10 @@ def hello21(world: True):
 def hello22(world: 0, come: 'on' = True, this: None = None, true: (True,) = True):
     pass
 
-def hello23(world) -> None:
+def hello23(world) -&gt; None:
     pass
 
-def hello24(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> '':
+def hello24(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -&gt; '':
     pass
 
 (lambda e, f, g: e + f + g)
@@ -206,7 +209,7 @@ from math import sqrt
 sqrt(4)
 
 
-if x >= 1:
+if x &gt;= 1:
     print()
 elif not x:
     print()
@@ -255,7 +258,7 @@ class Hey():
 
 string = 'abcde'
 
-def mul_str(s: 'string', n: 'multiplier' = 'hello') -> 'doubled each string':
+def mul_str(s: 'string', n: 'multiplier' = 'hello') -&gt; 'doubled each string':
     return ''.join(c*n for c in s)
 
 print(mul_str.__annotations__)
@@ -268,8 +271,14 @@ def life(*, hello, world):
 
 life(hello='a', world='b')
 
-def h() -> {i: j for i, j in [(1, 2), (3, 4), (5, 6)]}:
+def h() -&gt; {i: j for i, j in [(1, 2), (3, 4), (5, 6)]}:
     pass
 
 property
 print(h.__annotations__['return'])
+</code>
+</pre>
+    <!-- rawgithub.com is the biggest magic of all :) -->
+    <script src="https://rawgithub.com/ccampbell/rainbow/master/js/rainbow.js"></script>
+    <script src="Python.js"></script>
+</body>

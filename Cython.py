@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf8 -*-
+
 from Python import syntax
 
 syntax['name'] = 'Cython'
