@@ -64,11 +64,26 @@ Below some of the improvements:
 - All the unused built-in and magic functions/methods are removed
 - All the unused keywords and notations are removed
 
+### Installation
+
+Download the files from the `compiled` directory. If you are on SublimeText,
+navigate to your `Packages/Python` folder (if you are using Sublime Text 3 you
+have to create an empty folder with the name *Python*) and copy
+`Python.tmLanguage` into it (if you are on Sublime Text 2, you probably want to
+rename the file before placing to `Python3.tmLanguage` or something).
+
+To use *Cython* definition go to/create `Packages/Cython` folder and place
+`Cython.tmLanguage` inside it.
+
+And last but not least navigate to `Packages/User` folder and copy
+`Gloom.tmTheme` into it. Then go to user-settings, and change your old color
+theme to the new one.
+
 ### Contribute
 
 Every help is appreciated and more than welcome -- my goal is to make the
-*'defacto'* language bundle for python 3+. If you want to submit a change,
-please use the following conventions:
+*'de facto'* language bundle for python 3. If you want to submit a change,
+please use the following conventions when editing the original python files:
 
 - variables uses `underscore_separated_names`,
 - all files uses 4 spaces for indentation,

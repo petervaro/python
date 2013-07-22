@@ -27,8 +27,8 @@ pre, code
 
 pre .comment
 {
-	font-style: italic;
 	color: #595959;
+	font-style: italic;
 }
 
 pre .constant
@@ -78,8 +78,8 @@ pre .invalid.illegal
 
 pre .entity.other.inherited-class
 {
-	font-style: italic;
 	color: #995A2D;
+	font-style: italic;
 }
 
 pre .string constant

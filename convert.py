@@ -32,7 +32,7 @@ def dict_to_plist(dictionary, name, extension, path, local) -> None:
             with open(p, 'w+b') as f:
                 plistlib.writePlist(d, f)
         if local:
-            with open(n, 'w+b') as f:
+            with open(os.path.join('compiled', n), 'w+b') as f:
                 plistlib.writePlist(d, f)
 
 
