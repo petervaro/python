@@ -453,6 +453,14 @@ syntax = {
             'begin': r'(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(',
             'patterns':
             [
+                {
+                    'begin': r'(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()',
+                    'patterns':
+                    [
+                        {'include': '#builtin_types'}
+                    ],
+                    'end': r'(?=\s*\()'
+                },
                 {'include': '#keyword_arguments'},
                 {'include': '$self'}
             ],
@@ -641,11 +649,7 @@ syntax = {
                     [
                         {'include': '#string_patterns'}
                     ],
-                    'end': r"'''|('|'')",
-                    'endCaptures':
-                    {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
-                    }
+                    'end': r"'''"
                 },
                 {
                     'name' : 'string.quoted.single.block.python',
@@ -659,11 +663,7 @@ syntax = {
                         {'include': '#string_patterns'},
                         {'include': '#regular_expressions'}
                     ],
-                    'end': r"'''|('|'')",
-                    'endCaptures':
-                    {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
-                    }
+                    'end': r"'''"
                 },
 
                 # Single LINE
@@ -715,11 +715,7 @@ syntax = {
                     [
                         {'include': '#string_patterns'}
                     ],
-                    'end': r'"""|("|"")',
-                    'endCaptures':
-                    {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
-                    }
+                    'end': r'"""'
                 },
                 {
                     'name' : 'string.quoted.double.block.python',
@@ -733,11 +729,7 @@ syntax = {
                         {'include': '#string_patterns'},
                         {'include': '#regular_expressions'}
                     ],
-                    'end': r'"""|("|"")',
-                    'endCaptures':
-                    {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
-                    }
+                    'end': r'"""'
                 },
 
                 # Double LINE

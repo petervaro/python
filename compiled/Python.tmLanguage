@@ -606,6 +606,19 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>begin</key>
+					<string>(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()</string>
+					<key>end</key>
+					<string>(?=\s*\()</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#builtin_types</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>#keyword_arguments</string>
 				</dict>
@@ -939,15 +952,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>'''|('|'')</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>'''</string>
 					<key>name</key>
 					<string>string.quoted.single.block.python</string>
 					<key>patterns</key>
@@ -970,15 +975,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>'''|('|'')</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>'''</string>
 					<key>name</key>
 					<string>string.quoted.single.block.python</string>
 					<key>patterns</key>
@@ -1071,15 +1068,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>"""|("|"")</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>"""</string>
 					<key>name</key>
 					<string>string.quoted.double.block.python</string>
 					<key>patterns</key>
@@ -1102,15 +1091,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>"""|("|"")</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>"""</string>
 					<key>name</key>
 					<string>string.quoted.double.block.python</string>
 					<key>patterns</key>

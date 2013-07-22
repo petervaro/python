@@ -44,6 +44,8 @@ NotImplemented
 
 'some text %(name)s and all the other' % {'name': 'other_text'}
 
+dict(hello=12)
+
 '\x78ff'
 
 r'[a-zA-Z_\]]'
