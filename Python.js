@@ -1,16 +1,45 @@
 /*
- * Python Regular Expressions
+ * Python 3 Regular Expressions
  *
  * @author Peter Varo
- * @author Craig Campbell
- * @version 1.1.0
+ * @version 2.0.0
  */
-Rainbow.extend('python', [
 
+var self = [
 //- COMMENT ------------------------------------------------------------------//
     {
         'name' : 'comment.line.hashmark.python',
         'pattern': /#.*/g
+    },
+
+
+//- LAMBDA -------------------------------------------------------------------//
+    {
+        'pattern': /\b(lambda)(\s+(\*{0,2}[A-z_]\w*\s*(,|=.+(?=,|:))?\s*)*)?(?=:)/g,
+        'matches':
+        {
+            1: 'storage.type.function.anonymous.python',
+            2:
+            {
+                'pattern': /\*{0,2}([A-z_]\w*)\s*(,|=.+(?=,|:))?\s*/g,
+                'matches':
+                {
+                    1: 'variable.parameter.function.python',
+                    2:
+                    {
+                        'pattern': /(=)(.+)(?=,|:)/g,
+                        'matches':
+                        {
+                            1: 'keyword.operator.assignment.python',
+                            2:
+                            {
+                                'language': 'python'
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
 
 
@@ -92,19 +121,108 @@ Rainbow.extend('python', [
 
 //- CLASS --------------------------------------------------------------------//
     {
-        'pattern': /\s*(class)\s+([A-z_]\w*)(\s*\(([A-z_]\w*\s*,?\s*)*\))?:/g,
+        'pattern': /\s*(class)\s+([A-z_]\w*)(\s*\((([A-z_]\w*\s*,?\s*)|([A-z_]\w*\s*=\s*[A-z_]\w*))*\))?:/g,
         'matches':
         {
             1: 'storage.type.class.python',
             2: 'entity.name.type.class.python',
-            3: 'entity.other.inherited-class.python'
+            3:
+            {
+                'pattern': /([A-z_]\w*\s*,?\s*)|([A-z_]\w*\s*=\s*[A-z_]\w*)/g,
+                'matches':
+                {
+                    1:
+                    {
+                        'pattern': /([A-z_]\w*)\s*,?\s*/g,
+                        'matches':
+                        {
+                            //todo: invalid.illegal names (reserved keywords)
+                            1: 'entity.other.inherited-class.python'
+                        }
+                    },
+                    2:
+                    {
+                        'pattern': /([A-z_]\w*)\s*(=)\s*([A-z_]\w*)/g,
+                        'matches':
+                        {
+                            1: 'entity.other.inherited-class.python',
+                            2: 'keyword.operator.assignment.python',
+                            3: 'entity.other.inherited-class.python'
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+
+//- FUNCTION -----------------------------------------------------------------//
+    {
+        //'pattern': /\s*(def)\s+([A-z_]\w*)\s*\((([A-z_]\w*\s*(?=,|[\n)])\s*)*(\*[A-z_]\w*\s*(?=,|[\n)])\s*)?([A-z_]\w*\s*=\s*.+(?=,|[\n)])\s*)*(\*\*[A-z_]\w*(?=[\n)])\s*)?)\):/g,
+        'pattern': /\s*(def)\s+([A-z_]\w*)\s*\((\*?\*?([A-z_]\w*)\s*(:.+(?=,|=|[\n)]))?\s*(=.+(?=,|[\n)]))?\s*)*\)\s*(-&gt;.+)?(?=:)/g,
+        'matches':
+        {
+            1: 'storage.type.function.python',
+            2: 'entity.name.function.python',
+            3:
+            {
+                'pattern': /\*?\*?([A-z_]\w*)\s*(?=:.+(?=,|=|[\n)]))?\s*(?==.+(?=,|[\n)]))?\s*/g,
+                'matches':
+                {
+                    1: 'variable.parameter.function.python'
+                }
+            },
+            4:
+            {
+                'pattern': /(-&gt;).+/g,
+                'matches':
+                {
+                    1: 'keyword.operator.assignment.python'
+                }
+            }
+            // 3:
+            // {
+            //     'pattern': /([A-z_]\w*\s*(?=,|[\n)])\s*)*(\*[A-z_]\w*\s*(?=,|[\n)])\s*)?([A-z_]\w*\s*=\s*.+(?=,|[\n)])\s*)*(\*\*[A-z_]\w*(?=[\n)])\s*)?/g,
+            //     'matches':
+            //     {
+            //         1:
+            //         {
+            //             'pattern': /([A-z_]\w*)\s*(?=,|[\n)])\s*/g,
+            //             'matches':
+            //             {
+            //                 1: 'variable.parameter.function.python',
+            //                 3: /(\*{0,2}([A-z_]\w*)\s*(:.+(?=,|=|[\n)]))?\s*(=.+(?=,|[\n)]))?)*/
+            //             }
+            //         },
+            //         2:
+            //         {
+            //             'pattern': /\*([A-z_]\w*)\s*(?=,|[\n)])\s*/g,
+            //             'matches':
+            //             {
+            //                 1: 'variable.parameter.function.python'
+            //             }
+            //         },
+            //         3:
+            //         {
+            //             'pattern': /([A-z_]\w*)\s*=\s*.+(?=,|[\n)])\s*/g,
+            //             'matches':
+            //             {
+            //                 1: 'variable.parameter.function.python',
+            //                 2: 'keyword.operator.assignment.python'
+            //             }
+            //         },
+            //         4:
+            //         {
+            //             'pattern': /\*\*([A-z_]\w*)(?=[\n)])\s*/g,
+            //             'matches':
+            //             {
+            //                 1: 'variable.parameter.function.python'
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
-    // {
-    //     'pattern': /\s*class\s+\w+\s*\(([\w,\s]*)\):/g,
-    //     'matches':
-    //     {
-    //         1: 'entity.other.inherited-class.python'
-    //     }
-    // }
-], true);
+];
+
+Rainbow.extend('python', self, true);

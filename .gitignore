@@ -2,3 +2,4 @@
 *.DS_Store
 __old__.json
 __old__.xml
+*.pyo

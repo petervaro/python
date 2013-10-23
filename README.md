@@ -25,8 +25,6 @@ short (old: 3331 lines, new: 1226 lines) syntax definition file!
 
 ### Cython support
 
-***WORK IN PROGRESS***
-
 Unfortunately cython syntax highlighter definitions are also lack of updated,
 fully working and 100% python compatible syntax definitions! To solve this
 problem I created the cython defintion file as an extension of the python
@@ -36,6 +34,8 @@ change also!
 Now, it is literally a super-set of python!
 
 ### Highlight on web
+
+***WORK IN PROGRESS***
 
 After used to the syntax highlight in the text editor, sharing the code online
 with the same colors and highlights is evident! Thanks to Craig Campbell and his

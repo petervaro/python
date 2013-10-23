@@ -16,7 +16,7 @@
 	<key>firstLineMatch</key>
 	<string>^#!/.*\bpython[\d.-]*\b</string>
 	<key>foldingStartMarker</key>
-	<string>^\s*((cp?)?def|class|property|struct|enum|union)\s+([.\w&gt;]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")</string>
+	<string>^\s*((cp?)?def|class)\s+([.\w&gt;]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")</string>
 	<key>foldingStopMarker</key>
 	<string>^\s*$|^\s*\}|^\s*\]|^\s*\)|^\s*"""\s*$</string>
 	<key>keyEquivalent</key>
@@ -29,144 +29,139 @@
 			<key>match</key>
 			<string>#.*$\n?</string>
 			<key>name</key>
-			<string>comment.line.hashmark.python</string>
+			<string>comment.line.hashmark.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b0b[01]+</string>
 			<key>name</key>
-			<string>constant.numeric.integer.binary.python</string>
+			<string>constant.numeric.integer.binary.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b0x\h+</string>
 			<key>name</key>
-			<string>constant.numeric.integer.hexadecimal.python</string>
+			<string>constant.numeric.integer.hexadecimal.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b0o[0-7]+</string>
 			<key>name</key>
-			<string>constant.numeric.integer.octal.python</string>
+			<string>constant.numeric.integer.octal.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>(?&lt;=\W|^)\.\d+([eE][+-]?\d+)?[jJ]?</string>
 			<key>name</key>
-			<string>constant.numeric.float_and_complex.decimal.floatnumber.python</string>
+			<string>constant.numeric.float_and_complex.decimal.floatnumber.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?</string>
 			<key>name</key>
-			<string>constant.numeric.float_and_complex.decimal.pointfloat.python</string>
+			<string>constant.numeric.float_and_complex.decimal.pointfloat.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>(?&lt;![\.\d])\d+[eE][+-]?\d+[jJ]?</string>
 			<key>name</key>
-			<string>constant.numeric.float_and_complex.decimal.exponent.python</string>
+			<string>constant.numeric.float_and_complex.decimal.exponent.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b(?&lt;!\.)([1-9]\d*|0)[jJ]?</string>
 			<key>name</key>
-			<string>constant.numeric.integer_and_complex.decimal.python</string>
+			<string>constant.numeric.integer_and_complex.decimal.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(global|nonlocal)\b</string>
+			<string>\b(global|nonlocal|gil|nogil|extern|api|public)\b</string>
 			<key>name</key>
-			<string>storage.modifier.declaration.python</string>
+			<string>storage.modifier.declaration.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(import|from)\b</string>
+			<string>\b(cimport|include|extern|import|from)\b</string>
 			<key>name</key>
-			<string>keyword.control.import_and_import_from.python</string>
+			<string>keyword.control.import_and_import_from.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(elif|else|except|finally|for|if|try|while|with|break|continue|pass|raise|return|yield)\b</string>
+			<string>\b(elif|else|except|finally|for|if|try|while|with|break|continue|pass|raise|return|yield|IF|ELIF|ELSE|DEF)\b</string>
 			<key>name</key>
-			<string>keyword.control.flow_block_delimiters.python</string>
+			<string>keyword.control.flow_block_delimiters.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b(and|in|is|not|or)\b</string>
 			<key>name</key>
-			<string>keyword.operator.bool.logical.python</string>
+			<string>keyword.operator.bool.logical.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(as|assert|del)\b</string>
+			<string>\b(as|assert|by|del)\b</string>
 			<key>name</key>
-			<string>keyword.other.python</string>
+			<string>keyword.other.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>&lt;=|&gt;=|==|&lt;|&gt;|!=</string>
 			<key>name</key>
-			<string>keyword.operator.comparison.python</string>
+			<string>keyword.operator.comparison.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\+=|-=|\*=|/=|//=|%=|&amp;=|\|=|\^=|&lt;&lt;=|&gt;&gt;=|\*\*=</string>
 			<key>name</key>
-			<string>keyword.operator.assignment.augmented.python</string>
+			<string>keyword.operator.assignment.augmented.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\+|-|\*|\*\*|/|//|%|&lt;&lt;|&gt;&gt;|&amp;|\||\^|~</string>
 			<key>name</key>
-			<string>keyword.operator.arithmetic.python</string>
+			<string>keyword.operator.arithmetic.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>=|-&gt;</string>
 			<key>name</key>
-			<string>keyword.operator.value_and_annotation_assignment.python</string>
+			<string>keyword.operator.value_and_annotation_assignment.cython</string>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)</string>
+			<string>^\s*(cdef\s+)?(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.class.python</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>(\)?\s*(:)|\s+([\w#\s:]+))</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.inheritance.class.python</string>
+					<string>storage.type.class.definition.cython</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.class.python</string>
+					<string>storage.type.class.cython</string>
 				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\)?\s*:|\s+([\w#\s:]+))</string>
+			<key>endCaptures</key>
+			<dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.missing_section_begin.python</string>
+					<string>invalid.illegal.missing_section_begin.cython</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.class.python</string>
+			<string>meta.class.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
 					<string>(?=[a-zA-Z_]\w*)</string>
 					<key>contentName</key>
-					<string>entity.name.type.class.python</string>
+					<string>entity.name.type.class.cython</string>
 					<key>end</key>
 					<string>(?!\w)</string>
 					<key>patterns</key>
@@ -180,16 +175,8 @@
 				<dict>
 					<key>begin</key>
 					<string>\(</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.inheritance.begin.python</string>
-						</dict>
-					</dict>
 					<key>contentName</key>
-					<string>meta.class.inheritance.python</string>
+					<string>meta.class.inheritance.cython</string>
 					<key>end</key>
 					<string>\)|:</string>
 					<key>patterns</key>
@@ -198,7 +185,7 @@
 							<key>begin</key>
 							<string>(?&lt;=\(|,)\s*</string>
 							<key>contentName</key>
-							<string>entity.other.inherited-class.python</string>
+							<string>entity.other.inherited-class.cython</string>
 							<key>end</key>
 							<string>\s*(?:,|(?=\)))</string>
 							<key>endCaptures</key>
@@ -206,7 +193,7 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>punctuation.separator.inheritance.python</string>
+									<string>punctuation.separator.inheritance.cython</string>
 								</dict>
 							</dict>
 							<key>patterns</key>
@@ -223,39 +210,38 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^\s*(def)\s+(?=[a-zA-Z_]\w*\s*\()</string>
+			<string>^\s*((cp?)?def)\s+(?=[a-zA-Z_]\w*\s*\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.function.python</string>
+					<string>storage.type.function.cython</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(\s*:)</string>
+			<string>(\s*:|\n*)</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.section.function.python</string>
-				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.missing_section_begin.python</string>
+					<string>invalid.illegal.missing_section_begin.cython</string>
 				</dict>
 			</dict>
 			<key>name</key>
-			<string>meta.function.python</string>
+			<string>meta.function.cython</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#c_types</string>
+				</dict>
 				<dict>
 					<key>begin</key>
 					<string>(?=[a-zA-Z_]\w*)</string>
 					<key>contentName</key>
-					<string>entity.name.function.python</string>
+					<string>entity.name.function.cython</string>
 					<key>end</key>
 					<string>(?!\w)</string>
 					<key>patterns</key>
@@ -281,12 +267,12 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>variable.parameter.function.python</string>
+									<string>variable.parameter.function.cython</string>
 								</dict>
 								<key>2</key>
 								<dict>
 									<key>name</key>
-									<string>keyword.operator.assignment.python</string>
+									<string>keyword.operator.assignment.cython</string>
 								</dict>
 							</dict>
 							<key>end</key>
@@ -301,7 +287,7 @@
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>keyword.operator.assignment.python</string>
+											<string>keyword.operator.assignment.cython</string>
 										</dict>
 									</dict>
 									<key>end</key>
@@ -324,7 +310,7 @@
 										<key>1</key>
 										<dict>
 											<key>name</key>
-											<string>keyword.operator.assignment.python</string>
+											<string>keyword.operator.assignment.cython</string>
 										</dict>
 									</dict>
 									<key>patterns</key>
@@ -345,7 +331,7 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>variable.parameter.function.python</string>
+									<string>variable.parameter.function.cython</string>
 								</dict>
 							</dict>
 							<key>end</key>
@@ -371,13 +357,27 @@
 				</dict>
 				<dict>
 					<key>begin</key>
+					<string>\)\s*(nogil)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.declaration.cython</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(-&gt;)|:|\n*</string>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(?&lt;=\))\s*(-&gt;)\s*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.operator.annotation.assignment.python</string>
+							<string>keyword.operator.annotation.assignment.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -400,13 +400,13 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.function.anonymous.python</string>
+					<string>storage.type.function.anonymous.cython</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>:</string>
 			<key>name</key>
-			<string>meta.function.anonymous.python</string>
+			<string>meta.function.anonymous.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -424,12 +424,12 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>variable.parameter.function.python</string>
+									<string>variable.parameter.function.cython</string>
 								</dict>
 								<key>2</key>
 								<dict>
 									<key>name</key>
-									<string>keyword.operator.assignment.python</string>
+									<string>keyword.operator.assignment.cython</string>
 								</dict>
 							</dict>
 							<key>end</key>
@@ -446,7 +446,7 @@
 							<key>match</key>
 							<string>\b[a-zA-Z_]\w*</string>
 							<key>name</key>
-							<string>variable.parameter.function.python</string>
+							<string>variable.parameter.function.cython</string>
 						</dict>
 					</array>
 				</dict>
@@ -460,13 +460,13 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.decorator.python</string>
+					<string>support.function.decorator.cython</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>meta.function.decorator.with_arguments.python</string>
+			<string>meta.function.decorator.with_arguments.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -487,41 +487,45 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.decorator.python</string>
+					<string>support.function.decorator.cython</string>
 				</dict>
 			</dict>
 			<key>end</key>
 			<string>(?=\s|$\n?|#)</string>
 			<key>name</key>
-			<string>meta.function.decorator.without_arguments.python</string>
+			<string>meta.function.decorator.without_arguments.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(None|True|False|Ellipsis|NotImplemented)\b</string>
+			<string>\b(NULL|None|True|False|Ellipsis|NotImplemented|UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|UNAME_MACHINE)\b</string>
 			<key>name</key>
-			<string>constant.language.word_like.python</string>
+			<string>constant.language.word_like.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>(?&lt;=\W|^)\.\.\.(?=\W|$)</string>
 			<key>name</key>
-			<string>constant.language.symbol_like.python</string>
+			<string>constant.language.symbol_like.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(def|lambda)\b</string>
+			<string>\b((c(p|type)?)?def|lambda)\b</string>
 			<key>name</key>
-			<string>storage.type.function.python</string>
+			<string>storage.type.function.cython</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\b(class)\b</string>
 			<key>name</key>
-			<string>storage.type.class.python</string>
+			<string>storage.type.class.cython</string>
 		</dict>
 		<dict>
 			<key>include</key>
 			<string>#builtin_types</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#c_types</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -553,7 +557,7 @@
 			<key>end</key>
 			<string>\]</string>
 			<key>name</key>
-			<string>meta.structure.list.python</string>
+			<string>meta.structure.list.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -590,7 +594,7 @@
 			<key>end</key>
 			<string>}</string>
 			<key>name</key>
-			<string>meta.structure.dictionary.python</string>
+			<string>meta.structure.dictionary.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -627,9 +631,26 @@
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>meta.function_call.python</string>
+			<string>meta.function_call.cython</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()</string>
+					<key>end</key>
+					<string>(?=\s*\()</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#builtin_types</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#c_types</string>
+						</dict>
+					</array>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#keyword_arguments</string>
@@ -652,28 +673,35 @@
 			<key>match</key>
 			<string>\b((Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|Unicode(Encode|Decode|Translate)?|Value|ZeroDivision|Environment|IO|VMS|Windows|BlockingIO|ChildProcess|BrokenPipe|Connection(Aborted|Refused|Reset)?|FileExists|FileNotFound|Interrupted|(Is|Not)ADirectory|Permission|ProcessLookup|Timeout)Error|(User|Deprecation|PendingDeprecation|Syntax|Runtime|Future|Import|Bytes|Resource)Warning|(Base)?Exception|(Generator|System)Exit|KeyboardInterrupt|StopIteration|Warning)\b</string>
 			<key>name</key>
-			<string>support.type.exception.python</string>
+			<string>support.type.exception.cython</string>
 		</dict>
 		<key>builtin_functions</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\.)\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|vars|zip)\b</string>
+			<string>(?&lt;!\.)\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sizeof|sorted|sum|vars|zip)\b</string>
 			<key>name</key>
-			<string>support.function.builtin.python</string>
+			<string>support.function.builtin.cython</string>
 		</dict>
 		<key>builtin_types</key>
 		<dict>
 			<key>match</key>
-			<string>\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|float|frozenset|int|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
+			<string>\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|frozenset|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
 			<key>name</key>
-			<string>support.type.python</string>
+			<string>support.type.cython</string>
+		</dict>
+		<key>c_types</key>
+		<dict>
+			<key>match</key>
+			<string>\b((long\s)?double|enum|float|struct|union|void|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
+			<key>name</key>
+			<string>support.type.c_types.cython</string>
 		</dict>
 		<key>constant_placeholder</key>
 		<dict>
 			<key>match</key>
 			<string>%(\(\w+\))?#?0?-?[ ]?\+?(\d*|\*)(\.(\d*|\*))?[hlL]?[diouxXeEfFgGcrs%]</string>
 			<key>name</key>
-			<string>constant.other.placeholder.python</string>
+			<string>string.interpolated.placeholder.cython</string>
 		</dict>
 		<key>entity_name_class</key>
 		<dict>
@@ -712,14 +740,14 @@
 			<key>match</key>
 			<string>\\(x\h{2}|[0-7]{3}|\n|\"|\'|a|b|f|n|r|t|v|\\)</string>
 			<key>name</key>
-			<string>constant.character.escaped.special.python</string>
+			<string>constant.character.escaped.special.cython</string>
 		</dict>
 		<key>escaped_unicode_characters</key>
 		<dict>
 			<key>match</key>
 			<string>\\(u\h{4}|U\h{8}|N\{[a-zA-Z\s]+\})</string>
 			<key>name</key>
-			<string>constant.character.escaped.python</string>
+			<string>constant.character.escaped.cython</string>
 		</dict>
 		<key>format_mini_language</key>
 		<dict>
@@ -729,7 +757,7 @@
 					<key>match</key>
 					<string>\{\}</string>
 					<key>name</key>
-					<string>constant.other.placeholder.format.python</string>
+					<string>constant.other.placeholder.format.cython</string>
 				</dict>
 			</array>
 		</dict>
@@ -741,9 +769,9 @@
 		<key>illegal_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b</string>
+			<string>\b(and|api|as|assert|break|by|class|continue|(c(p|type)?)?def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|public|raise|return|try|while|with|yield)\b</string>
 			<key>name</key>
-			<string>invalid.illegal_names.name.python</string>
+			<string>invalid.illegal_names.name.cython</string>
 		</dict>
 		<key>keyword_arguments</key>
 		<dict>
@@ -754,12 +782,12 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>variable.parameter.function.python</string>
+					<string>variable.parameter.function.cython</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.operator.assignment.python</string>
+					<string>keyword.operator.assignment.cython</string>
 				</dict>
 			</dict>
 			<key>end</key>
@@ -777,7 +805,7 @@
 			<key>match</key>
 			<string>\b(self|cls)\b</string>
 			<key>name</key>
-			<string>variable.language.python</string>
+			<string>variable.language.cython</string>
 		</dict>
 		<key>line_continuation</key>
 		<dict>
@@ -786,12 +814,12 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.separator.continuation.line.python</string>
+					<string>punctuation.separator.continuation.line.cython</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>invalid.illegal.unexpected_text.python</string>
+					<string>invalid.illegal.unexpected_text.cython</string>
 				</dict>
 			</dict>
 			<key>match</key>
@@ -800,16 +828,16 @@
 		<key>magic_function_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
+			<string>\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
 			<key>name</key>
-			<string>support.function.magic.python</string>
+			<string>support.function.magic.cython</string>
 		</dict>
 		<key>magic_variable_names</key>
 		<dict>
 			<key>match</key>
 			<string>\b__(all|annotations|bases|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\b</string>
 			<key>name</key>
-			<string>support.variable.magic.python</string>
+			<string>support.variable.magic.cython</string>
 		</dict>
 		<key>regular_expressions</key>
 		<dict>
@@ -819,31 +847,31 @@
 					<key>match</key>
 					<string>\\[bBAZzG]|\^|\$</string>
 					<key>name</key>
-					<string>keyword.control.anchor.regex.python</string>
+					<string>keyword.control.anchor.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\\[1-9]\d?</string>
 					<key>name</key>
-					<string>keyword.other.group_reference_order.regex.python</string>
+					<string>keyword.other.group_reference_order.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\(\?P=[a-zA-Z_]\w*\)</string>
 					<key>name</key>
-					<string>keyword.other.group_reference_name.regex.python</string>
+					<string>keyword.other.group_reference_name.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>[?+*][?+]?|\{(\d+,\d+|\d+,|,\d+|\d+)\}\??</string>
 					<key>name</key>
-					<string>keyword.operator.quantifier.regex.python</string>
+					<string>keyword.operator.quantifier.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\|</string>
 					<key>name</key>
-					<string>keyword.operator.or.regex.python</string>
+					<string>keyword.operator.or.regex.cython</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -851,13 +879,13 @@
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
-					<string>comment.block.regex.python</string>
+					<string>comment.block.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\(\?[aiLmsux]+\)</string>
 					<key>name</key>
-					<string>keyword.other.option_toggle.regex.python</string>
+					<string>keyword.other.option_toggle.regex.cython</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -865,7 +893,7 @@
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
-					<string>meta.group.assertion.regex.python</string>
+					<string>meta.group.assertion.regex.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -892,7 +920,7 @@
 					<key>match</key>
 					<string>\\[wWsSdD]|\.</string>
 					<key>name</key>
-					<string>constant.character.character_class.regex.python</string>
+					<string>constant.character.character_class.regex.cython</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -902,13 +930,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.operator.negation.regex.python</string>
+							<string>keyword.operator.negation.regex.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
 					<string>\]</string>
 					<key>name</key>
-					<string>constant.other.character_class.set.regex.python</string>
+					<string>constant.other.character_class.set.regex.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -928,7 +956,7 @@
 			<key>match</key>
 			<string>\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
 			<key>name</key>
-			<string>constant.character.escaped.special.regex.python</string>
+			<string>constant.character.escaped.special.regex.cython</string>
 		</dict>
 		<key>string_patterns</key>
 		<dict>
@@ -960,21 +988,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>'''|('|'')</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>'''</string>
 					<key>name</key>
-					<string>string.quoted.single.block.python</string>
+					<string>string.quoted.single.block.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -991,21 +1011,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>'''|('|'')</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>'''</string>
 					<key>name</key>
-					<string>string.quoted.single.block.python</string>
+					<string>string.quoted.single.block.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1026,7 +1038,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1036,11 +1048,11 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
+							<string>invalid.illegal.unclosed_string.cython</string>
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>string.quoted.single.line.python</string>
+					<string>string.quoted.single.line.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1057,7 +1069,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1067,11 +1079,11 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
+							<string>invalid.illegal.unclosed_string.cython</string>
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>string.quoted.single.line.python</string>
+					<string>string.quoted.single.line.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1092,21 +1104,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>"""|("|"")</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>"""</string>
 					<key>name</key>
-					<string>string.quoted.double.block.python</string>
+					<string>string.quoted.double.block.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1123,21 +1127,13 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>"""|("|"")</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
-						</dict>
-					</dict>
+					<string>"""</string>
 					<key>name</key>
-					<string>string.quoted.double.block.python</string>
+					<string>string.quoted.double.block.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1158,7 +1154,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1168,11 +1164,11 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
+							<string>invalid.illegal.unclosed_string.cython</string>
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>string.quoted.double.line.python</string>
+					<string>string.quoted.double.line.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1189,7 +1185,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type.string.prefix.python</string>
+							<string>storage.type.string.prefix.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -1199,11 +1195,11 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>invalid.illegal.unclosed_string.python</string>
+							<string>invalid.illegal.unclosed_string.cython</string>
 						</dict>
 					</dict>
 					<key>name</key>
-					<string>string.quoted.double.line.python</string>
+					<string>string.quoted.double.line.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
