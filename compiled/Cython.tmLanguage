@@ -220,7 +220,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(\s*:|\n*)</string>
+			<string>(\s*:|\n+)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>2</key>
@@ -233,10 +233,6 @@
 			<string>meta.function.cython</string>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>include</key>
-					<string>#c_types</string>
-				</dict>
 				<dict>
 					<key>begin</key>
 					<string>(?=[a-zA-Z_]\w*)</string>
@@ -367,7 +363,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(-&gt;)|:|\n*</string>
+					<string>\s*((-&gt;)|:|\n+)</string>
 				</dict>
 				<dict>
 					<key>begin</key>

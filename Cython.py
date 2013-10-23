@@ -170,7 +170,6 @@ syntax = {
             'patterns':
             [
                 # Type declaration
-                {'include': '#c_types'},
                 # Function name
                 {
                     'contentName': 'entity.name.function.cython',
@@ -256,7 +255,7 @@ syntax = {
                     {
                         1: {'name': 'storage.modifier.declaration.cython'}
                     },
-                    'end': r'(->)|:|\n*'
+                    'end': r'\s*((->)|:|\n+)'
                 },
                 # Annotation assignment (function)
                 {
@@ -273,7 +272,7 @@ syntax = {
                 }
             ],
             # todo: add illegal
-            'end': r'(\s*:|\n*)',
+            'end': r'(\s*:|\n+)',
             'endCaptures':
             {
                 2: {'name': 'invalid.illegal.missing_section_begin.cython'}
