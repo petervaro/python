@@ -57,7 +57,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?</string>
+			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)</string>
 			<key>name</key>
 			<string>constant.numeric.float_and_complex.decimal.pointfloat.cython</string>
 		</dict>
@@ -75,7 +75,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(global|nonlocal|gil|nogil|extern|api|public)\b</string>
+			<string>\b(global|nonlocal|gil|nogil|extern|api|public|readonly|const(\svolatile)?|inline)\b</string>
 			<key>name</key>
 			<string>storage.modifier.declaration.cython</string>
 		</dict>
@@ -126,6 +126,12 @@
 			<string>=|-&gt;</string>
 			<key>name</key>
 			<string>keyword.operator.value_and_annotation_assignment.cython</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\?</string>
+			<key>name</key>
+			<string>keyword.operator.type_test.cython</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -493,7 +499,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(NULL|None|True|False|Ellipsis|NotImplemented|UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|UNAME_MACHINE)\b</string>
+			<string>\b(NULL|None|True|False|Ellipsis|NotImplemented|UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|UNAME_MACHINE|EXIT_FAILURE|EXIT_SUCCESS|RAND_MAX)\b</string>
 			<key>name</key>
 			<string>constant.language.word_like.cython</string>
 		</dict>
@@ -674,7 +680,7 @@
 		<key>builtin_functions</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\.)\b(__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|range|repr|round|setattr|sizeof|sorted|sum|vars|zip)\b</string>
+			<string>(?&lt;!\.)\b(__import__|abort|(c|m|re)alloc|(ll?)?abs|all|any|ascii|bin|bsearch|callable|chr|compile|delattr|dir|(ll?)?div|divmod|eval|exec|(_|at)?exit|filter|format|free|getattr|getenv|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|min|next|oct|ord|pow|print|qsort|range|s?rand|repr|round|setattr|sizeof|sorted|sum|system|vars|zip)\b</string>
 			<key>name</key>
 			<string>support.function.builtin.cython</string>
 		</dict>
@@ -688,7 +694,7 @@
 		<key>c_types</key>
 		<dict>
 			<key>match</key>
-			<string>\b((long\s)?double|enum|float|struct|union|void|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
+			<string>\b(bint|(long\s)?double|enum|float|struct|union|void|const|fused|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
 			<key>name</key>
 			<string>support.type.c_types.cython</string>
 		</dict>
@@ -824,7 +830,7 @@
 		<key>magic_function_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
+			<string>\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
 			<key>name</key>
 			<string>support.function.magic.cython</string>
 		</dict>

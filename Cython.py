@@ -50,7 +50,7 @@ syntax = {
         {
             # 1.  1.0  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
             'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.cython',
-            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?'
+            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)'
         },
         {
             # 1e6  1E6  1e+6  1E+6  1e-6  1E-6
@@ -66,7 +66,11 @@ syntax = {
 #-- KEYWORDS ------------------------------------------------------------------#
         {
             'name' : 'storage.modifier.declaration.cython',
-            'match': r'\b(global|nonlocal|gil|nogil|extern|api|public)\b'
+            'match':
+            (
+                r'\b(global|nonlocal|gil|nogil|extern|api|public|readonly|'
+                r'const(\svolatile)?|inline)\b'
+            )
         },
         {
             'name' : 'keyword.control.import_and_import_from.cython',
@@ -106,6 +110,10 @@ syntax = {
         {
             'name' : 'keyword.operator.value_and_annotation_assignment.cython',
             'match': r'=|->'
+        },
+        {
+            'name' : 'keyword.operator.type_test.cython',
+            'match': r'\?'
         },
 
 
@@ -353,7 +361,8 @@ syntax = {
             'match':
             (
                 r'\b(NULL|None|True|False|Ellipsis|NotImplemented|'
-                r'UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|UNAME_MACHINE)\b'
+                r'UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|'
+                r'UNAME_MACHINE|EXIT_FAILURE|EXIT_SUCCESS|RAND_MAX)\b'
             )
         },
         {
@@ -524,11 +533,12 @@ syntax = {
             'match':
             (
                 r'(?<!\.)\b('
-                r'__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|'
-                r'dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|'
-                r'help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|'
-                r'min|next|oct|ord|pow|print|range|repr|round|setattr|sizeof|sorted|'
-                r'sum|vars|zip'
+                r'__import__|abort|(c|m|re)alloc|(ll?)?abs|all|any|ascii|bin|bsearch|'
+                r'callable|chr|compile|delattr|dir|(ll?)?div|divmod|eval|exec|(_|at)?exit|'
+                r'filter|format|free|getattr|getenv|globals|hasattr|hash|help|hex|id|'
+                r'input|isinstance|issubclass|iter|len|locals|map|max|min|next|'
+                r'oct|ord|pow|print|qsort|range|s?rand|repr|round|setattr|sizeof|'
+                r'sorted|sum|system|vars|zip'
                 r')\b'
             )
         },
@@ -551,7 +561,7 @@ syntax = {
             'match':
             (
                 r'\b('
-                r'(long\s)?double|enum|float|struct|union|void|'
+                r'bint|(long\s)?double|enum|float|struct|union|void|const|fused|'
                 r'((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?)'
                 r')\b'
             )
@@ -616,8 +626,8 @@ syntax = {
             (
                 r'\b(__(?:'
                 r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
-                r'deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|'
-                r'exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
+                r'dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|'
+                r'eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
                 r'getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|'
                 r'iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|'
                 r'int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|'
@@ -625,7 +635,7 @@ syntax = {
                 r'pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|'
                 r'repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|'
                 r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
-                r'setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|'
+                r'setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|'
                 r'trunc|unicode|weakref|xor'
                 r')__)\b'
             )

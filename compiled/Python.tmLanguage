@@ -55,7 +55,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?</string>
+			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)</string>
 			<key>name</key>
 			<string>constant.numeric.float_and_complex.decimal.pointfloat.python</string>
 		</dict>

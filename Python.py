@@ -50,7 +50,7 @@ syntax = {
         {
             # 1.  1.0  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
             'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.python',
-            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?'
+            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)'
         },
         {
             # 1e6  1E6  1e+6  1E+6  1e-6  1E-6
