@@ -579,19 +579,6 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\(</string>
-			<key>end</key>
-			<string>\)</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>$self</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>begin</key>
 			<string>{</string>
 			<key>end</key>
 			<string>}</string>
@@ -629,30 +616,28 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(</string>
+			<string>(?&lt;=,|=|\+|-|\*|/|\||:|&lt;|&gt;|~|%|\^|\\)\s*\(</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>meta.function_call.cython</string>
+			<string>meta.structure.group.python</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()</string>
-					<key>end</key>
-					<string>(?=\s*\()</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#builtin_types</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#c_types</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>$self</string>
 				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.function_call.python</string>
+			<key>patterns</key>
+			<array>
 				<dict>
 					<key>include</key>
 					<string>#keyword_arguments</string>
@@ -673,7 +658,7 @@
 		<key>builtin_exceptions</key>
 		<dict>
 			<key>match</key>
-			<string>\b((Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|Unicode(Encode|Decode|Translate)?|Value|ZeroDivision|Environment|IO|VMS|Windows|BlockingIO|ChildProcess|BrokenPipe|Connection(Aborted|Refused|Reset)?|FileExists|FileNotFound|Interrupted|(Is|Not)ADirectory|Permission|ProcessLookup|Timeout)Error|(User|Deprecation|PendingDeprecation|Syntax|Runtime|Future|Import|Bytes|Resource)Warning|(Base)?Exception|(Generator|System)Exit|KeyboardInterrupt|StopIteration|Warning)\b</string>
+			<string>(?&lt;!\.)\b((Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|Unicode(Encode|Decode|Translate)?|Value|ZeroDivision|Environment|IO|VMS|Windows|BlockingIO|ChildProcess|BrokenPipe|Connection(Aborted|Refused|Reset)?|FileExists|FileNotFound|Interrupted|(Is|Not)ADirectory|Permission|ProcessLookup|Timeout)Error|(User|Deprecation|PendingDeprecation|Syntax|Runtime|Future|Import|Bytes|Resource)Warning|(Base)?Exception|(Generator|System)Exit|KeyboardInterrupt|StopIteration|Warning)\b</string>
 			<key>name</key>
 			<string>support.type.exception.cython</string>
 		</dict>
@@ -687,14 +672,14 @@
 		<key>builtin_types</key>
 		<dict>
 			<key>match</key>
-			<string>\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|frozenset|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
+			<string>(?&lt;!\.)\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|frozenset|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
 			<key>name</key>
 			<string>support.type.cython</string>
 		</dict>
 		<key>c_types</key>
 		<dict>
 			<key>match</key>
-			<string>\b(bint|(long\s)?double|enum|float|struct|union|void|const|fused|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
+			<string>(?&lt;!\.)\b(bint|(long\s)?double|enum|float|struct|union|void|const|fused|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
 			<key>name</key>
 			<string>support.type.c_types.cython</string>
 		</dict>
@@ -778,7 +763,7 @@
 		<key>keyword_arguments</key>
 		<dict>
 			<key>begin</key>
-			<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+			<string>\b([a-zA-Z_]\w*)\s*(=)(?!=)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -805,7 +790,7 @@
 		<key>language_variables</key>
 		<dict>
 			<key>match</key>
-			<string>\b(self|cls)\b</string>
+			<string>(?&lt;!\.)\b(self|cls)\b</string>
 			<key>name</key>
 			<string>variable.language.cython</string>
 		</dict>
@@ -830,7 +815,7 @@
 		<key>magic_function_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b(__(?:abs|add|and|bool|bytes|call|ceil|complex|contains|copy|dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__)\b</string>
+			<string>\b__(abs|add|and|bool|bytes|call|ceil|complex|contains|copy|dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|trunc|unicode|weakref|xor)__\b</string>
 			<key>name</key>
 			<string>support.function.magic.cython</string>
 		</dict>
@@ -922,25 +907,31 @@
 					<key>match</key>
 					<string>\\[wWsSdD]|\.</string>
 					<key>name</key>
-					<string>constant.character.character_class.regex.cython</string>
+					<string>constant.character.character_class.regex.python</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\[(\^)?</string>
+					<string>\[(\^)?(\](?=.*\]))?</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.operator.negation.regex.cython</string>
+							<string>keyword.operator.negation.regex.python</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\]</string>
+					<string>(?&lt;!\\)\]</string>
 					<key>name</key>
-					<string>constant.other.character_class.set.regex.cython</string>
+					<string>constant.other.character_class.set.regex.python</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>match</key>
+							<string>\[</string>
+							<key>name</key>
+							<string>constant.character.escaped.special.open.regex.python</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#regular_expressions_character_classes</string>
@@ -956,9 +947,9 @@
 		<key>regular_expressions_escaped_characters</key>
 		<dict>
 			<key>match</key>
-			<string>\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
+			<string>\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
 			<key>name</key>
-			<string>constant.character.escaped.special.regex.cython</string>
+			<string>constant.character.escaped.special.regex.python</string>
 		</dict>
 		<key>string_patterns</key>
 		<dict>

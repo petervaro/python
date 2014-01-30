@@ -433,15 +433,6 @@ syntax = {
             ],
             'end'  : r'\]'
         },
-        # GROUP
-        {
-            'begin': r'\(',
-            'patterns':
-            [
-                {'include': '$self'}
-            ],
-            'end': r'\)'
-        },
         # DICTINARY
         {
             'name': 'meta.structure.dictionary.cython',
@@ -471,23 +462,23 @@ syntax = {
             ],
             'end'  : r'}'
         },
-
+        # GROUPS, TUPLES
+        {
+            'name' : 'meta.structure.group.python',
+            'begin': r'(?<=,|=|\+|-|\*|/|\||:|<|>|~|%|\^|\\)\s*\(',
+            'patterns':
+            [
+                {'include': '$self'}
+            ],
+            'end': r'\)'
+        },
 
 #-- ACCESS --------------------------------------------------------------------#
         {
-            'name' : 'meta.function_call.cython',
-            'begin': r'(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(',
+            'name' : 'meta.function_call.python',
+            'begin': r'\(',
             'patterns':
             [
-                {
-                    'begin': r'(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()',
-                    'patterns':
-                    [
-                        {'include': '#builtin_types'},
-                        {'include': '#c_types'}
-                    ],
-                    'end': r'(?=\s*\()'
-                },
                 {'include': '#keyword_arguments'},
                 {'include': '$self'}
             ],
@@ -512,7 +503,7 @@ syntax = {
             'name' : 'support.type.exception.cython',
             'match':
             (
-                r'\b('
+                r'(?<!\.)\b('
                 r'(Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|'
                 r'Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|'
                 r'Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|'
@@ -548,7 +539,7 @@ syntax = {
             'name' : 'support.type.cython',
             'match':
             (
-                r'\b('
+                r'(?<!\.)\b('
                 r'basestring|bool|buffer|bytearray|bytes|classmethod|complex|'
                 r'dict|enumerate|file|frozenset|list|memoryview|object|open|'
                 r'property|reversed|set|slice|staticmethod|str|super|tuple|type'
@@ -560,7 +551,7 @@ syntax = {
             'name' : 'support.type.c_types.cython',
             'match':
             (
-                r'\b('
+                r'(?<!\.)\b('
                 r'bint|(long\s)?double|enum|float|struct|union|void|const|fused|'
                 r'((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?)'
                 r')\b'
@@ -605,7 +596,7 @@ syntax = {
 #-- KEYWORDS ------------------------------------------------------------------#
         'keyword_arguments':
         {
-            'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
+            'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
             'beginCaptures':
             {
                 1: {'name': 'variable.parameter.function.cython'},
@@ -624,7 +615,7 @@ syntax = {
             'name' : 'support.function.magic.cython',
             'match':
             (
-                r'\b(__(?:'
+                r'\b__('
                 r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
                 r'dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|'
                 r'eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
@@ -637,7 +628,7 @@ syntax = {
                 r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
                 r'setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|'
                 r'trunc|unicode|weakref|xor'
-                r')__)\b'
+                r')__\b'
             )
         },
         # todo: rearrange -> what is magic function and what is magic variable?
@@ -655,7 +646,7 @@ syntax = {
         'language_variables':
         {
             'name' : 'variable.language.cython',
-            'match': r'\b(self|cls)\b'
+            'match': r'(?<!\.)\b(self|cls)\b'
         },
         'line_continuation':
         {
@@ -972,34 +963,35 @@ syntax = {
             [
                 {
                     # \w, \W, \s, \S, \d, \D, .
-                    'name' : 'constant.character.character_class.regex.cython',
+                    'name' : 'constant.character.character_class.regex.python',
                     'match': r'\\[wWsSdD]|\.'
                 },
                 {
                     # [set of characters]
-                    'name' : 'constant.other.character_class.set.regex.cython',
-                    'begin': r'\[(\^)?',
+                    'name' : 'constant.other.character_class.set.regex.python',
+                    'begin': r'\[(\^)?(\](?=.*\]))?',
                     'beginCaptures':
                     {
-                        1: {'name': 'keyword.operator.negation.regex.cython'}
+                        1: {'name': 'keyword.operator.negation.regex.python'}
                     },
                     'patterns':
                     [
+                        {
+                            'name': 'constant.character.escaped.special.open.regex.python',
+                            'match': r'\['
+                        },
                         {'include': '#regular_expressions_character_classes'},
                         {'include': '#regular_expressions_escaped_characters'}
-                        # {
-                        #    'name' : 'constant.other.character_class.special.regex.cython',
-                        #    'match': r'\]'
-                        # }
+
                     ],
-                    'end': r'\]'
+                    'end': r'(?<!\\)\]'
                 }
             ]
         },
         'regular_expressions_escaped_characters':
         {
-            'name' : 'constant.character.escaped.special.regex.cython',
-            'match': r'\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
+            'name' : 'constant.character.escaped.special.regex.python',
+            'match': r'\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
         }
     },
     'uuid': 'D085155B-E40A-40B3-8FEC-6865318CDEEA'

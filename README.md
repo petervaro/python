@@ -6,11 +6,12 @@ Text 2/3 and TextMate editors and for online usage.
 ### Python 3.3
 
 Python 3.3 is a truly powerful version of python, with a lot new and creative
-features inside -- and some of them are syntax related! Sadly, the only
-available `tmLanguage` syntax-highlight definition file is pretty old (only
-supports 2.x) and has some annoying bugs inside -- and because of that, the
-syntax of these new features brake the full syntax highlighting of the code, not
-to mention the lack of new keywords and notations.
+features -- and some of them are actually bringing new or different syntaxes!
+Sadly, the only available `tmLanguage` and still popular syntax-highlight
+definition file is pretty old (only supports 2.x) and has some annoying bugs --
+and because of that, the syntax of these new features brake the full highlighting
+of the code, not to mention the lack of new built-in keywords and notations and
+extra unused one.
 
 I do belive, that a good syntax highlighter for software developers has to be as
 much help as an auto-complete popup or a code linter script in a text editor.
@@ -19,19 +20,17 @@ That's why I implemented a new syntax definition, started from scratch and
 created especially for Python 3.3 and above. I did this with a python
 dictionary plus a little converter script and not in `JSON` (ugly double escape
 characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone, who
-likes to read-and-write that?). The result is a dynamic, reuseable, easy to read
-(syntax highlighted regexes - comments and variables!) and maintain and pretty
-short (old: 3331 lines, new: 1226 lines) syntax definition file!
+likes to read-and-write these?). The result is a dynamic, reuseable, easy to read
+and write (syntax highlighted regexes -- with comments and variables!) and
+maintain and pretty short (old: 3331 lines, new: 1226 lines) syntax definition file!
 
 ### Cython support
 
 Unfortunately cython syntax highlighter definitions are also lack of updated,
-fully working and 100% python compatible syntax definitions! To solve this
-problem I created the cython defintion file as an extension of the python
-definition -- so any time, the python syntax is changing, the cython will
-change also!
-
-Now, it is literally a super-set of python!
+fully working and 100% python compatible syntax definitions! I created a brand
+new highlighter from scartch, based on the new Python one, but one of the future
+plans is to make this dictionary an addition/extended version of it, so the
+changes will automatically updated in both language files.
 
 ### Highlight on web
 
@@ -40,6 +39,9 @@ Now, it is literally a super-set of python!
 After used to the syntax highlight in the text editor, sharing the code online
 with the same colors and highlights is evident! Thanks to Craig Campbell and his
 amazing [`Rainbow.js`](http://craig.is/making/rainbows/) it is also possible!
+
+*At the moment a few features are missing from Rainbow.js to make it as powerful
+and complete as the tmLanguage files.. so I wait now :)*
 
 ### New is better
 
@@ -52,7 +54,7 @@ Below some of the improvements:
 	- long integer is removed
 - The `...` syntax notation of `Ellipsis` is supported now
 - Declaration rules are extended with `nonlocal`
-- Ex-statements-now-functions (like `print`) are supported
+- Ex-statements-now-functions (like `print`) are updated
 - New exceptions added
 - Function annotations are supported
 - Language variable `cls` added
@@ -60,9 +62,13 @@ Below some of the improvements:
 - String and byte literals:
 	- Byte notation added
 	- Proper string prefixes added
-- Format mini-language is supported in strings ***WORK IN PROGRESS***
 - All the unused built-in and magic functions/methods are removed
 - All the unused keywords and notations are removed
+
+### Future plans
+
+- Support format mini-language in strings
+- Create a better Twilight-based theme file
 
 ### Installation
 
@@ -75,14 +81,14 @@ rename the file before placing to `Python3.tmLanguage` or something).
 To use *Cython* definition go to/create `Packages/Cython` folder and place
 `Cython.tmLanguage` inside it.
 
-And last but not least navigate to `Packages/User` folder and copy
-`Gloom.tmTheme` into it. Then go to user-settings, and change your old color
-theme to the new one.
+*If you want to use my Work-In-Progress theme file: navigate to `Packages/User`
+folder and copy `Gloom.tmTheme` into it. Then go to user-settings, and change
+your old color theme to the new one.
 
 ### Contribute
 
-Every help is appreciated and more than welcome -- my goal is to make the
-*'de facto'* language bundle for python 3. If you want to submit a change,
+Any help is appreciated and more than welcome -- my goal is to make the
+*'de facto'* language bundle for Python 3. If you want to submit a change,
 please use the following conventions when editing the original python files:
 
 - variables uses `underscore_separated_names`,
@@ -95,7 +101,8 @@ function
 
 ### Appreciation
 
-*Thank you Jon Clements for all the support and answers about python and regex!*
+*Thank you very much Jon Clements for all the support and answers about Python
+and regexes and for all the wonderful members of the www.sopython.com chat room!*
 
 ### MIT LICENSE
 

@@ -388,7 +388,6 @@ syntax = {
             'include': '#language_variables'
         },
 
-
 #-- STRUCTURES ----------------------------------------------------------------#
         # LIST
         {
@@ -406,15 +405,6 @@ syntax = {
                 }
             ],
             'end'  : r'\]'
-        },
-        # GROUP
-        {
-            'begin': r'\(',
-            'patterns':
-            [
-                {'include': '$self'}
-            ],
-            'end': r'\)'
         },
         # DICTINARY
         {
@@ -445,35 +435,34 @@ syntax = {
             ],
             'end'  : r'}'
         },
-
+        # GROUPS, TUPLES
+        {
+            'name' : 'meta.structure.group.python',
+            'begin': r'(?<=,|=|\+|-|\*|/|\||:|<|>|~|%|\^|\\)\s*\(',
+            'patterns':
+            [
+                {'include': '$self'}
+            ],
+            'end': r'\)'
+        },
 
 #-- ACCESS --------------------------------------------------------------------#
         {
             'name' : 'meta.function_call.python',
-            'begin': r'(\)|\]|[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*)\s*\(',
+            'begin': r'\(',
             'patterns':
             [
-                {
-                    'begin': r'(?=[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)*\s*\()',
-                    'patterns':
-                    [
-                        {'include': '#builtin_types'}
-                    ],
-                    'end': r'(?=\s*\()'
-                },
                 {'include': '#keyword_arguments'},
                 {'include': '$self'}
             ],
             'end': r'\)'
         },
 
-
 #-- STRING --------------------------------------------------------------------#
         {
             'include': '#string_quoted'
         }
     ],
-
 
 #-- REPOSITORY ----------------------------------------------------------------#
     'repository':
@@ -485,7 +474,7 @@ syntax = {
             'name' : 'support.type.exception.python',
             'match':
             (
-                r'\b('
+                r'(?<!\.)\b('
                 r'(Arithmetic|Buffer|Lookup|Assertion|Attribute|EOF|FloatingPoint|'
                 r'Import|Index|Key|Memory|Name|NotImplemented|OS|Overflow|Reference|'
                 r'Runtime|Syntax|Indentation|Tab|System|Type|UnboundLocal|Unicode|'
@@ -520,7 +509,7 @@ syntax = {
             'name' : 'support.type.python',
             'match':
             (
-                r'\b('
+                r'(?<!\.)\b('
                 r'basestring|bool|bytearray|bytes|classmethod|complex|dict|'
                 r'enumerate|float|frozenset|int|list|memoryview|object|open|'
                 r'property|reversed|set|slice|staticmethod|str|super|tuple|type'
@@ -566,7 +555,7 @@ syntax = {
 #-- KEYWORDS ------------------------------------------------------------------#
         'keyword_arguments':
         {
-            'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
+            'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
             'beginCaptures':
             {
                 1: {'name': 'variable.parameter.function.python'},
@@ -585,7 +574,7 @@ syntax = {
             'name' : 'support.function.magic.python',
             'match':
             (
-                r'\b(__(?:'
+                r'\b__('
                 r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
                 r'deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|'
                 r'exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
@@ -598,7 +587,7 @@ syntax = {
                 r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
                 r'setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|'
                 r'trunc|unicode|weakref|xor'
-                r')__)\b'
+                r')__\b'
             )
         },
         # todo: rearrange -> what is magic function and what is magic variable?
@@ -613,10 +602,11 @@ syntax = {
                 r')__\b'
             )
         },
+        # conventions
         'language_variables':
         {
             'name' : 'variable.language.python',
-            'match': r'\b(self|cls)\b'
+            'match': r'(?<!\.)\b(self|cls)\b'
         },
         'line_continuation':
         {
@@ -939,28 +929,29 @@ syntax = {
                 {
                     # [set of characters]
                     'name' : 'constant.other.character_class.set.regex.python',
-                    'begin': r'\[(\^)?',
+                    'begin': r'\[(\^)?(\](?=.*\]))?',
                     'beginCaptures':
                     {
                         1: {'name': 'keyword.operator.negation.regex.python'}
                     },
                     'patterns':
                     [
+                        {
+                            'name': 'constant.character.escaped.special.open.regex.python',
+                            'match': r'\['
+                        },
                         {'include': '#regular_expressions_character_classes'},
                         {'include': '#regular_expressions_escaped_characters'}
-                        # {
-                        #    'name' : 'constant.other.character_class.special.regex.python',
-                        #    'match': r'\]'
-                        # }
+
                     ],
-                    'end': r'\]'
+                    'end': r'(?<!\\)\]'
                 }
             ]
         },
         'regular_expressions_escaped_characters':
         {
             'name' : 'constant.character.escaped.special.regex.python',
-            'match': r'\\(\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
+            'match': r'\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
         }
     },
     'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
