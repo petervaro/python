@@ -521,8 +521,8 @@ syntax = {
             'match':
             (
                 r'\b('
-                r'basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|'
-                r'enumerate|file|float|frozenset|int|list|memoryview|object|open|'
+                r'basestring|bool|bytearray|bytes|classmethod|complex|dict|'
+                r'enumerate|float|frozenset|int|list|memoryview|object|open|'
                 r'property|reversed|set|slice|staticmethod|str|super|tuple|type'
                 r')\b'
             )

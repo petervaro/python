@@ -652,7 +652,7 @@
 		<key>builtin_types</key>
 		<dict>
 			<key>match</key>
-			<string>\b(basestring|bool|buffer|bytearray|bytes|classmethod|complex|dict|enumerate|file|float|frozenset|int|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
+			<string>\b(basestring|bool|bytearray|bytes|classmethod|complex|dict|enumerate|float|frozenset|int|list|memoryview|object|open|property|reversed|set|slice|staticmethod|str|super|tuple|type)\b</string>
 			<key>name</key>
 			<string>support.type.python</string>
 		</dict>
