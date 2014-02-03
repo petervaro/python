@@ -961,7 +961,7 @@ if __name__ == '__main__':
     import convert
     convert.dict_to_lang(
         dictionary = syntax,
-        name  = 'Python',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/Python/',
+        name  = 'Python3',
+        path  = '~/Library/Application Support/Sublime Text 3/Packages/Python3/',
         local = 'Python'
     )

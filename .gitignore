@@ -3,3 +3,5 @@
 __old__.json
 __old__.xml
 *.pyo
+
+*.idraw
