@@ -7,16 +7,16 @@
 
 # Syntax Definition
 syntax = {
-    'name': 'Cython',
-    'comment': '\n\t\tWritten by Peter Varo (c)2013\n\t\thttp://github.com/petervaro/Python3\n\t',
-    'scopeName': 'source.cython',
-    'fileTypes': ['pyx', 'pxi', 'pxd'],
-    'keyEquivalent': '^~C',
+    'name': 'Python 3',
+    'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/Python3\n\t',
+    'scopeName': 'source.python',
+    'fileTypes': ['py'],
+    'keyEquivalent': '^~P',
     # hashbang
     'firstLineMatch': r'^#!/.*\bpython[\d.-]*\b',
     # Folding marks for the TextEditor
     'foldingStartMarker':
-        r'^\s*((cp?)?def|class)\s+([.\w>]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")',
+        r'^\s*(def|class)\s+([.\w>]+)\s*(\((.*)\))?\s*:|\{\s*$|\(\s*$|\[\s*$|^\s*"""(?=.)(?!.*""")',
     'foldingStopMarker':
         r'^\s*$|^\s*\}|^\s*\]|^\s*\)|^\s*"""\s*$',
     # Patterns
@@ -24,112 +24,103 @@ syntax = {
     [
 #-- COMMENT -------------------------------------------------------------------#
         {
-            'name' : 'comment.line.hashmark.cython',
+            'name' : 'comment.line.hashmark.python',
             'match': r'#.*$\n?'
         },
 
 
 #-- NUMBERS -------------------------------------------------------------------#
         {
-            'name' : 'constant.numeric.integer.binary.cython',
+            'name' : 'constant.numeric.integer.binary.python',
             'match': r'\b0b[01]+'
         },
         {
-            'name' : 'constant.numeric.integer.hexadecimal.cython',
+            'name' : 'constant.numeric.integer.hexadecimal.python',
             'match': r'\b0x\h+'
         },
         {
-            'name' : 'constant.numeric.integer.octal.cython',
+            'name' : 'constant.numeric.integer.octal.python',
             'match': r'\b0o[0-7]+'
         },
         {
             # .001  .1e6  .1E6  .1e+6  .1E+6  .1e-6  .1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.floatnumber.cython',
+            'name' : 'constant.numeric.float_and_complex.decimal.floatnumber.python',
             'match': r'(?<=\W|^)\.\d+([eE][+-]?\d+)?[jJ]?'
         },
         {
             # 1.  1.0  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.cython',
+            'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.python',
             'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)'
         },
         {
             # 1e6  1E6  1e+6  1E+6  1e-6  1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.exponent.cython',
+            'name' : 'constant.numeric.float_and_complex.decimal.exponent.python',
             'match': r'(?<![\.\d])\d+[eE][+-]?\d+[jJ]?'
         },
         {
-            'name' : 'constant.numeric.integer_and_complex.decimal.cython',
+            'name' : 'constant.numeric.integer_and_complex.decimal.python',
             'match': r'\b(?<!\.)([1-9]\d*|0)[jJ]?'
         },
 
 
 #-- KEYWORDS ------------------------------------------------------------------#
         {
-            'name' : 'storage.modifier.declaration.cython',
+            'name' : 'storage.modifier.declaration.python',
+            'match': r'\b(global|nonlocal)\b'
+        },
+        {
+            'name' : 'keyword.control.import_and_import_from.python',
+            'match': r'\b(import|from)\b'
+        },
+        {
+            'name' : 'keyword.control.flow_block_delimiters.python',
             'match':
             (
-                r'\b(global|nonlocal|gil|nogil|extern|api|public|readonly|'
-                r'const(\svolatile)?|inline)\b'
+                r'\b(elif|else|except|finally|for|if|try|while|'
+                r'with|break|continue|pass|raise|return|yield)\b'
             )
         },
         {
-            'name' : 'keyword.control.import_and_import_from.cython',
-            'match': r'\b(cimport|include|extern|import|from)\b'
-        },
-        {
-            'name' : 'keyword.control.flow_block_delimiters.cython',
-            'match':
-            (
-                r'\b(elif|else|except|finally|for|if|try|while|with|break|'
-                r'continue|pass|raise|return|yield|IF|ELIF|ELSE|DEF)\b'
-            )
-        },
-        {
-            'name' : 'keyword.operator.bool.logical.cython',
+            'name' : 'keyword.operator.bool.logical.python',
             'match': r'\b(and|in|is|not|or)\b'
         },
         {
-            'name' : 'keyword.other.cython',
-            'match': r'\b(as|assert|by|del)\b'
+            'name' : 'keyword.other.python',
+            'match': r'\b(as|assert|del)\b'
         },
 
 
 #-- OPERATORS -----------------------------------------------------------------#
         {
-            'name' : 'keyword.operator.comparison.cython',
+            'name' : 'keyword.operator.comparison.python',
             'match': r'<=|>=|==|<|>|!='
         },
         {
-            'name' : 'keyword.operator.assignment.augmented.cython',
+            'name' : 'keyword.operator.assignment.augmented.python',
             'match': r'\+=|-=|\*=|/=|//=|%=|&=|\|=|\^=|<<=|>>=|\*\*='
         },
         {
-            'name' : 'keyword.operator.arithmetic.cython',
+            'name' : 'keyword.operator.arithmetic.python',
             'match': r'\+|-|\*|\*\*|/|//|%|<<|>>|&|\||\^|~'
         },
         {
-            'name' : 'keyword.operator.value_and_annotation_assignment.cython',
+            'name' : 'keyword.operator.value_and_annotation_assignment.python',
             'match': r'=|->'
-        },
-        {
-            'name' : 'keyword.operator.type_test.cython',
-            'match': r'\?'
         },
 
 
 #-- CLASS ---------------------------------------------------------------------#
         {
-            'name' : 'meta.class.cython',
-            'begin': r'^\s*(cdef\s+)?(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)',
+            'name' : 'meta.class.python',
+            'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.class.definition.cython'},
-                2: {'name': 'storage.type.class.cython'}
+                1: {'name': 'storage.type.class.python'}
             },
             'patterns':
             [
                 {
-                    'contentName': 'entity.name.type.class.cython',
+                    'contentName': 'entity.name.type.class.python',
                     'begin': r'(?=[a-zA-Z_]\w*)',
                     'patterns':
                     [
@@ -138,12 +129,12 @@ syntax = {
                     'end': r'(?!\w)'
                 },
                 {
-                    'contentName': 'meta.class.inheritance.cython',
+                    'contentName': 'meta.class.inheritance.python',
                     'begin': r'\(',
                     'patterns':
                     [
                         {
-                            'contentName': 'entity.other.inherited-class.cython',
+                            'contentName': 'entity.other.inherited-class.python',
                             'begin': r'(?<=\(|,)\s*',
                             'patterns':
                             [
@@ -152,7 +143,7 @@ syntax = {
                             'end': r'\s*(?:,|(?=\)))',
                             'endCaptures':
                             {
-                                1: {'name': 'punctuation.separator.inheritance.cython'}
+                                1: {'name': 'punctuation.separator.inheritance.python'}
                             }
                         }
                     ],
@@ -162,25 +153,24 @@ syntax = {
             'end'  : r'(\)?\s*:|\s+([\w#\s:]+))',
             'endCaptures':
             {
-                3: {'name': 'invalid.illegal.missing_section_begin.cython'}
+                3: {'name': 'invalid.illegal.missing_section_begin.python'}
             }
         },
 
 
 #-- FUNCTION ------------------------------------------------------------------#
         {
-            'name' : 'meta.function.cython',
-            'begin': r'^\s*((cp?)?def)\s+(?=[a-zA-Z_]\w*\s*\()',
+            'name' : 'meta.function.python',
+            'begin': r'^\s*(def)\s+(?=[a-zA-Z_]\w*\s*\()',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.function.cython'}
+                1: {'name': 'storage.type.function.python'}
             },
             'patterns':
             [
-                # Type declaration
                 # Function name
                 {
-                    'contentName': 'entity.name.function.cython',
+                    'contentName': 'entity.name.function.python',
                     'begin': r'(?=[a-zA-Z_]\w*)',
                     'patterns':
                     [
@@ -198,8 +188,8 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.cython'},
-                                2: {'name': 'keyword.operator.assignment.cython'}
+                                1: {'name': 'variable.parameter.function.python'},
+                                2: {'name': 'keyword.operator.assignment.python'}
                             },
                             'patterns':
                             [
@@ -208,7 +198,7 @@ syntax = {
                                     'begin': r'(?<=(=))\s*',
                                     'beginCaptures':
                                     {
-                                        1: {'name': 'keyword.operator.assignment.cython'}
+                                        1: {'name': 'keyword.operator.assignment.python'}
                                     },
                                     'patterns':
                                     [
@@ -226,7 +216,7 @@ syntax = {
                                     'end': r'(?=,|(=)|[\n)])',
                                     'endCaptures':
                                     {
-                                        1: {'name': 'keyword.operator.assignment.cython'}
+                                        1: {'name': 'keyword.operator.assignment.python'}
                                     }
                                 }
                             ],
@@ -237,7 +227,7 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.cython'}
+                                1: {'name': 'variable.parameter.function.python'}
                             },
                             'patterns':
                             [
@@ -256,21 +246,12 @@ syntax = {
                     ],
                     'end': r'(?=\))'
                 },
-                # Global Interpreter Lock
-                {
-                    'begin': r'\)\s*(nogil)\s*',
-                    'beginCaptures':
-                    {
-                        1: {'name': 'storage.modifier.declaration.cython'}
-                    },
-                    'end': r'\s*((->)|:|\n+)'
-                },
                 # Annotation assignment (function)
                 {
                     'begin': r'(?<=\))\s*(->)\s*',
                     'beginCaptures':
                     {
-                        1: {'name': 'keyword.operator.annotation.assignment.cython'}
+                        1: {'name': 'keyword.operator.annotation.assignment.python'}
                     },
                     'patterns':
                     [
@@ -280,20 +261,21 @@ syntax = {
                 }
             ],
             # todo: add illegal
-            'end': r'(\s*:|\n+)',
+            'end': r'(\s*:)',
             'endCaptures':
             {
-                2: {'name': 'invalid.illegal.missing_section_begin.cython'}
+                2: {'name': 'invalid.illegal.missing_section_begin.python'}
             }
         },
 
+
 #-- LAMBDA --------------------------------------------------------------------#
         {
-            'name' : 'meta.function.anonymous.cython',
+            'name' : 'meta.function.anonymous.python',
             'begin': r'\b(lambda)',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.function.anonymous.cython'}
+                1: {'name': 'storage.type.function.anonymous.python'}
             },
             'patterns':
             [
@@ -306,8 +288,8 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.cython'},
-                                2: {'name': 'keyword.operator.assignment.cython'}
+                                1: {'name': 'variable.parameter.function.python'},
+                                2: {'name': 'keyword.operator.assignment.python'}
                             },
                             'patterns':
                             [
@@ -317,7 +299,7 @@ syntax = {
                         },
                         # Positional arguments
                         {
-                            'name' : 'variable.parameter.function.cython',
+                            'name' : 'variable.parameter.function.python',
                             'match': r'\b[a-zA-Z_]\w*'
                         }
                     ],
@@ -331,11 +313,11 @@ syntax = {
 #-- DECORATOR -----------------------------------------------------------------#
         # Decorator with arguments
         {
-            'name' : 'meta.function.decorator.with_arguments.cython',
+            'name' : 'meta.function.decorator.with_arguments.python',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(',
             'beginCaptures':
             {
-                1: {'name': 'support.function.decorator.cython'}
+                1: {'name': 'support.function.decorator.python'}
             },
             'patterns':
             [
@@ -346,38 +328,33 @@ syntax = {
         },
         # Decorator without arguments
         {
-            'name' : 'meta.function.decorator.without_arguments.cython',
+            'name' : 'meta.function.decorator.without_arguments.python',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)',
             'beginCaptures':
             {
-                1: {'name': 'support.function.decorator.cython'}
+                1: {'name': 'support.function.decorator.python'}
             },
             'end': r'(?=\s|$\n?|#)'
         },
 
 #-- CONSTANTS -----------------------------------------------------------------#
         {
-            'name' : 'constant.language.word_like.cython',
-            'match':
-            (
-                r'\b(NULL|None|True|False|Ellipsis|NotImplemented|'
-                r'UNAME_SYSNAME|UNAME_NODENAME|UNAME_RELEASE|UNAME_VERSION|'
-                r'UNAME_MACHINE|EXIT_FAILURE|EXIT_SUCCESS|RAND_MAX)\b'
-            )
+            'name' : 'constant.language.word_like.python',
+            'match': r'\b(None|True|False|Ellipsis|NotImplemented)\b'
         },
         {
-            'name' : 'constant.language.symbol_like.cython',
+            'name' : 'constant.language.symbol_like.python',
             'match': r'(?<=\W|^)\.\.\.(?=\W|$)'
         },
 
 
 #-- STORAGES ------------------------------------------------------------------#
         {
-            'name' : 'storage.type.function.cython',
-            'match': r'\b((c(p|type)?)?def|lambda)\b'
+            'name' : 'storage.type.function.python',
+            'match': r'\b(def|lambda)\b'
         },
         {
-            'name' : 'storage.type.class.cython',
+            'name' : 'storage.type.class.python',
             'match': r'\b(class)\b'
         },
 
@@ -385,9 +362,6 @@ syntax = {
 #-- BUILTINS ------------------------------------------------------------------#
         {
             'include': '#builtin_types'
-        },
-        {
-            'include': '#c_types'
         },
         {
             'include': '#builtin_functions'
@@ -414,11 +388,10 @@ syntax = {
             'include': '#language_variables'
         },
 
-
 #-- STRUCTURES ----------------------------------------------------------------#
         # LIST
         {
-            'name': 'meta.structure.list.cython',
+            'name': 'meta.structure.list.python',
             'begin': r'\[',
             'patterns':
             [
@@ -435,7 +408,7 @@ syntax = {
         },
         # DICTINARY
         {
-            'name': 'meta.structure.dictionary.cython',
+            'name': 'meta.structure.dictionary.python',
             'begin': r'{',
             'patterns':
             [
@@ -485,13 +458,11 @@ syntax = {
             'end': r'\)'
         },
 
-
 #-- STRING --------------------------------------------------------------------#
         {
             'include': '#string_quoted'
         }
     ],
-
 
 #-- REPOSITORY ----------------------------------------------------------------#
     'repository':
@@ -500,7 +471,7 @@ syntax = {
 #-- BUILTINS ------------------------------------------------------------------#
         'builtin_exceptions':
         {
-            'name' : 'support.type.exception.cython',
+            'name' : 'support.type.exception.python',
             'match':
             (
                 r'(?<!\.)\b('
@@ -520,40 +491,28 @@ syntax = {
         },
         'builtin_functions':
         {
-            'name' : 'support.function.builtin.cython',
+            'name' : 'support.function.builtin.python',
             'match':
             (
                 r'(?<!\.)\b('
-                r'__import__|abort|(c|m|re)alloc|(ll?)?abs|all|any|ascii|bin|bsearch|'
-                r'callable|chr|compile|delattr|dir|(ll?)?div|divmod|eval|exec|(_|at)?exit|'
-                r'filter|format|free|getattr|getenv|globals|hasattr|hash|help|hex|id|'
-                r'input|isinstance|issubclass|iter|len|locals|map|max|min|next|'
-                r'oct|ord|pow|print|qsort|range|s?rand|repr|round|setattr|sizeof|'
-                r'sorted|sum|system|vars|zip'
+                r'__import__|abs|all|any|ascii|bin|callable|chr|compile|delattr|'
+                r'dir|divmod|eval|exec|filter|format|getattr|globals|hasattr|hash|'
+                r'help|hex|id|input|isinstance|issubclass|iter|len|locals|map|max|'
+                r'min|next|oct|ord|pow|print|range|repr|round|setattr|sorted|sum|'
+                r'vars|zip'
                 r')\b'
             )
         },
         # todo: rearrange -> what is builtin function and what is builtin type?
         'builtin_types':
         {
-            'name' : 'support.type.cython',
+            'name' : 'support.type.python',
             'match':
             (
                 r'(?<!\.)\b('
-                r'basestring|bool|buffer|bytearray|bytes|classmethod|complex|'
-                r'dict|enumerate|file|frozenset|list|memoryview|object|open|'
+                r'basestring|bool|bytearray|bytes|classmethod|complex|dict|'
+                r'enumerate|float|frozenset|int|list|memoryview|object|open|'
                 r'property|reversed|set|slice|staticmethod|str|super|tuple|type'
-                r')\b'
-            )
-        },
-        'c_types':
-        {
-            'name' : 'support.type.c_types.cython',
-            'match':
-            (
-                r'(?<!\.)\b('
-                r'bint|(long\s)?double|enum|float|struct|union|void|const|fused|'
-                r'((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?)'
                 r')\b'
             )
         },
@@ -582,13 +541,13 @@ syntax = {
         },
         'illegal_names':
         {
-            'name' : 'invalid.illegal_names.name.cython',
+            'name' : 'invalid.illegal_names.name.python',
             'match':
             (
                 r'\b('
-                r'and|api|as|assert|break|by|class|continue|(c(p|type)?)?def|del|'
-                r'elif|else|except|finally|for|from|global|if|import|in|is|lambda|'
-                r'nonlocal|not|or|pass|public|raise|return|try|while|with|yield'
+                r'and|as|assert|break|class|continue|def|del|elif|else|except|'
+                r'finally|for|from|global|if|import|in|is|lambda|nonlocal|not|'
+                r'or|pass|raise|return|try|while|with|yield'
                 r')\b'
             )
         },
@@ -599,8 +558,8 @@ syntax = {
             'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
             'beginCaptures':
             {
-                1: {'name': 'variable.parameter.function.cython'},
-                2: {'name': 'keyword.operator.assignment.cython'}
+                1: {'name': 'variable.parameter.function.python'},
+                2: {'name': 'keyword.operator.assignment.python'}
             },
             'patterns':
             [
@@ -612,21 +571,21 @@ syntax = {
 #-- MAGIC STUFFS --------------------------------------------------------------#
         'magic_function_names':
         {
-            'name' : 'support.function.magic.cython',
+            'name' : 'support.function.magic.python',
             'match':
             (
                 r'\b__('
                 r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
-                r'dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|'
-                r'eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
+                r'deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|eq|'
+                r'exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
                 r'getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|'
-                r'iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|'
+                r'iand|idiv|ifloordiv|ilshift|imul|index|init|instancecheck|'
                 r'int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|'
                 r'lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|'
                 r'pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|'
                 r'repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|'
                 r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
-                r'setstate|signatures|str|sub|subclasscheck|subclasshook|truediv|'
+                r'setstate|sizeof|str|sub|subclasscheck|subclasshook|truediv|'
                 r'trunc|unicode|weakref|xor'
                 r')__\b'
             )
@@ -634,7 +593,7 @@ syntax = {
         # todo: rearrange -> what is magic function and what is magic variable?
         'magic_variable_names':
         {
-            'name' : 'support.variable.magic.cython',
+            'name' : 'support.variable.magic.python',
             'match':
             (
                 r'\b__('
@@ -643,9 +602,10 @@ syntax = {
                 r')__\b'
             )
         },
+        # conventions
         'language_variables':
         {
-            'name' : 'variable.language.cython',
+            'name' : 'variable.language.python',
             'match': r'(?<!\.)\b(self|cls)\b'
         },
         'line_continuation':
@@ -653,8 +613,8 @@ syntax = {
             'match': r'(\\)(.*)$\n?',
             'captures':
             {
-                1: {'name': 'punctuation.separator.continuation.line.cython'},
-                2: {'name': 'invalid.illegal.unexpected_text.cython'}
+                1: {'name': 'punctuation.separator.continuation.line.python'},
+                2: {'name': 'invalid.illegal.unexpected_text.python'}
             }
         },
 
@@ -669,11 +629,11 @@ syntax = {
             [
                 # Single BLOCK
                 {
-                    'name' : 'string.quoted.single.block.cython',
+                    'name' : 'string.quoted.single.block.python',
                     'begin': r"([bBuU]?)'''",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -682,11 +642,11 @@ syntax = {
                     'end': r"'''"
                 },
                 {
-                    'name' : 'string.quoted.single.block.cython',
+                    'name' : 'string.quoted.single.block.python',
                     'begin': r"([rR][bB]|[bB][rR]|[rR])'''",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -698,11 +658,11 @@ syntax = {
 
                 # Single LINE
                 {
-                    'name' : 'string.quoted.single.line.cython',
+                    'name' : 'string.quoted.single.line.python',
                     'begin': r"([bBuU]?)'",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -711,15 +671,15 @@ syntax = {
                     'end': r"'|(\n)",
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.cython'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
                     }
                 },
                 {
-                    'name' : 'string.quoted.single.line.cython',
+                    'name' : 'string.quoted.single.line.python',
                     'begin': r"([rR][bB]|[bB][rR]|[rR])'",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -729,17 +689,17 @@ syntax = {
                     'end': r"'|(\n)",
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.cython'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
                     }
                 },
 
                 # Double BLOCK
                 {
-                    'name' : 'string.quoted.double.block.cython',
+                    'name' : 'string.quoted.double.block.python',
                     'begin': r'([bBuU]?)"""',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -748,11 +708,11 @@ syntax = {
                     'end': r'"""'
                 },
                 {
-                    'name' : 'string.quoted.double.block.cython',
+                    'name' : 'string.quoted.double.block.python',
                     'begin': r'([rR][bB]|[bB][rR]|[rR])"""',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -764,11 +724,11 @@ syntax = {
 
                 # Double LINE
                 {
-                    'name' : 'string.quoted.double.line.cython',
+                    'name' : 'string.quoted.double.line.python',
                     'begin': r'([bBuU]?)"',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -777,24 +737,24 @@ syntax = {
                     'end': r'"|(\n)',
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.cython'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
                     }
                 },
                 # {
-                #     'name' : 'meta.format_attribute.format.cython',
+                #     'name' : 'meta.format_attribute.format.python',
                 #     'begin': r'(\.format)\s*\(',
                 #     'beginCaptures':
                 #     {
-                #         1: {'name': 'invalid.illegal.none.cython'}
+                #         1: {'name': 'invalid.illegal.none.python'}
                 #     },
                 #     'patterns':
                 #     [
                 #         {
-                #             'name' : 'string.quoted.double.format.cython',
+                #             'name' : 'string.quoted.double.format.python',
                 #             'begin': r'([uUbB]?)"',
                 #             'beginCaptures':
                 #             {
-                #                 1: {'name': 'storage.type.string.prefix.cython'}
+                #                 1: {'name': 'storage.type.string.prefix.python'}
                 #             },
                 #             'patterns':
                 #             [
@@ -804,18 +764,18 @@ syntax = {
                 #             'end': r'"|(\n)',
                 #             'endCaptures':
                 #             {
-                #                 1: {'name': 'invalid.illegal.unclosed_string.cython'}
+                #                 1: {'name': 'invalid.illegal.unclosed_string.python'}
                 #             }
                 #         }
                 #     ],
                 #     'end': r'\)'
                 # },
                 # {
-                #     'name' : 'string.quoted.double.format.cython',
+                #     'name' : 'string.quoted.double.format.python',
                 #     'begin': r'([uUbB]?)"',
                 #     'beginCaptures':
                 #     {
-                #         1: {'name': 'storage.type.string.prefix.cython'}
+                #         1: {'name': 'storage.type.string.prefix.python'}
                 #     },
                 #     'patterns':
                 #     [
@@ -825,15 +785,15 @@ syntax = {
                 #     'end': r'"\.format',  # |(\n)',
                 #     'endCaptures':
                 #     {
-                #         2: {'name': 'invalid.illegal.unclosed_string.cython'}
+                #         2: {'name': 'invalid.illegal.unclosed_string.python'}
                 #     }
                 # },
                 {
-                    'name' : 'string.quoted.double.line.cython',
+                    'name' : 'string.quoted.double.line.python',
                     'begin': r'([rR][bB]|[bB][rR]|[rR])"',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.cython'}
+                        1: {'name': 'storage.type.string.prefix.python'}
                     },
                     'patterns':
                     [
@@ -843,7 +803,7 @@ syntax = {
                     'end': r'"|(\n)',
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.cython'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python'}
                     }
                 }
             ]
@@ -859,7 +819,7 @@ syntax = {
         },
         'constant_placeholder':
         {
-            'name' : 'string.interpolated.placeholder.cython',
+            'name' : 'string.interpolated.placeholder.python',
             'match': r'%(\(\w+\))?#?0?-?[ ]?\+?(\d*|\*)(\.(\d*|\*))?[hlL]?[diouxXeEfFgGcrs%]'
         },
         'format_mini_language':
@@ -867,7 +827,7 @@ syntax = {
             'patterns':
             [
                 {
-                    'name' : 'constant.other.placeholder.format.cython',
+                    'name' : 'constant.other.placeholder.format.python',
                     'match': r'\{\}'
                 }
             ]
@@ -878,13 +838,13 @@ syntax = {
             # hex          | octal  | newline   | double-quote |
             # single-quote | bell   | backspace | formfeed     |
             # line-feed    | return | tab       | vertical-tab | escape char
-            'name' : 'constant.character.escaped.special.cython',
+            'name' : 'constant.character.escaped.special.python',
             'match': r'\\(x\h{2}|[0-7]{3}|\n|\"|\'|a|b|f|n|r|t|v|\\)'
         },
         'escaped_unicode_characters':
         {
             # 16bit hex | 32bit hex | unicodename
-            'name' : 'constant.character.escaped.cython',
+            'name' : 'constant.character.escaped.python',
             'match': r'\\(u\h{4}|U\h{8}|N\{[a-zA-Z\s]+\})'
         },
 
@@ -894,31 +854,31 @@ syntax = {
             'patterns':
             [
                 {
-                    'name' : 'keyword.control.anchor.regex.cython',
+                    'name' : 'keyword.control.anchor.regex.python',
                     'match': r'\\[bBAZzG]|\^|\$'
                 },
                 {
                     # \number
-                    'name' : 'keyword.other.group_reference_order.regex.cython',
+                    'name' : 'keyword.other.group_reference_order.regex.python',
                     'match': r'\\[1-9]\d?'
                 },
                 {
                     # (?P=this_is_a_group)
-                    'name' : 'keyword.other.group_reference_name.regex.cython',
+                    'name' : 'keyword.other.group_reference_name.regex.python',
                     'match': r'\(\?P=[a-zA-Z_]\w*\)'
                 },
                 {
                     # {2}, {2,}, {,2}, {2,3}, {2,3}?
-                    'name' : 'keyword.operator.quantifier.regex.cython',
+                    'name' : 'keyword.operator.quantifier.regex.python',
                     'match': r'[?+*][?+]?|\{(\d+,\d+|\d+,|,\d+|\d+)\}\??'
                 },
                 {
-                    'name' : 'keyword.operator.or.regex.cython',
+                    'name' : 'keyword.operator.or.regex.python',
                     'match': r'\|'
                 },
                 {
                     # (?# comment)
-                    'name' : 'comment.block.regex.cython',
+                    'name' : 'comment.block.regex.python',
                     'begin': r'\(\?#',
                     'end'  : r'\)'
                 },
@@ -930,7 +890,7 @@ syntax = {
                     #        s: dot matches all
                     #        u: unicode
                     #        x: extended form (verbose)
-                    'name' : 'keyword.other.option_toggle.regex.cython',
+                    'name' : 'keyword.other.option_toggle.regex.python',
                     'match': r'\(\?[aiLmsux]+\)'
                 },
                 {
@@ -941,7 +901,7 @@ syntax = {
                     # (?:  non-capturing)
                     # (?P<id> group)
                     # (?(id/name)yes-pattern|no-pattern)
-                    'name' : 'meta.group.assertion.regex.cython',
+                    'name' : 'meta.group.assertion.regex.python',
                     'begin': r'\(\?(=|!|<=|<!|:|P<[a-z]\w*>|\(([1-9]\d?|[a-zA-Z_]\w*\)))?',
                     'patterns':
                     [
@@ -994,14 +954,14 @@ syntax = {
             'match': r'\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
         }
     },
-    'uuid': 'D085155B-E40A-40B3-8FEC-6865318CDEEA'
+    'uuid': '851B1429-B8B4-4C1E-8030-399BDA994393'
 }
 
 if __name__ == '__main__':
     import convert
     convert.dict_to_lang(
         dictionary = syntax,
-        name  = 'Cython',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',
-        local = True
+        name  = 'Python',
+        path  = '~/Library/Application Support/Sublime Text 3/Packages/Python/',
+        local = 'Python'
     )

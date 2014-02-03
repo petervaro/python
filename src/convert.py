@@ -24,7 +24,7 @@ def int_to_str(obj: object) -> object:
 
 
 # Convert dictionary into property list file
-def dict_to_plist(dictionary, name, extension, path, local) -> None:
+def dict_to_plist(dictionary, name, extension, path, local='') -> None:
         d = int_to_str(dictionary)
         n = '{}.{}'.format(name, extension)
         p = os.path.join(os.path.expanduser(path), n)
@@ -32,7 +32,7 @@ def dict_to_plist(dictionary, name, extension, path, local) -> None:
             with open(p, 'w+b') as f:
                 plistlib.writePlist(d, f)
         if local:
-            with open(os.path.join('compiled', n), 'w+b') as f:
+            with open(os.path.join(os.pardir, local, n), 'w+b') as f:
                 plistlib.writePlist(d, f)
 
 
@@ -58,7 +58,7 @@ def hex_to_rgba(hexa: str) -> str:
     )
 
 # Convert dictionary to css
-def dict_to_css(d, fname):
+def dict_to_css(dictionary, name, local):
     # todo: decide if we need `word-wrap: break-word;` or not?
     KEYS = {
         'fontStyle' : 'font-style',
@@ -67,13 +67,13 @@ def dict_to_css(d, fname):
     }
     output = []
     output.append('/*\n*{auth}\n*{name} syntax highlight theme\n*\n*{comm}\n*/\n'.format(
-            auth = d['author'],
-            name = d['name'],
-            comm = d['comment']
+            auth = dictionary['author'],
+            name = dictionary['name'],
+            comm = dictionary['comment']
         )
     )
     output.append('body\n{\n\tbackground: #282828;\n}\n')
-    pre = d['settings'][0]['settings']
+    pre = dictionary['settings'][0]['settings']
     output.append('pre, code\n{{\n{default}{dynamic}\n}}\n'.format(
             default = (
                 '\tmargin: 0px;\n'
@@ -92,9 +92,9 @@ def dict_to_css(d, fname):
     output.append('::selection\n{{\n\tbackground: {};\n}}\n'.format(
         hex_to_rgba(pre['selection']))
     )
-    for item in d['settings'][1:]:
+    for item in dictionary['settings'][1:]:
         try:
-            name  = item['scope']
+            _name  = item['scope']
             prefs = []
             for key, value in item['settings'].items():
                 try:
@@ -106,8 +106,9 @@ def dict_to_css(d, fname):
                 else:
                     v = value
                 prefs.append('\t{}: {};'.format(k, v))
-            output.append('pre .{}\n{{\n{}\n}}\n'.format(name, '\n'.join(prefs)))
+            output.append('pre .{}\n{{\n{}\n}}\n'.format(_name, '\n'.join(prefs)))
         except KeyError:
             pass
-    print(fname, 'style dictionary has been converted and placed.')
-    return '\n'.join(output)
+    with open(os.path.join(os.pardir, local, '{}.css'.format(name)), 'w') as f:
+        f.write('\n'.join(output))
+    print(name, 'style dictionary has been converted and placed.')

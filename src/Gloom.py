@@ -39,7 +39,7 @@ font  = 'fontStyle'
 NAME = 'Gloom'
 
 style = {
-    'author': 'Peter Varo (c)2013',
+    'author': 'Peter Varo (c)2013-2014',
     'comment': 'Based on the Twilight theme of Michael Sheets',
     'uuid': '5E10F479-14B9-4DC1-B26C-557B2BB3FAE',
     name : NAME,
@@ -261,7 +261,10 @@ if __name__ == '__main__':
         dictionary = style,
         name  = NAME,
         path  = '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default/',
-        local = True
+        local = 'Gloom'
     )
-    with open('{}.css'.format(NAME), 'w') as f:
-        f.write(convert.dict_to_css(style, NAME))
+    convert.dict_to_css(
+        dictionary=style,
+        name=NAME,
+        local='css'
+    )

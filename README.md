@@ -108,7 +108,7 @@ and regexes and for all the wonderful members of the www.sopython.com chat room!
 
 The MIT License (MIT)
 
-Copyright (c) 2013 Peter Varo
+Copyright (c) 2013-2014 Peter Varo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

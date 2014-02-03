@@ -1,5 +1,5 @@
 /*
-*Peter Varo (c)2013
+*Peter Varo (c)2013-2014
 *Gloom syntax highlight theme
 *
 *Based on the Twilight theme of Michael Sheets
@@ -27,8 +27,8 @@ pre, code
 
 pre .comment
 {
-	font-style: italic;
 	color: #595959;
+	font-style: italic;
 }
 
 pre .constant
@@ -78,8 +78,8 @@ pre .invalid.illegal
 
 pre .entity.other.inherited-class
 {
-	font-style: italic;
 	color: #995A2D;
+	font-style: italic;
 }
 
 pre .string constant
@@ -109,14 +109,14 @@ pre .storage.modifier
 
 pre .sublimelinter.annotations
 {
-	background-color: #FFFFAA;
 	color: #FFFFFF;
+	background-color: #FFFFAA;
 }
 
 pre .sublimelinter.outline.illegal
 {
-	background-color: #99471E;
 	color: #FFFFFF;
+	background-color: #99471E;
 }
 
 pre .sublimelinter.underline.illegal
@@ -126,8 +126,8 @@ pre .sublimelinter.underline.illegal
 
 pre .sublimelinter.outline.warning
 {
-	background-color: #7F6A3F;
 	color: #FFFFFF;
+	background-color: #7F6A3F;
 }
 
 pre .sublimelinter.underline.warning
@@ -137,8 +137,8 @@ pre .sublimelinter.underline.warning
 
 pre .sublimelinter.outline.violation
 {
-	background-color: #505935;
 	color: #FFFFFF;
+	background-color: #505935;
 }
 
 pre .sublimelinter.underline.violation
