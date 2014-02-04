@@ -123,7 +123,7 @@ function
 ### Appreciation
 
 *Thank you very much Jon Clements for all the support and answers about Python
-and regexes in general and of course thanks for all the wonderful members of the [**so**python](http://www.sopython.com) chat room! May the Cabbage be with us ;)*
+and regexes in general and of course thanks for all the wonderful members of the [**so**python](http://sopython.com) chat room! May the Cabbage be with us ;)*
 
 ### MIT LICENSE
 
