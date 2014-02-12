@@ -1,5 +1,9 @@
 {
-	"shell_cmd": "python3 -OO -u \"$file\"",
-	"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
-	"selector": "source.python"
+    "shell_cmd": "python3 -OO -u \"$file\"",
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "selector": "source.python",
+    "windows":
+    {
+        "shell_cmd": "py -3 -OO -u \"$file\""
+    }
 }
