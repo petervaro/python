@@ -3,6 +3,8 @@
 This repo is about Python 3.3+ and Cython 0.19.1+ related bundles for Sublime
 Text 2/3 and TextMate editors and for online usage.
 
+![Preview](preview.png)
+
 ### Python 3.3
 
 Python 3.3 is a truly powerful version of python, with a lot new and creative
@@ -58,7 +60,7 @@ Below some of the improvements:
 - New exceptions added
 - Function annotations are supported
 - Language variable `cls` added
-- Better regex support (grouping and comments improved)
+- Better regex support (multiline, grouping, comments and more are improved)
 - String and byte literals:
 	- Byte notation added
 	- Proper string prefixes added
@@ -72,18 +74,37 @@ Below some of the improvements:
 
 ### Installation
 
-Download the files from the `compiled` directory. If you are on SublimeText,
-navigate to your `Packages/Python` folder (if you are using Sublime Text 3 you
-have to create an empty folder with the name *Python*) and copy
-`Python.tmLanguage` into it (if you are on Sublime Text 2, you probably want to
-rename the file before placing to `Python3.tmLanguage` or something).
+***Via Package Control***
 
-To use *Cython* definition go to/create `Packages/Cython` folder and place
-`Cython.tmLanguage` inside it.
+The fastest and easiest way to install theses packages to Sublime Text is the
+follow:
+
+1. Install [Package Control](https://sublime.wbond.net/installation)
+2. Open `Tools` → `Command Palette`
+3. Select `Package Control: Install Package`
+4. Search for `Python 3` and `Cython+` packages and install them
+5. Happy coding ;)
+
+***Set as default***
+
+After you installed the language definition file successfully, all you have to do is
+assign the `.py` files to always open with this syntax highlighter. Go to
+
+`View` → `Syntax` → `Open all with current extension as...` → `Python 3`
+
+To remove this setting, you can always overwrite this preference.
+
+***Manual installation***
+
+Download the tmLanguage files from the Python and Cython branches of this repository.
+Navigate to your `Packages` folder and create a `Python3` and/or a `Cython` folder(s)
+and copy the tmLanguage and sublime-build files into.
+
+***Theme file***
 
 *If you want to use my Work-In-Progress theme file: navigate to `Packages/User`
 folder and copy `Gloom.tmTheme` into it. Then go to user-settings, and change
-your old color theme to the new one.
+your old color theme to the new one.*
 
 ### Contribute
 
@@ -102,7 +123,7 @@ function
 ### Appreciation
 
 *Thank you very much Jon Clements for all the support and answers about Python
-and regexes and for all the wonderful members of the www.sopython.com chat room!*
+and regexes in general and of course thanks for all the wonderful members of the [**so**python](http://sopython.com) chat room! May the Cabbage be with us ;)*
 
 ### MIT LICENSE
 
