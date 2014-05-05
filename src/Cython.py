@@ -8,7 +8,7 @@
 # Syntax Definition
 syntax = {
     'name': 'Cython',
-    'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/Python3\n\t',
+    'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/python\n\t',
     'scopeName': 'source.cython',
     'fileTypes': ['pyx', 'pxi', 'pxd'],
     'keyEquivalent': '^~C',
@@ -476,7 +476,7 @@ syntax = {
 #-- ACCESS --------------------------------------------------------------------#
         {
             'name' : 'meta.function_call.python',
-            'begin': r'\(',
+            'begin': r'(?<!:|,|;|\[|\{|\}|=|\+|-|\*|/|\||<|>|~|%|\^|\\|\n)\s*\(',
             'patterns':
             [
                 {'include': '#keyword_arguments'},
@@ -1001,7 +1001,7 @@ if __name__ == '__main__':
     import convert
     convert.dict_to_lang(
         dictionary = syntax,
-        name  = 'Cython',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/Cython',
+        name  = 'Cython_TEST',
+        path  = '~/Library/Application Support/Sublime Text 3/Packages/User',
         local = 'Cython'
     )

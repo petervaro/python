@@ -8,7 +8,7 @@
 # Syntax Definition
 syntax = {
     'name': 'Python 3',
-    'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/Python3\n\t',
+    'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/python\n\t',
     'scopeName': 'source.python',
     'fileTypes': ['py'],
     'keyEquivalent': '^~P',
@@ -438,7 +438,7 @@ syntax = {
         # GROUPS, TUPLES
         {
             'name' : 'meta.structure.group.python',
-            'begin': r'(?<=,|=|\+|-|\*|/|\||:|<|>|~|%|\^|\\)\s*\(',
+            'begin': r'(?<=,|;|=|\+|-|\*|/|\||:|<|>|~|%|\^|\\)\s*\(',
             'patterns':
             [
                 {'include': '$self'}
@@ -449,7 +449,7 @@ syntax = {
 #-- ACCESS --------------------------------------------------------------------#
         {
             'name' : 'meta.function_call.python',
-            'begin': r'\(',
+            'begin': r'(?<!:|,|;|\[|\{|\}|=|\+|-|\*|/|\||<|>|~|%|\^|\\|\n)\s*\(',
             'patterns':
             [
                 {'include': '#keyword_arguments'},
@@ -961,7 +961,7 @@ if __name__ == '__main__':
     import convert
     convert.dict_to_lang(
         dictionary = syntax,
-        name  = 'Python3',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/Python3/',
-        local = 'Python'
+        name  = 'Python3_TEST',
+        path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
+        local = 'Python3'
     )

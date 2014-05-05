@@ -26,13 +26,16 @@ def int_to_str(obj: object) -> object:
 # Convert dictionary into property list file
 def dict_to_plist(dictionary, name, extension, path, local='') -> None:
         d = int_to_str(dictionary)
-        n = '{}.{}'.format(name, extension)
-        p = os.path.join(os.path.expanduser(path), n)
+        # Test
         if path:
-            with open(p, 'w+b') as f:
+            access = os.path.join(os.path.expanduser(path), '{}.{}'.format(name, extension))
+            d['name'] = name
+            with open(access, 'w+b') as f:
                 plistlib.writePlist(d, f)
+        # Publish
         if local:
-            with open(os.path.join(os.pardir, local, n), 'w+b') as f:
+            access = os.path.join(os.pardir, '{}.{}'.format(local, extension))
+            with open(access, 'w+b') as f:
                 plistlib.writePlist(d, f)
 
 
