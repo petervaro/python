@@ -406,7 +406,7 @@ syntax = {
             ],
             'end'  : r'\]'
         },
-        # DICTINARY
+        # DICTIONARY
         {
             'name': 'meta.structure.dictionary.python',
             'begin': r'{',
@@ -420,7 +420,7 @@ syntax = {
                             'include': '$self'
                         }
                     ],
-                    'end'  : r'\s*(?:(?=}|:))'
+                    'end'  : r'\s*(?:(?=\})|(\:))'
                 },
                 {
                     'begin': r'(?<=:|^)\s*',
