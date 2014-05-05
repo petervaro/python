@@ -5,7 +5,7 @@
 	<key>comment</key>
 	<string>
 		Written by Peter Varo (c)2013-2014
-		http://github.com/petervaro/Python3
+		http://github.com/petervaro/python
 	</string>
 	<key>fileTypes</key>
 	<array>
@@ -20,7 +20,7 @@
 	<key>keyEquivalent</key>
 	<string>^~P</string>
 	<key>name</key>
-	<string>Python 3</string>
+	<string>Python3_TEST</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -559,7 +559,7 @@
 					<key>begin</key>
 					<string>(?&lt;={|,|^)\s*(?![,}])</string>
 					<key>end</key>
-					<string>\s*(?:(?=}|:))</string>
+					<string>\s*(?:(?=\})|(\:))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -572,7 +572,7 @@
 					<key>begin</key>
 					<string>(?&lt;=:|^)\s*</string>
 					<key>end</key>
-					<string>\s*(?:(?=}|,))</string>
+					<string>\s*(?:(?=\}|,))</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -585,7 +585,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=,|=|\+|-|\*|/|\||:|&lt;|&gt;|~|%|\^|\\)\s*\(</string>
+			<string>(?&lt;=,|;|=|\+|-|\*|/|\||:|&lt;|&gt;|~|%|\^|\\)\s*\(</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
@@ -600,7 +600,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\(</string>
+			<string>(?&lt;!:|,|;|\[|\{|\}|=|\+|-|\*|/|\||&lt;|&gt;|~|%|\^|\\|\n)\s*\(</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
