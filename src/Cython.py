@@ -433,9 +433,9 @@ syntax = {
             ],
             'end'  : r'\]'
         },
-        # DICTINARY
+        # DICTIONARY
         {
-            'name': 'meta.structure.dictionary.cython',
+            'name': 'meta.structure.dictionary.python',
             'begin': r'{',
             'patterns':
             [
@@ -447,7 +447,7 @@ syntax = {
                             'include': '$self'
                         }
                     ],
-                    'end'  : r'\s*(?:(?=}|:))'
+                    'end'  : r'\s*(?:(?=\})|(\:))'
                 },
                 {
                     'begin': r'(?<=:|^)\s*',
@@ -457,7 +457,7 @@ syntax = {
                             'include': '$self'
                         }
                     ],
-                    'end'  : r'\s*(?:(?=}|,))'
+                    'end'  : r'\s*(?:(?=\}|,))'
                 }
             ],
             'end'  : r'}'
