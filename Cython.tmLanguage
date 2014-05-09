@@ -22,7 +22,7 @@
 	<key>keyEquivalent</key>
 	<string>^~C</string>
 	<key>name</key>
-	<string>Cython_TEST</string>
+	<string>Cython</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -57,7 +57,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)</string>
+			<string>\d+\.(\d*([eE][+-]?\d+)?)?[jJ]?(?=\W)</string>
 			<key>name</key>
 			<string>constant.numeric.float_and_complex.decimal.pointfloat.cython</string>
 		</dict>
@@ -415,7 +415,7 @@
 					<key>begin</key>
 					<string>\s+</string>
 					<key>end</key>
-					<string>(?=,|:)</string>
+					<string>(?=:)</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -822,7 +822,7 @@
 		<key>magic_variable_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b__(all|annotations|bases|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\b</string>
+			<string>\b__(all|annotations|bases|builtins|class|debug|dict|doc|file|members|metaclass|mro|name|qualname|slots|weakref)__\b</string>
 			<key>name</key>
 			<string>support.variable.magic.cython</string>
 		</dict>

@@ -50,7 +50,7 @@ syntax = {
         {
             # 1.  1.0  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
             'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.cython',
-            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)'
+            'match': r'\d+\.(\d*([eE][+-]?\d+)?)?[jJ]?(?=\W)'
         },
         {
             # 1e6  1E6  1e+6  1E+6  1e-6  1E-6
@@ -321,7 +321,7 @@ syntax = {
                             'match': r'\b[a-zA-Z_]\w*'
                         }
                     ],
-                    'end': r'(?=,|:)'
+                    'end': r'(?=:)'
                 }
             ],
             'end': r':'
@@ -638,7 +638,7 @@ syntax = {
             'match':
             (
                 r'\b__('
-                r'all|annotations|bases|class|debug|dict|doc|file|'
+                r'all|annotations|bases|builtins|class|debug|dict|doc|file|'
                 r'members|metaclass|mro|name|qualname|slots|weakref'
                 r')__\b'
             )
@@ -999,9 +999,11 @@ syntax = {
 
 if __name__ == '__main__':
     import convert
-    convert.dict_to_lang(
-        dictionary = syntax,
-        name  = 'Cython_TEST',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/User',
-        local = 'Cython'
-    )
+    _name = 'Cython'
+    convert.dict_to_lang(dictionary=syntax,
+                         repo_fname=_name,
+                         repo_dname=_name,
+                         test_fname=_name,
+                         test_dname='Cython_TEST',
+                         test_fpath='~/Library/Application Support/'
+                                    'Sublime Text 3/Packages/User/')

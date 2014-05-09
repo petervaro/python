@@ -24,19 +24,11 @@ def int_to_str(obj: object) -> object:
 
 
 # Convert dictionary into property list file
-def dict_to_plist(dictionary, name, extension, path, local='') -> None:
+def dict_to_plist(dictionary, name, path):
         d = int_to_str(dictionary)
-        # Test
-        if path:
-            access = os.path.join(os.path.expanduser(path), '{}.{}'.format(name, extension))
-            d['name'] = name
-            with open(access, 'w+b') as f:
-                plistlib.writePlist(d, f)
-        # Publish
-        if local:
-            access = os.path.join(os.pardir, '{}.{}'.format(local, extension))
-            with open(access, 'w+b') as f:
-                plistlib.writePlist(d, f)
+        d['name'] = name
+        with open(path, 'w+b') as f:
+            plistlib.writePlist(d, f)
 
 
 # Convert dictionary to TextMate Theme file
@@ -46,9 +38,47 @@ def dict_to_theme(dictionary: dict, name: str, path: str = None, local: bool = F
 
 
 # Convert dictionary to TextMate Language file
-def dict_to_lang(dictionary: dict, name: str, path: str = None, local: bool = False) -> None:
-    dict_to_plist(dictionary, name, 'tmLanguage', path, local)
-    print(name, 'syntax dictionary has been converted and placed.')
+def dict_to_lang(dictionary,
+                 repo_fname='',
+                 repo_dname='',
+                 test_fname='',
+                 test_dname='',
+                 test_fpath=''):
+    """
+    dictionary: a dict object, contains the syntax definition
+
+    repo_fname: if provided:
+                name of the file that will be placed insed CWD
+
+    repo_dname: if repo_fname provided:
+                definition name of syntax (appears in Sublime Text)
+
+    test_fname: if provided:
+                name of the file that will be placed into test_fpath
+
+    test_dname: if test_fname provided:
+                definition name of syntax (appears in Sublime Text)
+
+    test_fpath: if test_fname provided:
+                location where the test file will be placed
+    """
+    # Place local copy
+    if repo_fname:
+        repo_dname = repo_dname if repo_dname else repo_fname
+        dict_to_plist(dictionary,
+                      repo_dname,
+                      os.path.join(os.pardir,
+                                   '{}.{}'.format(repo_fname, 'tmLanguage')))
+        print(repo_dname, 'syntax dictionary has been converted and placed.')
+
+    # Place Sublime User copy
+    if test_fname:
+        test_dname = test_dname if test_dname else test_fname
+        dict_to_plist(dictionary,
+                      test_dname,
+                      os.path.join(os.path.expanduser(test_fpath),
+                                   '{}.{}'.format(test_fname, 'tmLanguage')))
+        print(test_dname, 'syntax dictionary has been converted and placed.')
 
 
 # Convert hexadecimal values to rgba
