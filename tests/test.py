@@ -10,6 +10,7 @@
 .3634
 1.
 0.12345689
+1.e10
 1.23e10
 1.23e+10
 1.23e-10
@@ -193,6 +194,7 @@ lambda alfa: True if alfa else False
 lambda *args, **kwargs: None
 lambda a=12, b=23: a+b
 lambda a = [(1, 2), (3, 4)], b=[(5, 6)]: zip(a, b)
+lambda a,b,c: None
 
 global x
 x = 2
