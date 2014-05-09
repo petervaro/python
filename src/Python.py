@@ -9,7 +9,7 @@
 syntax = {
     'name': 'Python 3',
     'comment': '\n\t\tWritten by Peter Varo (c)2013-2014\n\t\thttp://github.com/petervaro/python\n\t',
-    'scopeName': 'source.python',
+    'scopeName': 'source.python3',
     'fileTypes': ['py'],
     'keyEquivalent': '^~P',
     # hashbang
@@ -24,56 +24,56 @@ syntax = {
     [
 #-- COMMENT -------------------------------------------------------------------#
         {
-            'name' : 'comment.line.hashmark.python',
+            'name' : 'comment.line.hashmark.python3',
             'match': r'#.*$\n?'
         },
 
 
 #-- NUMBERS -------------------------------------------------------------------#
         {
-            'name' : 'constant.numeric.integer.binary.python',
+            'name' : 'constant.numeric.integer.binary.python3',
             'match': r'\b0b[01]+'
         },
         {
-            'name' : 'constant.numeric.integer.hexadecimal.python',
+            'name' : 'constant.numeric.integer.hexadecimal.python3',
             'match': r'\b0x\h+'
         },
         {
-            'name' : 'constant.numeric.integer.octal.python',
+            'name' : 'constant.numeric.integer.octal.python3',
             'match': r'\b0o[0-7]+'
         },
         {
             # .001  .1e6  .1E6  .1e+6  .1E+6  .1e-6  .1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.floatnumber.python',
+            'name' : 'constant.numeric.float_and_complex.decimal.floatnumber.python3',
             'match': r'(?<=\W|^)\.\d+([eE][+-]?\d+)?[jJ]?'
         },
         {
-            # 1.  1.0  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.python',
-            'match': r'\d+\.(\d+([eE][+-]?\d+)?)?[jJ]?(?=\W)'
+            # 1.  1.0  1.e10  1.1e6  1.1E6  1.1e+6  1.1E+6  1.1e-6  1.1E-6
+            'name' : 'constant.numeric.float_and_complex.decimal.pointfloat.python3',
+            'match': r'\d+\.(\d*([eE][+-]?\d+)?)?[jJ]?(?=\W)'
         },
         {
             # 1e6  1E6  1e+6  1E+6  1e-6  1E-6
-            'name' : 'constant.numeric.float_and_complex.decimal.exponent.python',
+            'name' : 'constant.numeric.float_and_complex.decimal.exponent.python3',
             'match': r'(?<![\.\d])\d+[eE][+-]?\d+[jJ]?'
         },
         {
-            'name' : 'constant.numeric.integer_and_complex.decimal.python',
+            'name' : 'constant.numeric.integer_and_complex.decimal.python3',
             'match': r'\b(?<!\.)([1-9]\d*|0)[jJ]?'
         },
 
 
 #-- KEYWORDS ------------------------------------------------------------------#
         {
-            'name' : 'storage.modifier.declaration.python',
+            'name' : 'storage.modifier.declaration.python3',
             'match': r'\b(global|nonlocal)\b'
         },
         {
-            'name' : 'keyword.control.import_and_import_from.python',
+            'name' : 'keyword.control.import_and_import_from.python3',
             'match': r'\b(import|from)\b'
         },
         {
-            'name' : 'keyword.control.flow_block_delimiters.python',
+            'name' : 'keyword.control.flow_block_delimiters.python3',
             'match':
             (
                 r'\b(elif|else|except|finally|for|if|try|while|'
@@ -81,46 +81,46 @@ syntax = {
             )
         },
         {
-            'name' : 'keyword.operator.bool.logical.python',
+            'name' : 'keyword.operator.bool.logical.python3',
             'match': r'\b(and|in|is|not|or)\b'
         },
         {
-            'name' : 'keyword.other.python',
+            'name' : 'keyword.other.python3',
             'match': r'\b(as|assert|del)\b'
         },
 
 
 #-- OPERATORS -----------------------------------------------------------------#
         {
-            'name' : 'keyword.operator.comparison.python',
+            'name' : 'keyword.operator.comparison.python3',
             'match': r'<=|>=|==|<|>|!='
         },
         {
-            'name' : 'keyword.operator.assignment.augmented.python',
+            'name' : 'keyword.operator.assignment.augmented.python3',
             'match': r'\+=|-=|\*=|/=|//=|%=|&=|\|=|\^=|<<=|>>=|\*\*='
         },
         {
-            'name' : 'keyword.operator.arithmetic.python',
+            'name' : 'keyword.operator.arithmetic.python3',
             'match': r'\+|-|\*|\*\*|/|//|%|<<|>>|&|\||\^|~'
         },
         {
-            'name' : 'keyword.operator.value_and_annotation_assignment.python',
+            'name' : 'keyword.operator.value_and_annotation_assignment.python3',
             'match': r'=|->'
         },
 
 
 #-- CLASS ---------------------------------------------------------------------#
         {
-            'name' : 'meta.class.python',
+            'name' : 'meta.class.python3',
             'begin': r'^\s*(class)\s+(?=[a-zA-Z_]\w*(\s*\()?)',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.class.python'}
+                1: {'name': 'storage.type.class.python3'}
             },
             'patterns':
             [
                 {
-                    'contentName': 'entity.name.type.class.python',
+                    'contentName': 'entity.name.type.class.python3',
                     'begin': r'(?=[a-zA-Z_]\w*)',
                     'patterns':
                     [
@@ -129,12 +129,12 @@ syntax = {
                     'end': r'(?!\w)'
                 },
                 {
-                    'contentName': 'meta.class.inheritance.python',
+                    'contentName': 'meta.class.inheritance.python3',
                     'begin': r'\(',
                     'patterns':
                     [
                         {
-                            'contentName': 'entity.other.inherited-class.python',
+                            'contentName': 'entity.other.inherited-class.python3',
                             'begin': r'(?<=\(|,)\s*',
                             'patterns':
                             [
@@ -143,7 +143,7 @@ syntax = {
                             'end': r'\s*(?:,|(?=\)))',
                             'endCaptures':
                             {
-                                1: {'name': 'punctuation.separator.inheritance.python'}
+                                1: {'name': 'punctuation.separator.inheritance.python3'}
                             }
                         }
                     ],
@@ -153,24 +153,24 @@ syntax = {
             'end'  : r'(\)?\s*:|\s+([\w#\s:]+))',
             'endCaptures':
             {
-                3: {'name': 'invalid.illegal.missing_section_begin.python'}
+                3: {'name': 'invalid.illegal.missing_section_begin.python3'}
             }
         },
 
 
 #-- FUNCTION ------------------------------------------------------------------#
         {
-            'name' : 'meta.function.python',
+            'name' : 'meta.function.python3',
             'begin': r'^\s*(def)\s+(?=[a-zA-Z_]\w*\s*\()',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.function.python'}
+                1: {'name': 'storage.type.function.python3'}
             },
             'patterns':
             [
                 # Function name
                 {
-                    'contentName': 'entity.name.function.python',
+                    'contentName': 'entity.name.function.python3',
                     'begin': r'(?=[a-zA-Z_]\w*)',
                     'patterns':
                     [
@@ -188,8 +188,8 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.python'},
-                                2: {'name': 'keyword.operator.assignment.python'}
+                                1: {'name': 'variable.parameter.function.python3'},
+                                2: {'name': 'keyword.operator.assignment.python3'}
                             },
                             'patterns':
                             [
@@ -198,7 +198,7 @@ syntax = {
                                     'begin': r'(?<=(=))\s*',
                                     'beginCaptures':
                                     {
-                                        1: {'name': 'keyword.operator.assignment.python'}
+                                        1: {'name': 'keyword.operator.assignment.python3'}
                                     },
                                     'patterns':
                                     [
@@ -216,7 +216,7 @@ syntax = {
                                     'end': r'(?=,|(=)|[\n)])',
                                     'endCaptures':
                                     {
-                                        1: {'name': 'keyword.operator.assignment.python'}
+                                        1: {'name': 'keyword.operator.assignment.python3'}
                                     }
                                 }
                             ],
@@ -227,7 +227,7 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.python'}
+                                1: {'name': 'variable.parameter.function.python3'}
                             },
                             'patterns':
                             [
@@ -251,7 +251,7 @@ syntax = {
                     'begin': r'(?<=\))\s*(->)\s*',
                     'beginCaptures':
                     {
-                        1: {'name': 'keyword.operator.annotation.assignment.python'}
+                        1: {'name': 'keyword.operator.annotation.assignment.python3'}
                     },
                     'patterns':
                     [
@@ -264,18 +264,18 @@ syntax = {
             'end': r'(\s*:)',
             'endCaptures':
             {
-                2: {'name': 'invalid.illegal.missing_section_begin.python'}
+                2: {'name': 'invalid.illegal.missing_section_begin.python3'}
             }
         },
 
 
 #-- LAMBDA --------------------------------------------------------------------#
         {
-            'name' : 'meta.function.anonymous.python',
+            'name' : 'meta.function.anonymous.python3',
             'begin': r'\b(lambda)',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.function.anonymous.python'}
+                1: {'name': 'storage.type.function.anonymous.python3'}
             },
             'patterns':
             [
@@ -288,8 +288,8 @@ syntax = {
                             'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
                             'beginCaptures':
                             {
-                                1: {'name': 'variable.parameter.function.python'},
-                                2: {'name': 'keyword.operator.assignment.python'}
+                                1: {'name': 'variable.parameter.function.python3'},
+                                2: {'name': 'keyword.operator.assignment.python3'}
                             },
                             'patterns':
                             [
@@ -299,11 +299,11 @@ syntax = {
                         },
                         # Positional arguments
                         {
-                            'name' : 'variable.parameter.function.python',
+                            'name' : 'variable.parameter.function.python3',
                             'match': r'\b[a-zA-Z_]\w*'
                         }
                     ],
-                    'end': r'(?=,|:)'
+                    'end': r'(?=:)'
                 }
             ],
             'end': r':'
@@ -313,11 +313,11 @@ syntax = {
 #-- DECORATOR -----------------------------------------------------------------#
         # Decorator with arguments
         {
-            'name' : 'meta.function.decorator.with_arguments.python',
+            'name' : 'meta.function.decorator.with_arguments.python3',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)\s*\(',
             'beginCaptures':
             {
-                1: {'name': 'support.function.decorator.python'}
+                1: {'name': 'support.function.decorator.python3'}
             },
             'patterns':
             [
@@ -328,33 +328,33 @@ syntax = {
         },
         # Decorator without arguments
         {
-            'name' : 'meta.function.decorator.without_arguments.python',
+            'name' : 'meta.function.decorator.without_arguments.python3',
             'begin': r'^\s*(@\s*[a-zA-Z_]\w*(\.[a-zA-Z_]\w*)*)',
             'beginCaptures':
             {
-                1: {'name': 'support.function.decorator.python'}
+                1: {'name': 'support.function.decorator.python3'}
             },
             'end': r'(?=\s|$\n?|#)'
         },
 
 #-- CONSTANTS -----------------------------------------------------------------#
         {
-            'name' : 'constant.language.word_like.python',
+            'name' : 'constant.language.word_like.python3',
             'match': r'\b(None|True|False|Ellipsis|NotImplemented)\b'
         },
         {
-            'name' : 'constant.language.symbol_like.python',
+            'name' : 'constant.language.symbol_like.python3',
             'match': r'(?<=\W|^)\.\.\.(?=\W|$)'
         },
 
 
 #-- STORAGES ------------------------------------------------------------------#
         {
-            'name' : 'storage.type.function.python',
+            'name' : 'storage.type.function.python3',
             'match': r'\b(def|lambda)\b'
         },
         {
-            'name' : 'storage.type.class.python',
+            'name' : 'storage.type.class.python3',
             'match': r'\b(class)\b'
         },
 
@@ -391,7 +391,7 @@ syntax = {
 #-- STRUCTURES ----------------------------------------------------------------#
         # LIST
         {
-            'name': 'meta.structure.list.python',
+            'name': 'meta.structure.list.python3',
             'begin': r'\[',
             'patterns':
             [
@@ -408,7 +408,7 @@ syntax = {
         },
         # DICTIONARY
         {
-            'name': 'meta.structure.dictionary.python',
+            'name': 'meta.structure.dictionary.python3',
             'begin': r'{',
             'patterns':
             [
@@ -437,7 +437,7 @@ syntax = {
         },
         # GROUPS, TUPLES
         {
-            'name' : 'meta.structure.group.python',
+            'name' : 'meta.structure.group.python3',
             'begin': r'(?<=,|;|=|\+|-|\*|/|\||:|<|>|~|%|\^|\\)\s*\(',
             'patterns':
             [
@@ -448,7 +448,7 @@ syntax = {
 
 #-- ACCESS --------------------------------------------------------------------#
         {
-            'name' : 'meta.function_call.python',
+            'name' : 'meta.function_call.python3',
             'begin': r'(?<!:|,|;|\[|\{|\}|=|\+|-|\*|/|\||<|>|~|%|\^|\\|\n)\s*\(',
             'patterns':
             [
@@ -471,7 +471,7 @@ syntax = {
 #-- BUILTINS ------------------------------------------------------------------#
         'builtin_exceptions':
         {
-            'name' : 'support.type.exception.python',
+            'name' : 'support.type.exception.python3',
             'match':
             (
                 r'(?<!\.)\b('
@@ -491,7 +491,7 @@ syntax = {
         },
         'builtin_functions':
         {
-            'name' : 'support.function.builtin.python',
+            'name' : 'support.function.builtin.python3',
             'match':
             (
                 r'(?<!\.)\b('
@@ -506,7 +506,7 @@ syntax = {
         # todo: rearrange -> what is builtin function and what is builtin type?
         'builtin_types':
         {
-            'name' : 'support.type.python',
+            'name' : 'support.type.python3',
             'match':
             (
                 r'(?<!\.)\b('
@@ -541,7 +541,7 @@ syntax = {
         },
         'illegal_names':
         {
-            'name' : 'invalid.illegal_names.name.python',
+            'name' : 'invalid.illegal_names.name.python3',
             'match':
             (
                 r'\b('
@@ -558,8 +558,8 @@ syntax = {
             'begin': r'\b([a-zA-Z_]\w*)\s*(=)(?!=)',
             'beginCaptures':
             {
-                1: {'name': 'variable.parameter.function.python'},
-                2: {'name': 'keyword.operator.assignment.python'}
+                1: {'name': 'variable.parameter.function.python3'},
+                2: {'name': 'keyword.operator.assignment.python3'}
             },
             'patterns':
             [
@@ -571,7 +571,7 @@ syntax = {
 #-- MAGIC STUFFS --------------------------------------------------------------#
         'magic_function_names':
         {
-            'name' : 'support.function.magic.python',
+            'name' : 'support.function.magic.python3',
             'match':
             (
                 r'\b__('
@@ -593,11 +593,11 @@ syntax = {
         # todo: rearrange -> what is magic function and what is magic variable?
         'magic_variable_names':
         {
-            'name' : 'support.variable.magic.python',
+            'name' : 'support.variable.magic.python3',
             'match':
             (
                 r'\b__('
-                r'all|annotations|bases|class|debug|dict|doc|file|'
+                r'all|annotations|bases|builtins|class|debug|dict|doc|file|'
                 r'members|metaclass|mro|name|qualname|slots|weakref'
                 r')__\b'
             )
@@ -605,7 +605,7 @@ syntax = {
         # conventions
         'language_variables':
         {
-            'name' : 'variable.language.python',
+            'name' : 'variable.language.python3',
             'match': r'(?<!\.)\b(self|cls)\b'
         },
         'line_continuation':
@@ -613,8 +613,8 @@ syntax = {
             'match': r'(\\)(.*)$\n?',
             'captures':
             {
-                1: {'name': 'punctuation.separator.continuation.line.python'},
-                2: {'name': 'invalid.illegal.unexpected_text.python'}
+                1: {'name': 'punctuation.separator.continuation.line.python3'},
+                2: {'name': 'invalid.illegal.unexpected_text.python3'}
             }
         },
 
@@ -629,11 +629,11 @@ syntax = {
             [
                 # Single BLOCK
                 {
-                    'name' : 'string.quoted.single.block.python',
+                    'name' : 'string.quoted.single.block.python3',
                     'begin': r"([bBuU]?)'''",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -642,11 +642,11 @@ syntax = {
                     'end': r"'''"
                 },
                 {
-                    'name' : 'string.quoted.single.block.python',
+                    'name' : 'string.quoted.single.block.python3',
                     'begin': r"([rR][bB]|[bB][rR]|[rR])'''",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -658,11 +658,11 @@ syntax = {
 
                 # Single LINE
                 {
-                    'name' : 'string.quoted.single.line.python',
+                    'name' : 'string.quoted.single.line.python3',
                     'begin': r"([bBuU]?)'",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -671,15 +671,15 @@ syntax = {
                     'end': r"'|(\n)",
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python3'}
                     }
                 },
                 {
-                    'name' : 'string.quoted.single.line.python',
+                    'name' : 'string.quoted.single.line.python3',
                     'begin': r"([rR][bB]|[bB][rR]|[rR])'",
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -689,17 +689,17 @@ syntax = {
                     'end': r"'|(\n)",
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python3'}
                     }
                 },
 
                 # Double BLOCK
                 {
-                    'name' : 'string.quoted.double.block.python',
+                    'name' : 'string.quoted.double.block.python3',
                     'begin': r'([bBuU]?)"""',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -708,11 +708,11 @@ syntax = {
                     'end': r'"""'
                 },
                 {
-                    'name' : 'string.quoted.double.block.python',
+                    'name' : 'string.quoted.double.block.python3',
                     'begin': r'([rR][bB]|[bB][rR]|[rR])"""',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -724,11 +724,11 @@ syntax = {
 
                 # Double LINE
                 {
-                    'name' : 'string.quoted.double.line.python',
+                    'name' : 'string.quoted.double.line.python3',
                     'begin': r'([bBuU]?)"',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -737,24 +737,24 @@ syntax = {
                     'end': r'"|(\n)',
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python3'}
                     }
                 },
                 # {
-                #     'name' : 'meta.format_attribute.format.python',
+                #     'name' : 'meta.format_attribute.format.python3',
                 #     'begin': r'(\.format)\s*\(',
                 #     'beginCaptures':
                 #     {
-                #         1: {'name': 'invalid.illegal.none.python'}
+                #         1: {'name': 'invalid.illegal.none.python3'}
                 #     },
                 #     'patterns':
                 #     [
                 #         {
-                #             'name' : 'string.quoted.double.format.python',
+                #             'name' : 'string.quoted.double.format.python3',
                 #             'begin': r'([uUbB]?)"',
                 #             'beginCaptures':
                 #             {
-                #                 1: {'name': 'storage.type.string.prefix.python'}
+                #                 1: {'name': 'storage.type.string.prefix.python3'}
                 #             },
                 #             'patterns':
                 #             [
@@ -764,18 +764,18 @@ syntax = {
                 #             'end': r'"|(\n)',
                 #             'endCaptures':
                 #             {
-                #                 1: {'name': 'invalid.illegal.unclosed_string.python'}
+                #                 1: {'name': 'invalid.illegal.unclosed_string.python3'}
                 #             }
                 #         }
                 #     ],
                 #     'end': r'\)'
                 # },
                 # {
-                #     'name' : 'string.quoted.double.format.python',
+                #     'name' : 'string.quoted.double.format.python3',
                 #     'begin': r'([uUbB]?)"',
                 #     'beginCaptures':
                 #     {
-                #         1: {'name': 'storage.type.string.prefix.python'}
+                #         1: {'name': 'storage.type.string.prefix.python3'}
                 #     },
                 #     'patterns':
                 #     [
@@ -785,15 +785,15 @@ syntax = {
                 #     'end': r'"\.format',  # |(\n)',
                 #     'endCaptures':
                 #     {
-                #         2: {'name': 'invalid.illegal.unclosed_string.python'}
+                #         2: {'name': 'invalid.illegal.unclosed_string.python3'}
                 #     }
                 # },
                 {
-                    'name' : 'string.quoted.double.line.python',
+                    'name' : 'string.quoted.double.line.python3',
                     'begin': r'([rR][bB]|[bB][rR]|[rR])"',
                     'beginCaptures':
                     {
-                        1: {'name': 'storage.type.string.prefix.python'}
+                        1: {'name': 'storage.type.string.prefix.python3'}
                     },
                     'patterns':
                     [
@@ -803,7 +803,7 @@ syntax = {
                     'end': r'"|(\n)',
                     'endCaptures':
                     {
-                        1: {'name': 'invalid.illegal.unclosed_string.python'}
+                        1: {'name': 'invalid.illegal.unclosed_string.python3'}
                     }
                 }
             ]
@@ -819,7 +819,7 @@ syntax = {
         },
         'constant_placeholder':
         {
-            'name' : 'string.interpolated.placeholder.python',
+            'name' : 'string.interpolated.placeholder.python3',
             'match': r'%(\(\w+\))?#?0?-?[ ]?\+?(\d*|\*)(\.(\d*|\*))?[hlL]?[diouxXeEfFgGcrs%]'
         },
         'format_mini_language':
@@ -827,7 +827,7 @@ syntax = {
             'patterns':
             [
                 {
-                    'name' : 'constant.other.placeholder.format.python',
+                    'name' : 'constant.other.placeholder.format.python3',
                     'match': r'\{\}'
                 }
             ]
@@ -838,13 +838,13 @@ syntax = {
             # hex          | octal  | newline   | double-quote |
             # single-quote | bell   | backspace | formfeed     |
             # line-feed    | return | tab       | vertical-tab | escape char
-            'name' : 'constant.character.escaped.special.python',
+            'name' : 'constant.character.escaped.special.python3',
             'match': r'\\(x\h{2}|[0-7]{3}|\n|\"|\'|a|b|f|n|r|t|v|\\)'
         },
         'escaped_unicode_characters':
         {
             # 16bit hex | 32bit hex | unicodename
-            'name' : 'constant.character.escaped.python',
+            'name' : 'constant.character.escaped.python3',
             'match': r'\\(u\h{4}|U\h{8}|N\{[a-zA-Z\s]+\})'
         },
 
@@ -854,31 +854,31 @@ syntax = {
             'patterns':
             [
                 {
-                    'name' : 'keyword.control.anchor.regex.python',
+                    'name' : 'keyword.control.anchor.regex.python3',
                     'match': r'\\[bBAZzG]|\^|\$'
                 },
                 {
                     # \number
-                    'name' : 'keyword.other.group_reference_order.regex.python',
+                    'name' : 'keyword.other.group_reference_order.regex.python3',
                     'match': r'\\[1-9]\d?'
                 },
                 {
                     # (?P=this_is_a_group)
-                    'name' : 'keyword.other.group_reference_name.regex.python',
+                    'name' : 'keyword.other.group_reference_name.regex.python3',
                     'match': r'\(\?P=[a-zA-Z_]\w*\)'
                 },
                 {
                     # {2}, {2,}, {,2}, {2,3}, {2,3}?
-                    'name' : 'keyword.operator.quantifier.regex.python',
+                    'name' : 'keyword.operator.quantifier.regex.python3',
                     'match': r'[?+*][?+]?|\{(\d+,\d+|\d+,|,\d+|\d+)\}\??'
                 },
                 {
-                    'name' : 'keyword.operator.or.regex.python',
+                    'name' : 'keyword.operator.or.regex.python3',
                     'match': r'\|'
                 },
                 {
                     # (?# comment)
-                    'name' : 'comment.block.regex.python',
+                    'name' : 'comment.block.regex.python3',
                     'begin': r'\(\?#',
                     'end'  : r'\)'
                 },
@@ -890,7 +890,7 @@ syntax = {
                     #        s: dot matches all
                     #        u: unicode
                     #        x: extended form (verbose)
-                    'name' : 'keyword.other.option_toggle.regex.python',
+                    'name' : 'keyword.other.option_toggle.regex.python3',
                     'match': r'\(\?[aiLmsux]+\)'
                 },
                 {
@@ -901,7 +901,7 @@ syntax = {
                     # (?:  non-capturing)
                     # (?P<id> group)
                     # (?(id/name)yes-pattern|no-pattern)
-                    'name' : 'meta.group.assertion.regex.python',
+                    'name' : 'meta.group.assertion.regex.python3',
                     'begin': r'\(\?(=|!|<=|<!|:|P<[a-z]\w*>|\(([1-9]\d?|[a-zA-Z_]\w*\)))?',
                     'patterns':
                     [
@@ -923,21 +923,21 @@ syntax = {
             [
                 {
                     # \w, \W, \s, \S, \d, \D, .
-                    'name' : 'constant.character.character_class.regex.python',
+                    'name' : 'constant.character.character_class.regex.python3',
                     'match': r'\\[wWsSdD]|\.'
                 },
                 {
                     # [set of characters]
-                    'name' : 'constant.other.character_class.set.regex.python',
+                    'name' : 'constant.other.character_class.set.regex.python3',
                     'begin': r'\[(\^)?(\](?=.*\]))?',
                     'beginCaptures':
                     {
-                        1: {'name': 'keyword.operator.negation.regex.python'}
+                        1: {'name': 'keyword.operator.negation.regex.python3'}
                     },
                     'patterns':
                     [
                         {
-                            'name': 'constant.character.escaped.special.open.regex.python',
+                            'name': 'constant.character.escaped.special.open.regex.python3',
                             'match': r'\['
                         },
                         {'include': '#regular_expressions_character_classes'},
@@ -950,7 +950,7 @@ syntax = {
         },
         'regular_expressions_escaped_characters':
         {
-            'name' : 'constant.character.escaped.special.regex.python',
+            'name' : 'constant.character.escaped.special.regex.python3',
             'match': r'\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
         }
     },
@@ -959,9 +959,11 @@ syntax = {
 
 if __name__ == '__main__':
     import convert
-    convert.dict_to_lang(
-        dictionary = syntax,
-        name  = 'Python3_TEST',
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/User/',
-        local = 'Python3'
-    )
+    _name = 'Python3'
+    convert.dict_to_lang(dictionary=syntax,
+                         repo_fname=_name,
+                         repo_dname=_name,
+                         test_fname=_name,
+                         test_dname='Python3_TEST',
+                         test_fpath='~/Library/Application Support/'
+                                    'Sublime Text 3/Packages/User/')
