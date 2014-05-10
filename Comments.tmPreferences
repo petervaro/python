@@ -5,7 +5,7 @@
     <key>name</key>
     <string>Comments</string>
     <key>scope</key>
-    <string>source.py</string>
+    <string>source.python3</string>
     <key>settings</key>
     <dict>
         <key>shellVariables</key>
