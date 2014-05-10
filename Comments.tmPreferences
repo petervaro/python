@@ -5,7 +5,7 @@
     <key>name</key>
     <string>Comments</string>
     <key>scope</key>
-    <string>source.cython</string>
+    <string>source.py</string>
     <key>settings</key>
     <dict>
         <key>shellVariables</key>
