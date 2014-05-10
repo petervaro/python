@@ -999,11 +999,12 @@ syntax = {
 
 if __name__ == '__main__':
     import convert
-    _name = 'Cython'
+    rname = 'Cython'
+    tname = 'Cython_TEST'
     convert.dict_to_lang(dictionary=syntax,
-                         repo_fname=_name,
-                         repo_dname=_name,
-                         test_fname=_name,
-                         test_dname='Cython_TEST',
+                         repo_fname=rname,
+                         repo_dname=rname,
+                         test_fname=tname,
+                         test_dname=tname,
                          test_fpath='~/Library/Application Support/'
-                                    'Sublime Text 3/Packages/User/')
+                                    'Sublime Text 3/Packages/User/{}/'.format(tname))
