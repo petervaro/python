@@ -1171,7 +1171,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>source.python3</string>
+	<string>source.python.3</string>
 	<key>uuid</key>
 	<string>851B1429-B8B4-4C1E-8030-399BDA994393</string>
 </dict>
