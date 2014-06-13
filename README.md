@@ -7,29 +7,28 @@ Text 2/3 and TextMate editors and for online usage.
 
 ### Python 3.3
 
-Python 3.3 is a truly powerful version of python, with a lot new and creative
-features -- and some of them are actually bringing new or different syntaxes!
+Python 3.3 is a truly powerful version of Python, with a lot of new and creative
+features -- with some of them even bringing new and different syntaxes!
 Sadly, the only available `tmLanguage` and still popular syntax-highlight
-definition file is pretty old (only supports 2.x) and has some annoying bugs --
-and because of that, the syntax of these new features brake the full highlighting
-of the code, not to mention the lack of new built-in keywords and notations and
-extra unused one.
+definition file is pretty old (only supports Python 2.x) and has some annoying bugs.
+The syntax of these new features then break the full highlighting of the code, not 
+to mention the lack of new built-in keywords and notations and extra unused one.
 
-I do belive, that a good syntax highlighter for software developers has to be as
+I believe that a good syntax highlighter for software developers has to be as
 much help as an auto-complete popup or a code linter script in a text editor.
 
 That's why I implemented a new syntax definition, started from scratch and
-created especially for Python 3.3 and above. I did this with a python
+created especially for Python 3.3 and above. I did this with a Python
 dictionary plus a little converter script and not in `JSON` (ugly double escape
-characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone, who
-likes to read-and-write these?). The result is a dynamic, reuseable, easy to read
-and write (syntax highlighted regexes -- with comments and variables!) and
-maintain and pretty short (old: 3331 lines, new: 1226 lines) syntax definition file!
+characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone who
+likes to read-and-write these?). The result is dynamic, reuseable and easy-to-read
+and write (syntax highlighted regexes -- with comments and variables!). It is also simple
+to maintain and pretty short (old: 3331 lines, new: 1226 lines).
 
 ### Cython support
 
-Unfortunately cython syntax highlighter definitions are also lack of updated,
-fully working and 100% python compatible syntax definitions! I created a brand
+Unfortunately Cython syntax highlighter definitions are also lack of updated,
+fully working and 100% Python compatible syntax definitions! I created a brand
 new highlighter from scartch, based on the new Python one, but one of the future
 plans is to make this dictionary an addition/extended version of it, so the
 changes will automatically updated in both language files.
