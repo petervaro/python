@@ -14,15 +14,15 @@ That's why I implemented a new syntax definition, started from scratch and creat
 
 ### Cython support
 
-Unfortunately Cython syntax highlighter definitions also lack updated, fully-working and 100% Python compatible syntax definitions! I have created a brand-new, highlighter from scratch which is based on the new Python one. One of the future plans is to make this dictionary an addition/extended version of it, so the changes will automatically updated in both language files.
+Unfortunately Cython syntax-highlighter definitions also lack updated, fully-working and 100% Python compatible syntax definitions! I have created a brand-new highlighter from scratch based on the new Python model. One of the future plans is to make this dictionary an addition/extended version of it, so the changes will automatically updated in both language files.
 
 ### Highlight on web
 
 ***WORK IN PROGRESS***
 
-After used to the syntax highlight in the text editor, sharing the code online with the same colors and highlights is evident! Thanks to Craig Campbell and his amazing [`Rainbow.js`](http://craig.is/making/rainbows/) it is also possible!
+After using the syntax highlight within the text editor, using it online with the same colors and highlights is the next step forward! Thanks to Craig Campbell and his amazing [`Rainbow.js`](http://craig.is/making/rainbows/) this is also possible!
 
-*At the moment a few features are missing from Rainbow.js to make it as powerful and complete as the tmLanguage files.. so I wait now :)*
+*Unfortunately at the moment a few features are missing from `Rainbow.js`, meaning it isn't as powerful and complete as the tmLanguage files.. so for now I wait :)*
 
 ### New is better
 
