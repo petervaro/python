@@ -26,30 +26,30 @@ After using the syntax highlight within the text editor, using it online with th
 
 ### New is better
 
-Below some of the improvements:
+Below are some of the improvements that have been made so far:
 
-- Added better number highlight:
-	- all types of floating point notations are working now
-	- all types of complex number notations are working now
-	- new types of binary and octal number notations are supported
-	- long integer is removed
-- The `...` syntax notation of `Ellipsis` is supported now
-- Declaration rules are extended with `nonlocal`
-- Ex-statements-now-functions (like `print`) are updated
-- New exceptions added
-- Function annotations are supported
-- Language variable `cls` added
-- Better regex support (multiline, grouping, comments and more are improved)
+- Added better number highlighting:
+	- All types of floating-point notations are working now;
+	- All types of complex-number notations are working now;
+	- New types of binary and octal-number notations are supported;
+	- Long integer highlighting is removed.
+- The `...` syntax notation of `Ellipsis` is supported now.
+- Declaration rules are extended with `nonlocal`.
+- *Ex-statements-now-functions* (like `print`) are updated.
+- New Exception highlighting added.
+- Function annotations are now supported.
+- Language variable `cls` added.
+- Better regex support (multiline, grouping, comments and more are improved).
 - String and byte literals:
-	- Byte notation added
-	- Proper string prefixes added
-- All the unused built-in and magic functions/methods are removed
-- All the unused keywords and notations are removed
+	- Byte notation added;
+	- Proper string prefixes added.
+- All the unused built-in and magic functions/methods are now removed.
+- All the unused keywords and notations are now removed.
 
 ### Future plans
 
-- Support format mini-language in strings
-- Create a better Twilight-based theme file
+- Support format mini-language in strings.
+- Create a better Twilight-based theme file.
 
 ### Installation
 
