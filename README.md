@@ -55,7 +55,7 @@ Below are some of the improvements that have been made so far:
 
 ***Via Package Control***
 
-The fastest and easiest way to install theses packages to Sublime Text is the follow:
+The fastest and easiest way to install these packages for Sublime Text is the following:
 
 1. Install [Package Control](https://sublime.wbond.net/installation)
 2. Open `Tools` → `Command Palette`
@@ -73,7 +73,7 @@ To remove this setting, you can always overwrite this preference.
 
 ***Manual installation***
 
-Download the tmLanguage files from the Python and Cython branches of this repository. Navigate to your `Packages` folder and create a `Python3` and/or a `Cython` folder(s) and copy the tmLanguage and sublime-build files into.
+Download the `tmLanguage` files from the Python and Cython branches of this repository. Navigate to your `Packages` folder and create a `Python3` and/or a `Cython` folder(s) and copy the `tmLanguage` and sublime-build files into.
 
 ***Theme file***
 
@@ -81,15 +81,14 @@ Download the tmLanguage files from the Python and Cython branches of this reposi
 
 ### Contribute
 
-Any help is appreciated and more than welcome -- my goal is to make the *'de facto'* language bundle for Python 3. If you want to submit a change, please use the following conventions when editing the original python files:
+Any help is appreciated and more than welcome -- my goal is to make this the *'de facto'* language bundle for Python 3. If you want to submit a change, please use the following conventions when editing the original Python files:
 
-- variables uses `underscore_separated_names`,
-- all files uses 4 spaces for indentation,
-- `=` and `:` operators are aligned if length of variable names are similar
-- `(`, `[` and `{` start a new line, if possible and reasonable
-- each line tries to fit in the width 80 columns
-- comment separators can be easily generated with the `str_to_separator()`
-function
+- variables use `underscore_separated_names`;
+- all files use 4 spaces for indentation;
+- `=` and `:` operators are aligned if length of variable names are similar;
+- `(`, `[` and `{` start a new line, if possible and reasonable;
+- each line tries to fit in the width 80 columns;
+- comment separators can be easily generated with the `str_to_separator()` function;
 
 ### Appreciation
 
