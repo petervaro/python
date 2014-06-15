@@ -14,7 +14,7 @@ That's why I implemented a new syntax definition, started from scratch and creat
 
 ### Cython support
 
-Unfortunately Cython syntax highlighter definitions are also lack of updated, fully working and 100% Python compatible syntax definitions! I created a brand new highlighter from scartch, based on the new Python one, but one of the future plans is to make this dictionary an addition/extended version of it, so the changes will automatically updated in both language files.
+Unfortunately Cython syntax highlighter definitions also lack updated, fully-working and 100% Python compatible syntax definitions! I have created a brand-new, highlighter from scratch which is based on the new Python one. One of the future plans is to make this dictionary an addition/extended version of it, so the changes will automatically updated in both language files.
 
 ### Highlight on web
 
