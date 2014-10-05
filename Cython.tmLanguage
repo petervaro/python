@@ -262,6 +262,12 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>match</key>
+							<string>#.*</string>
+							<key>name</key>
+							<string>comment.block.regex.cython</string>
+						</dict>
+						<dict>
 							<key>begin</key>
 							<string>\b([a-zA-Z_]\w*)\s*(=)</string>
 							<key>beginCaptures</key>
@@ -832,6 +838,26 @@
 			<array>
 				<dict>
 					<key>match</key>
+					<string>\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
+					<key>name</key>
+					<string>constant.character.escape.cython</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.cython</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\((\?P=)([a-zA-Z_]\w*)\)</string>
+					<key>name</key>
+					<string>keyword.other.group_reference_name.regex.cython</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\\[bBAZzG]|\^|\$</string>
 					<key>name</key>
 					<string>keyword.control.anchor.regex.cython</string>
@@ -841,12 +867,6 @@
 					<string>\\[1-9]\d?</string>
 					<key>name</key>
 					<string>keyword.other.group_reference_order.regex.cython</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\(\?P=[a-zA-Z_]\w*\)</string>
-					<key>name</key>
-					<string>keyword.other.group_reference_name.regex.cython</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -875,27 +895,18 @@
 					<string>keyword.other.option_toggle.regex.cython</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\(\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*&gt;|\(([1-9]\d?|[a-zA-Z_]\w*\)))?</string>
-					<key>end</key>
-					<string>\)</string>
-					<key>name</key>
-					<string>meta.group.assertion.regex.cython</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#regular_expressions</string>
-						</dict>
-					</array>
-				</dict>
-				<dict>
 					<key>include</key>
 					<string>#regular_expressions_escaped_characters</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#regular_expressions_character_classes</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[()]</string>
+					<key>name</key>
+					<string>keyword.operator.group.regex.cython</string>
 				</dict>
 			</array>
 		</dict>
@@ -907,7 +918,7 @@
 					<key>match</key>
 					<string>\\[wWsSdD]|\.</string>
 					<key>name</key>
-					<string>constant.character.character_class.regex.python</string>
+					<string>constant.character.character_class.regex.cython</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -917,20 +928,20 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.operator.negation.regex.python</string>
+							<string>keyword.operator.negation.regex.cython</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(?&lt;!\\)\]</string>
+					<string>\]</string>
 					<key>name</key>
-					<string>constant.other.character_class.set.regex.python</string>
+					<string>constant.other.character_class.set.regex.cython</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>match</key>
-							<string>\[</string>
+							<string>\[|\\\\|\\\]</string>
 							<key>name</key>
-							<string>constant.character.escaped.special.open.regex.python</string>
+							<string>constant.character.escaped.special.regex.except.cython</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -950,6 +961,13 @@
 			<string>\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
 			<key>name</key>
 			<string>constant.character.escaped.special.regex.python</string>
+		</dict>
+		<key>regular_expressions_multiline_comment</key>
+		<dict>
+			<key>match</key>
+			<string>#.*</string>
+			<key>name</key>
+			<string>comment.block.regex.cython</string>
 		</dict>
 		<key>string_patterns</key>
 		<dict>
