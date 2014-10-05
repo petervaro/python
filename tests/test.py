@@ -50,6 +50,35 @@ dict(hello=12)
 '\x78ff'
 
 r'[a-zA-Z_\]]'
+r'[]]'
+r'[[]'
+r'[\\]]'
+r'[\\]'
+r'[^\\]'
+
+pattern = r"""
+# Capture shebang lines if any
+([#]!.*?)*
+# Capture opening block
+(?P<opening>
+    ((?P<line>{})+|({}))
+        \s*INFO\s*(?P<pad>.))
+    .*? # previous content of comment
+# Capture closing block
+(?P<closing>
+    (?P=pad)\s*INFO\s*
+        # if line comment:
+        (?(line)
+            # capture line closing
+            (?P=line)+
+        |# else:
+            # capture block closing
+            ({})))
+"""
+
+r'(\()'
+r'\this\is\a\path'
+
 
 import re
 s = 'this is ]]]]]] text'
@@ -186,6 +215,24 @@ def hello23(world) -> None:
     pass
 
 def hello24(world: 'nice to meet you' = 12, come: 'on you bastard' = 23) -> '':
+    pass
+
+def hello25(arg1,      # enable
+            arg2,      # multiline
+            arg3):     # comments
+    pass
+
+def hello26(arg1:'#', arg2='#', arg3:'#'='#'):
+    pass
+
+def hello26(arg1:'#',       # enable
+            arg2='#',       # multiline
+            arg3:'#'='#'):  # comments
+    pass
+
+def hello26(arg1:'#',              # enable
+            arg2='#',              # multiline
+            arg3:'#'='#') -> '#':  # comments
     pass
 
 (lambda e, f, g: e + f + g)
