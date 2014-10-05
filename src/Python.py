@@ -954,10 +954,6 @@ syntax = {
                             'name' : 'constant.character.escaped.special.regex.except.python.3',
                             'match': r'\[|\\\\|\\\]'
                         },
-                        # {
-                        #     'name': 'constant.character.escaped.special.escape.regex.python.3',
-                        #     'match': r''
-                        # },
                         {'include': '#regular_expressions_character_classes'},
                         {'include': '#regular_expressions_escaped_characters'}
 

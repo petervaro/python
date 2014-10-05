@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf8 -*-
 
-#-- CHEASHEET -----------------------------------------------------------------#
+#-- CHEATSHEET ----------------------------------------------------------------#
 # HOWTO: http://sublimetext.info/docs/en/reference/syntaxdefs.html
 # REGEX: http://manual.macromates.com/en/regular_expressions
 
@@ -193,6 +193,11 @@ syntax = {
                     'begin': r'\(',
                     'patterns':
                     [
+                        # 'Inline' comments
+                        {
+                            'name' : 'comment.block.regex.cython',
+                            'match': r'#.*'
+                        },
                         # Keyword arguments
                         {
                             'begin': r'\b([a-zA-Z_]\w*)\s*(=)',
@@ -894,6 +899,30 @@ syntax = {
             'patterns':
             [
                 {
+                    # (?=  positive look-ahead)
+                    # (?!  negative look-ahead)
+                    # (?<= positive look-behind)
+                    # (?<! negative look-behind)
+                    # (?:  non-capturing)
+                    # (?P<id> group)
+                    # (?(id/name)yes-pattern|no-pattern)
+                    'name' : 'constant.character.escape.cython',
+                    'match': r'\?(=|!|<=|<!|:|P<[a-z]\w*?>|\(([1-9]\d?|[a-zA-Z_]\w*)\))'
+                    # NOTE: the problem of making this to be a bgein/end block
+                    #       is that the patterns needs to include the multiline-
+                    #       comments only if the expression is in multline
+                    #       quotes otherwise it should be exclude it...
+                },
+                {
+                    # (?P=this_is_a_group)
+                    'name' : 'keyword.other.group_reference_name.regex.cython',
+                    'match': r'\((\?P=)([a-zA-Z_]\w*)\)',
+                    'captures':
+                    {
+                        1: {'name': 'constant.character.escape.cython'}
+                    }
+                },
+                {
                     'name' : 'keyword.control.anchor.regex.cython',
                     'match': r'\\[bBAZzG]|\^|\$'
                 },
@@ -901,11 +930,6 @@ syntax = {
                     # \number
                     'name' : 'keyword.other.group_reference_order.regex.cython',
                     'match': r'\\[1-9]\d?'
-                },
-                {
-                    # (?P=this_is_a_group)
-                    'name' : 'keyword.other.group_reference_name.regex.cython',
-                    'match': r'\(\?P=[a-zA-Z_]\w*\)'
                 },
                 {
                     # {2}, {2,}, {,2}, {2,3}, {2,3}?
@@ -934,26 +958,14 @@ syntax = {
                     'match': r'\(\?[aiLmsux]+\)'
                 },
                 {
-                    # (?=  positive look-ahead)
-                    # (?!  negative look-ahead)
-                    # (?<= positive look-behind)
-                    # (?<! negative look-behind)
-                    # (?:  non-capturing)
-                    # (?P<id> group)
-                    # (?(id/name)yes-pattern|no-pattern)
-                    'name' : 'meta.group.assertion.regex.cython',
-                    'begin': r'\(\?(=|!|<=|<!|:|P<[a-z]\w*>|\(([1-9]\d?|[a-zA-Z_]\w*\)))?',
-                    'patterns':
-                    [
-                        {'include': '#regular_expressions'}
-                    ],
-                    'end': r'\)'
-                },
-                {
                     'include': '#regular_expressions_escaped_characters'
                 },
                 {
                     'include': '#regular_expressions_character_classes'
+                },
+                {
+                    'name' : 'keyword.operator.group.regex.cython',
+                    'match': r'[()]'
                 }
             ]
         },
@@ -963,28 +975,28 @@ syntax = {
             [
                 {
                     # \w, \W, \s, \S, \d, \D, .
-                    'name' : 'constant.character.character_class.regex.python',
+                    'name' : 'constant.character.character_class.regex.cython',
                     'match': r'\\[wWsSdD]|\.'
                 },
                 {
                     # [set of characters]
-                    'name' : 'constant.other.character_class.set.regex.python',
+                    'name' : 'constant.other.character_class.set.regex.cython',
                     'begin': r'\[(\^)?(\](?=.*\]))?',
                     'beginCaptures':
                     {
-                        1: {'name': 'keyword.operator.negation.regex.python'}
+                        1: {'name': 'keyword.operator.negation.regex.cython'}
                     },
                     'patterns':
                     [
                         {
-                            'name': 'constant.character.escaped.special.open.regex.python',
-                            'match': r'\['
+                            'name' : 'constant.character.escaped.special.regex.except.cython',
+                            'match': r'\[|\\\\|\\\]'
                         },
                         {'include': '#regular_expressions_character_classes'},
                         {'include': '#regular_expressions_escaped_characters'}
 
                     ],
-                    'end': r'(?<!\\)\]'
+                    'end': r'\]'
                 }
             ]
         },
@@ -992,6 +1004,11 @@ syntax = {
         {
             'name' : 'constant.character.escaped.special.regex.python',
             'match': r'\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)'
+        },
+        'regular_expressions_multiline_comment':
+        {
+            'name' : 'comment.block.regex.cython',
+            'match': r'#.*'
         }
     },
     'uuid': 'D085155B-E40A-40B3-8FEC-6865318CDEEA'
