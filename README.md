@@ -6,11 +6,11 @@ This repo concerns Python 3.3+ and Cython 0.19.1+ related bundles for Sublime Te
 
 ### Python 3.3
 
-Python 3.3 is a truly powerful version of Python, with a lot of new and creative features -- with some of them even bringing new and different syntaxes! Sadly, the only available `tmLanguage` and still popular syntax-highlight definition file is pretty old (only supports Python 2.x) and has some annoying bugs. The syntax of these new features then break the full highlighting of the code, not to mention the lack of new built-in keywords and notations and extra unused one.
+Python 3.3 is a truly powerful version of Python, with a lot of new and creative features - with some of them even bringing new and different syntaxes! Unfortunately the only available `tmLanguage` definition file is pretty old (only supports Python 2.x) and has some annoying bugs. The syntax of new Python features can break the fcode highlighting, not to mention the lack of support for new built-in keywords and notations.
 
-I believe that a good syntax highlighter for software developers has to be as much help as an auto-complete popup or a code linter script in a text editor.
+I believe that a good syntax highlighter for software developers has to be as much help as an auto-complete pop-up or a code linter script in a text editor.
 
-That's why I implemented a new syntax definition, started from scratch and created especially for Python 3.3 and above. I did this with a Python dictionary plus a little converter script and not in `JSON` (ugly double escape characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone who likes to read-and-write these?). The result is dynamic, reuseable and easy-to-read and write (syntax highlighted regexes -- with comments and variables!). It is also simple to maintain and pretty short (old: 3331 lines, new: 1226 lines).
+That's why I have implemented a new syntax definition from scratch that is created especially for Python 3.3 and above. I did this with a Python dictionary plus a little converter script, not in `JSON` (ugly double escape characters -- *Ouch!*) nor in `XML`/`tmLanguage` (com'n is there anyone who likes to read-and-write these?). The result is dynamic, reusable and easy to read and write (syntax highlighted regexes -- with comments and variables!). It is simple to maintain and pretty short (old: 3331 lines, new: 1226 lines).
 
 ### Cython support
 
@@ -20,9 +20,9 @@ Unfortunately Cython syntax-highlighter definitions also lack updated, fully-wor
 
 ***WORK IN PROGRESS***
 
-After using the syntax highlight within the text editor, using it online with the same colors and highlights is the next step forward! Thanks to Craig Campbell and his amazing [`Rainbow.js`](http://craig.is/making/rainbows/) this is also possible!
+After using the syntax highlighting within the text editor, using it online with the same colors and highlights is the next step forward! Thanks to Craig Campbell and his amazing [`Rainbow.js`](http://craig.is/making/rainbows/) this is also possible!
 
-*Unfortunately at the moment a few features are missing from `Rainbow.js`, meaning it isn't as powerful and complete as the tmLanguage files.. so for now I wait :)*
+*Unfortunately at the moment a few features are missing from `Rainbow.js`, meaning it isn't as powerful and complete as the tmLanguage files, so for now I wait :)*
 
 ### New is better
 
@@ -81,7 +81,7 @@ Download the `tmLanguage` files from the Python and Cython branches of this repo
 
 ### Contribute
 
-Any help is appreciated and more than welcome -- my goal is to make this the *'de facto'* language bundle for Python 3. If you want to submit a change, please use the following conventions when editing the original Python files:
+Any help is appreciated and more than welcome - my goal is to make this the *'de facto'* language bundle for Python 3. If you want to submit a change, please use the following conventions when editing the original Python files:
 
 - variables use `underscore_separated_names`;
 - all files use 4 spaces for indentation;
