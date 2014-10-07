@@ -1,48 +1,71 @@
-#!/usr/bin/python3
-# -*- coding: utf8 -*-
+## INFO ########################################################################
+##                                                                            ##
+##                   Python and Cython Syntax Highlighters                    ##
+##                   =====================================                    ##
+##                                                                            ##
+##                       Version: 2.0.00.036 (20141007)                       ##
+##                             File: src/gloom.py                             ##
+##                                                                            ##
+##            For more information about the project, please visit            ##
+##                   <https://github.com/petervaro/python>.                   ##
+##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
+##                                                                            ##
+##  This program is free software: you can redistribute it and/or modify it   ##
+##   under the terms of the GNU General Public License as published by the    ##
+##       Free Software Foundation, either version 3 of the License, or        ##
+##                    (at your option) any later version.                     ##
+##                                                                            ##
+##    This program is distributed in the hope that it will be useful, but     ##
+##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
+##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
+##            See the GNU General Public License for more details.            ##
+##                                                                            ##
+##     You should have received a copy of the GNU General Public License      ##
+##     along with this program, most likely a file in the root directory,     ##
+##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
+##                                                                            ##
+######################################################################## INFO ##
 
-domain = [0.0, 1.0]
-def hsba(h: [0, 360], s: domain, b: domain, a: domain = 1.) -> str:
+# Import user modules
+from src.utils import hsba
 
-    alpha = '' if a >= 1 else '{:02x}'.format(int(a*255))
-
-    i = h // 60
-    f = h / 60.0 - i
-    p = b * (1.0 - s)
-    q = b * (1.0 - f * s)
-    t = b * (1.0 - (1.0 - f) * s)
-
-    if i == 0:
-        rgb = (b, t, p)
-    elif i == 1:
-        rgb = (q, b, p)
-    elif i == 2:
-        rgb = (p, b, t)
-    elif i == 3:
-        rgb = (p, q, b)
-    elif i == 4:
-        rgb = (t, p, b)
-    elif i == 5:
-        rgb = (b, p, q)
-
-    return '#{:02X}{:02X}{:02X}{a}'.format(*[int(c*255) for c in rgb], a=alpha)
-
-i  = 'italic'
-b  = 'bold'
+# Keyword constants
 bg = 'background'
 fg = 'foreground'
-name  = 'name'
-scope = 'scope'
-prefs = 'settings'
-font  = 'fontStyle'
+name   = 'name'
+scope  = 'scope'
+prefs  = 'settings'
+font   = 'fontStyle'
+bold   = 'bold'
+italic = 'italic'
 
-NAME = 'Gloom'
-
+#------------------------------------------------------------------------------#
 style = {
     'author': 'Peter Varo (c)2013-2014',
-    'comment': 'Based on the Twilight theme of Michael Sheets',
+    'comment': ('\n\t\tCopyright (C) 2013 - 2014 Peter Varo'
+                '\n\t\t<http://github.com/petervaro/python>'
+                '\n'
+                '\n\t\tBased on the Twilight theme of Michael Sheets.'
+                '\n'
+                '\n\t\tThis program is free software: you can redistribute it'
+                '\n\t\tand/or modify it under the terms of the GNU General'
+                '\n\t\tPublic License as published by the Free Software'
+                '\n\t\tFoundation, either version 3 of the License, or (at your'
+                '\n\t\toption) any later version.'
+                '\n'
+                '\n\t\tThis program is distributed in the hope that it will be'
+                '\n\t\tuseful, but WITHOUT ANY WARRANTY; without even the'
+                '\n\t\timplied warranty of MERCHANTABILITY or FITNESS FOR A'
+                '\n\t\tPARTICULAR PURPOSE. See the GNU General Public License'
+                '\n\t\tfor more details.'
+                '\n'
+                '\n\t\tYou should have received a copy of the GNU General Public'
+                '\n\t\tLicense along with this program, most likely a file in'
+                '\n\t\tthe root directory, called "LICENSE". If not, see'
+                '\n\t\t<http://www.gnu.org/licenses>.'
+                '\n\t'),
     'uuid': '5E10F479-14B9-4DC1-B26C-557B2BB3FAE',
-    name : NAME,
+    name : '{NAME}',
     prefs:
     [
         {
@@ -62,7 +85,7 @@ style = {
             prefs :
             {
                 fg  : hsba(0, 0, .35),
-                font: i
+                font: italic
             }
         },
         {
@@ -146,7 +169,7 @@ style = {
             prefs:
             {
                 fg: hsba(25, .70, .60),
-                font: i
+                font: italic
             }
         },
         {
@@ -197,7 +220,7 @@ style = {
             scope: 'sublimelinter.annotations',
             prefs:
             {
-                bg: '#FFFFAA',
+                bg: hsba(60, .33, 1.0),
                 fg: hsba(0, 0, 1)
             }
         },
@@ -254,17 +277,3 @@ style = {
         }
     ]
 }
-
-if __name__ == '__main__':
-    import convert
-    convert.dict_to_theme(
-        dictionary = style,
-        name  = NAME,
-        path  = '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default/',
-        local = 'Gloom'
-    )
-    convert.dict_to_css(
-        dictionary=style,
-        name=NAME,
-        local='css'
-    )

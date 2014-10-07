@@ -1,147 +1,230 @@
-#!/usr/bin/python3
-# -*- coding: utf8 -*-
+#!/usr/bin/env python3
+## INFO ########################################################################
+##                                                                            ##
+##                   Python and Cython Syntax Highlighters                    ##
+##                   =====================================                    ##
+##                                                                            ##
+##                       Version: 2.0.00.049 (20141007)                       ##
+##                            File: src/convert.py                            ##
+##                                                                            ##
+##            For more information about the project, please visit            ##
+##                   <https://github.com/petervaro/python>.                   ##
+##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
+##                                                                            ##
+##  This program is free software: you can redistribute it and/or modify it   ##
+##   under the terms of the GNU General Public License as published by the    ##
+##       Free Software Foundation, either version 3 of the License, or        ##
+##                    (at your option) any later version.                     ##
+##                                                                            ##
+##    This program is distributed in the hope that it will be useful, but     ##
+##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
+##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
+##            See the GNU General Public License for more details.            ##
+##                                                                            ##
+##     You should have received a copy of the GNU General Public License      ##
+##     along with this program, most likely a file in the root directory,     ##
+##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
+##                                                                            ##
+######################################################################## INFO ##
 
-import os
+# Import python modules
 import plistlib
+from os import makedirs
+from copy import deepcopy
+from itertools import cycle
+from collections import OrderedDict
+from os.path import join, expanduser
 
-# Generate and print separator comments
-def str_to_separator(string: str) -> None:
-    print('#{:-<78}#'.format('-- {} '.format(string.upper())))
+# Import user modules
+from src.comments import generate_comments
 
-
-# Convert integer dictionary keys into string literals
-def int_to_str(obj: object) -> object:
-        try:
-            for key, value in obj.items():
-                obj[key] = int_to_str(value)
-                if isinstance(key, int):
-                    obj[str(key)] = obj.pop(key)
-        except AttributeError:
-            if isinstance(obj, list):
-                for i, item in enumerate(obj):
-                    obj[i] = int_to_str(item)
-        return obj
+# Module level constants
+THEME_EXT = '.tmTheme'
+LANG_EXT  = '.tmLanguage'
+PREF_EXT  = '.tmPreferences'
+NAME_KEYS = 'name', 'contentName', 'scopeName'
 
 
-# Convert dictionary into property list file
-def dict_to_plist(dictionary, name, path):
-        d = int_to_str(dictionary)
-        d['name'] = name
-        with open(path, 'w+b') as f:
-            plistlib.writePlist(d, f)
+#------------------------------------------------------------------------------#
+def _combinator(iterable1, iterable2):
+    # Create 'OrderedSet's
+    i1 = tuple(OrderedDict.fromkeys(iterable1))
+    i2 = tuple(OrderedDict.fromkeys(iterable2))
+    # Decide which one to repeat
+    if len(i1) < len(i2):
+        i1 = cycle(i1)
+    else:
+        i2 = cycle(i2)
+    # Iterate through the values
+    for value1, value2 in zip(i1, i2):
+        yield value1, value2
 
 
-# Convert dictionary to TextMate Theme file
-def dict_to_theme(dictionary: dict, name: str, path: str = None, local: bool = False) -> None:
-    dict_to_plist(dictionary, name, 'tmTheme', path, local)
-    print(name, 'style dictionary has been converted and placed.')
+
+#------------------------------------------------------------------------------#
+def _replacer(data, name, scope):
+    # If data is not the preferred container type
+    if not isinstance(data, (dict, list)):
+        return
+    # If data is a dictionary
+    try:
+        for key, value in data.items():
+            # If key is one of the name-keys
+            if key in NAME_KEYS:
+                data[key] = value.format(NAME=name, SCOPE=scope)
+                continue
+            # Convert integer dictionary keys into string literals
+            elif isinstance(key, int):
+                data[str(key)] = data.pop(key)
+            # Recursion on sub-data
+            _replacer(value, name, scope)
+    # If data is a list
+    except AttributeError:
+        for item in data:
+            # Recursion on sub-data
+            _replacer(item, name, scope)
 
 
-# Convert dictionary to TextMate Language file
-def dict_to_lang(dictionary,
-                 repo_fname='',
-                 repo_dname='',
-                 test_fname='',
-                 test_dname='',
-                 test_fpath=''):
-    """
-    dictionary: a dict object, contains the syntax definition
-
-    repo_fname: if provided:
-                name of the file that will be placed insed CWD
-
-    repo_dname: if repo_fname provided:
-                definition name of syntax (appears in Sublime Text)
-
-    test_fname: if provided:
-                name of the file that will be placed into test_fpath
-
-    test_dname: if test_fname provided:
-                definition name of syntax (appears in Sublime Text)
-
-    test_fpath: if test_fname provided:
-                location where the test file will be placed
-    """
-    # Place local copy
-    if repo_fname:
-        repo_dname = repo_dname if repo_dname else repo_fname
-        dict_to_plist(dictionary,
-                      repo_dname,
-                      os.path.join(os.pardir,
-                                   '{}.{}'.format(repo_fname, 'tmLanguage')))
-        print(repo_dname, 'syntax dictionary has been converted and placed.')
-
-    # Place Sublime User copy
-    if test_fname:
-        test_dname = test_dname if test_dname else test_fname
-        dict_to_plist(dictionary,
-                      test_dname,
-                      os.path.join(os.path.expanduser(test_fpath),
-                                   '{}.{}'.format(test_fname, 'tmLanguage')))
-        print(test_dname, 'syntax dictionary has been converted and placed.')
-
-
-# Convert hexadecimal values to rgba
-def hex_to_rgba(hexa: str) -> str:
-    return 'rgba({}, {}, {}, {:.2f})'.format(
-        int(hexa[1:3], 16),
-        int(hexa[3:5], 16),
-        int(hexa[5:7], 16),
-        int(hexa[7:], 16)/255
-    )
-
-# Convert dictionary to css
-def dict_to_css(dictionary, name, local):
-    # todo: decide if we need `word-wrap: break-word;` or not?
-    KEYS = {
-        'fontStyle' : 'font-style',
-        'foreground': 'color',
-        'background': 'background-color'
-    }
-    output = []
-    output.append('/*\n*{auth}\n*{name} syntax highlight theme\n*\n*{comm}\n*/\n'.format(
-            auth = dictionary['author'],
-            name = dictionary['name'],
-            comm = dictionary['comment']
-        )
-    )
-    output.append('body\n{\n\tbackground: #282828;\n}\n')
-    pre = dictionary['settings'][0]['settings']
-    output.append('pre, code\n{{\n{default}{dynamic}\n}}\n'.format(
-            default = (
-                '\tmargin: 0px;\n'
-                '\tpadding-left: 20px;\n'
-                '\tfont-size: 12.5px;\n'
-                "\tfont-family: 'Menlo', monospace;\n"
-            ),
-            dynamic = '\n'.join(
-                [
-                    '\tbackground: {};'.format(pre['background']),
-                    '\tcolor: {};'.format(pre['foreground']),
-                ]
-            )
-        )
-    )
-    output.append('::selection\n{{\n\tbackground: {};\n}}\n'.format(
-        hex_to_rgba(pre['selection']))
-    )
-    for item in dictionary['settings'][1:]:
-        try:
-            _name  = item['scope']
-            prefs = []
-            for key, value in item['settings'].items():
+#------------------------------------------------------------------------------#
+def _formatter(data, name):
+    # If data is not the preferred container type
+    if not isinstance(data, (dict, list)):
+        return
+    # If data is a dictionary
+    try:
+        for key, value in data.items():
+            # If key is one of the name-keys
+            if key in NAME_KEYS:
+                data[key] = value.format(NAME=name)
+            # If key is not a name-key
+            else:
+                # If value is a color-object
                 try:
-                    k = KEYS[key]
-                except KeyError:
-                    k = key
-                if value.startswith('#') and len(value) == 9:
-                    v = hex_to_rgba(value)
-                else:
-                    v = value
-                prefs.append('\t{}: {};'.format(k, v))
-            output.append('pre .{}\n{{\n{}\n}}\n'.format(_name, '\n'.join(prefs)))
-        except KeyError:
+                    data[key] = value.to_hex()
+                except AttributeError:
+                    # Recursion on sub-data
+                    _formatter(value, name)
+    # If data is a list
+    except AttributeError:
+        for item in data:
+            # Recursion on sub-data
+            _formatter(item, name)
+
+
+
+#------------------------------------------------------------------------------#
+class TMFile:
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    def __init__(self, name,
+                       file=None,
+                       path=None,
+                       scope='',
+                       test_name=None,
+                       test_file=None,
+                       test_path=None,
+                       comments={}):
+        # Store static values
+        self._name  = name
+        self._file  = file or name
+        self._path  = path or os.getcwd()
+        self._scope = scope
+        self._test_name = test_name or name
+        self._test_file = test_file or self._test_name
+        self._test_path = test_path or self._path
+        self._comments = comments
+        # Create empty definitions
+        self._definition = self._test_definition = {}
+
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    # TODO: Add "Automatically Generated, Don't Change" label to files
+    def write(self, kind):
+        # If write comments-tmpreferences too
+        comments = self._comments
+        if comments:
+            comment_name = 'Comments({})'.format(self._name) + PREF_EXT
+            preference = generate_comments(self._scope, **comments)
+        # Write work and/or test files to path(s)
+        for definition, (file_path, file_name) in zip((self._definition, self._test_definition),
+                                                      _combinator((self._path, self._test_path),
+                                                                  (self._file, self._test_file))):
+            # Create dirs if they don't exist
+            real_path = expanduser(file_path)
+            makedirs(real_path, exist_ok=True)
+            # Create full path to file
+            full_path = join(real_path, file_name + LANG_EXT)
+            # Write out the property-list file
+            with open(full_path, 'w+b') as file:
+                plistlib.writePlist(definition, file)
+                print('{} dictionary has been converted and placed:'.format(kind),
+                      '\t{!r}'.format(full_path), sep='\n')
+            if comments:
+                full_path = join(real_path, comment_name)
+                with open(full_path, 'w+b') as file:
+                    plistlib.writePlist(preference, file)
+                    print('Comments preference has been converted and placed:',
+                          '\t{!r}'.format(full_path), sep='\n')
+
+
+
+#------------------------------------------------------------------------------#
+class Language(TMFile):
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    def from_dict(self, definition):
+        # If patterns is a dictionary or it does not exist
+        try:
+            patterns = definition.get('patterns', {})
+            definition['patterns'] = [patterns[key] for key in sorted(patterns)]
+        # If patterns is not a dictionary
+        except TypeError:
+            # If patterns is not a list
+            if not isinstance(definition['patterns'], list):
+                definition['patterns'] = []
+
+        # If test-file is different than the working one
+        if self._name != self._test_name:
+            self._test_definition = test_definition = deepcopy(definition)
+            _replacer(test_definition, self._test_name, self._scope)
+        # If test-file is identical with the working one
+        else:
+            self._test_definition = definition
+
+        # Format and store definition
+        _replacer(definition, self._name, self._scope)
+        self._definition = definition
+
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    def write(self):
+        # Call parent's method
+        super().write('Syntax')
+
+
+
+#------------------------------------------------------------------------------#
+class Theme(TMFile):
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    def from_dict(self, definition):
+        # If test-file is different than the working one
+        if self._name != self._test_name:
+            self._test_definition = test_definition = deepcopy(definition)
+            _formatter(test_definition, self._test_name)
+        # If test-file is identical with the working one
+        else:
+            self._test_definition = definition
+
+        # Format and store definition
+        _formatter(definition, self._name)
+        self._definition = definition
+
+
+    #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+    def write(self, css=False):
+        # Call parent's method
+        super().write('Style')
+        # If CSS output needed
+        if css:
             pass
-    with open(os.path.join(os.pardir, local, '{}.css'.format(name)), 'w') as f:
-        f.write('\n'.join(output))
-    print(name, 'style dictionary has been converted and placed.')

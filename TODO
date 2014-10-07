@@ -1,0 +1,214 @@
+## INFO ########################################################################
+##                                                                            ##
+##                   Python and Cython Syntax Highlighters                    ##
+##                   =====================================                    ##
+##                                                                            ##
+##                       Version: 2.0.00.051 (20141007)                       ##
+##                                 File: TODO                                 ##
+##                                                                            ##
+##            For more information about the project, please visit            ##
+##                   <https://github.com/petervaro/python>.                   ##
+##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
+##                                                                            ##
+##  This program is free software: you can redistribute it and/or modify it   ##
+##   under the terms of the GNU General Public License as published by the    ##
+##       Free Software Foundation, either version 3 of the License, or        ##
+##                    (at your option) any later version.                     ##
+##                                                                            ##
+##    This program is distributed in the hope that it will be useful, but     ##
+##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
+##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
+##            See the GNU General Public License for more details.            ##
+##                                                                            ##
+##     You should have received a copy of the GNU General Public License      ##
+##     along with this program, most likely a file in the root directory,     ##
+##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
+##                                                                            ##
+######################################################################## INFO ##
+
+#---------------------------- 20 POSTS IN 7 FILES -----------------------------#
+TODO:
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 1
+  - file: src/Cython.py
+    line: 287
+    note: |
+          add illegal
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 2
+  - file: src/Cython.py
+    line: 541
+    note: |
+          rearrange -> what is builtin function and what is builtin type?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 3
+  - file: src/Cython.py
+    line: 639
+    note: |
+          rearrange -> what is magic function and what is magic variable?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 4
+  - file: src/Cython.py
+    line: 667
+    note: |
+          decide if source.sql and special words, like SELECT and INSERT needed
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 5
+  - file: src/Python.py
+    line: 309
+    note: |
+          add illegal
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 6
+  - file: src/Python.py
+    line: 558
+    note: |
+          rearrange -> what is builtin function and what is builtin type?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 7
+  - file: src/Python.py
+    line: 645
+    note: |
+          rearrange -> what is magic function and what is magic variable?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 8
+  - file: src/Python.py
+    line: 674
+    note: |
+          decide if source.sql and special words, like SELECT and INSERT needed
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 9
+  - file: src/cython.py
+    line: 138
+    note: |
+          highlight type declarations in functions!
+          Function name
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 10
+  - file: src/cython.py
+    line: 155
+    note: |
+          add illegal
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 11
+  - file: src/cython.py
+    line: 227
+    note: |
+          rearrange -> what is builtin function and what is builtin type?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 12
+  - file: src/cython.py
+    line: 287
+    note: |
+          rearrange -> what is magic function and what is magic variable?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 13
+  - file: src/python.py
+    line: 135
+    note: |
+          add illegal
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 14
+  - file: src/python.py
+    line: 198
+    note: |
+          rearrange -> what is builtin function and what is builtin type?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 15
+  - file: src/python.py
+    line: 246
+    note: |
+          rearrange -> what is magic function and what is magic variable?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 16
+  - file: src/common.py
+    line: 588
+    note: |
+          rearrange -> what is magic function and what is magic variable?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 17
+  - file: src/common.py
+    line: 618
+    note: |
+          decide if source.sql and special words, like SELECT and INSERT needed
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 18
+  - file: src/convert.py
+    line: 141
+    note: |
+          Add "Automatically Generated, Don't Change" label to files
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 19
+  - file: etc/archive/to_css.py
+    line: 1
+    note: |
+          Add this functionality src.convert.Theme
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 20
+  - file: etc/archive/to_css.py
+    line: 5
+    note: |
+          decide if we need `word-wrap: break-word;` or not?
+
+
+
+#----------------------------- 4 POSTS IN 4 FILES -----------------------------#
+NOTE:
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 1
+  - file: src/Cython.py
+    line: 911
+    note: |
+          the problem of making this to be a bgein/end block
+          is that the patterns needs to include the multiline-
+          comments only if the expression is in multline
+          quotes otherwise it should be exclude it...
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 2
+  - file: src/Python.py
+    line: 920
+    note: |
+          the problem of making this to be a bgein/end block
+          is that the patterns needs to include the multiline-
+          comments only if the expression is in multline
+          quotes otherwise it should be exclude it...
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 3
+  - file: src/common.py
+    line: 865
+    note: |
+          the problem of making this to be a begin/end block
+          is that the patterns needs to include the multiline-
+          comments only if the expression is in multline
+          quotes otherwise it should be exclude it...
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 4
+  - file: build.py
+    line: 84
+    note: |
+          Old theme path to theme => NOT WORKING ANY MORE:
+          '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default'
+
+
