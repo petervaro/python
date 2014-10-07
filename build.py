@@ -4,7 +4,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.049 (20141007)                       ##
+##                       Version: 2.0.00.060 (20141007)                       ##
 ##                               File: build.py                               ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -81,7 +81,7 @@ gl_details = {'name': 'Gloom',
               'test_path': '~/Library/Application Support/Sublime Text 3/'
                            'Packages/User/Gloom_TEST'}
 
-# NOTE: Old theme path to theme => NOT WORKING ANY MORE:
+# NOTE: Old path to theme files => DO NOT SUPPORT IT:
 # '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default'
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #

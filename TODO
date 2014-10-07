@@ -3,7 +3,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.054 (20141007)                       ##
+##                       Version: 2.0.00.062 (20141007)                       ##
 ##                                 File: TODO                                 ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -26,66 +26,45 @@
 ##                                                                            ##
 ######################################################################## INFO ##
 
-#---------------------------- 20 POSTS IN 7 FILES -----------------------------#
+#---------------------------- 12 POSTS IN 5 FILES -----------------------------#
 TODO:
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 1
-  - file: src/Cython.py
-    line: 287
+  - file: etc/archive/to_css.py
+    line: 1
     note: |
-          add illegal
+          Add this functionality src.convert.Theme
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 2
-  - file: src/Cython.py
-    line: 541
+  - file: etc/archive/to_css.py
+    line: 5
     note: |
-          rearrange -> what is builtin function and what is builtin type?
+          decide if we need `word-wrap: break-word;` or not?
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 3
-  - file: src/Cython.py
-    line: 639
+  - file: src/common.py
+    line: 588
     note: |
           rearrange -> what is magic function and what is magic variable?
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 4
-  - file: src/Cython.py
-    line: 667
+  - file: src/common.py
+    line: 618
     note: |
           decide if source.sql and special words, like SELECT and INSERT needed
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 5
-  - file: src/Python.py
-    line: 309
+  - file: src/convert.py
+    line: 141
     note: |
-          add illegal
+          Add "Automatically Generated, Don't Change" label to files
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 6
-  - file: src/Python.py
-    line: 558
-    note: |
-          rearrange -> what is builtin function and what is builtin type?
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 7
-  - file: src/Python.py
-    line: 645
-    note: |
-          rearrange -> what is magic function and what is magic variable?
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 8
-  - file: src/Python.py
-    line: 674
-    note: |
-          decide if source.sql and special words, like SELECT and INSERT needed
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 9
   - file: src/cython.py
     line: 138
     note: |
@@ -93,108 +72,53 @@ TODO:
           Function name
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 10
+  # 7
   - file: src/cython.py
     line: 155
     note: |
           add illegal
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 11
+  # 8
   - file: src/cython.py
     line: 227
     note: |
           rearrange -> what is builtin function and what is builtin type?
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 12
+  # 9
   - file: src/cython.py
     line: 287
     note: |
           rearrange -> what is magic function and what is magic variable?
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 13
+  # 10
   - file: src/python.py
     line: 135
     note: |
           add illegal
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 14
+  # 11
   - file: src/python.py
     line: 198
     note: |
           rearrange -> what is builtin function and what is builtin type?
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 15
+  # 12
   - file: src/python.py
     line: 246
     note: |
           rearrange -> what is magic function and what is magic variable?
 
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 16
-  - file: src/common.py
-    line: 588
-    note: |
-          rearrange -> what is magic function and what is magic variable?
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 17
-  - file: src/common.py
-    line: 618
-    note: |
-          decide if source.sql and special words, like SELECT and INSERT needed
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 18
-  - file: etc/archive/to_css.py
-    line: 1
-    note: |
-          Add this functionality src.convert.Theme
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 19
-  - file: etc/archive/to_css.py
-    line: 5
-    note: |
-          decide if we need `word-wrap: break-word;` or not?
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 20
-  - file: src/convert.py
-    line: 141
-    note: |
-          Add "Automatically Generated, Don't Change" label to files
 
 
-
-#----------------------------- 4 POSTS IN 4 FILES -----------------------------#
+#----------------------------- 2 POSTS IN 2 FILES -----------------------------#
 NOTE:
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 1
-  - file: src/Cython.py
-    line: 911
-    note: |
-          the problem of making this to be a bgein/end block
-          is that the patterns needs to include the multiline-
-          comments only if the expression is in multline
-          quotes otherwise it should be exclude it...
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 2
-  - file: src/Python.py
-    line: 920
-    note: |
-          the problem of making this to be a bgein/end block
-          is that the patterns needs to include the multiline-
-          comments only if the expression is in multline
-          quotes otherwise it should be exclude it...
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 3
   - file: src/common.py
     line: 865
     note: |
@@ -204,11 +128,11 @@ NOTE:
           quotes otherwise it should be exclude it...
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 4
+  # 2
   - file: build.py
     line: 84
     note: |
-          Old theme path to theme => NOT WORKING ANY MORE:
+          Old path to theme files => DO NOT SUPPORT IT:
           '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default'
 
 

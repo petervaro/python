@@ -1,7 +1,7 @@
 # Python and Cython language bundles
 
 ***THE MOST POPULAR (AND FEATURE RICH) PYTHON SYNTAX HIGHLIGHTER FOR SUBLIME
-(OVER 11,000 DOWNLOADS!)***
+([OVER 11,000 DOWNLOADS!](https://sublime.wbond.net/packages/Python%203))***
 
 This repo is about python 3.3+ and cython 0.19.1+ related bundles for Sublime
 Text 2/3 and TextMate editors and for online usage.
@@ -22,10 +22,10 @@ much help as the auto-completion pop-up or a code linter script in a text
 editor.
 
 That's why I have implemented a new syntax definition from scratch that is
-created especially for python 3.3 and above. I did this with a python
-structures, converters and buiuld scripts. *(I found editing `JSON` files with
-their ugly double escape characters or editing `XML`/`tmLanguage`s directly
-pretty annoying.)*
+created especially for python 3.3 and above. I did this with pure python
+structures, some converters and build scripts. *(I found editing `JSON` files
+with their ugly double escape characters or editing `XML`/`tmLanguage`s directly
+could be pretty annoying on the long run.)*
 
 The end result is very flexible, dynamic, reuseable and easy to read and write
 (syntax highlighted regexes -- with comments and variables). It is also simple
