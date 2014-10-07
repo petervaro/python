@@ -4,8 +4,25 @@
 <dict>
 	<key>comment</key>
 	<string>
-		Written by Peter Varo (c)2013-2014
-		http://github.com/petervaro/python
+		Copyright (C) 2013 - 2014 Peter Varo
+		&lt;http://github.com/petervaro/python&gt;
+
+		This program is free software: you can redistribute it
+		and/or modify it under the terms of the GNU General
+		Public License as published by the Free Software
+		Foundation, either version 3 of the License, or (at your
+		option) any later version.
+
+		This program is distributed in the hope that it will be
+		useful, but WITHOUT ANY WARRANTY; without even the
+		implied warranty of MERCHANTABILITY or FITNESS FOR A
+		PARTICULAR PURPOSE. See the GNU General Public License
+		for more details.
+
+		You should have received a copy of the GNU General Public
+		License along with this program, most likely a file in
+		the root directory, called "LICENSE". If not, see
+		&lt;http://www.gnu.org/licenses&gt;.
 	</string>
 	<key>fileTypes</key>
 	<array>
@@ -24,10 +41,8 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>#.*$\n?</string>
-			<key>name</key>
-			<string>comment.line.hashmark.python.3</string>
+			<key>include</key>
+			<string>#comment</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -151,53 +166,12 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?=[a-zA-Z_]\w*)</string>
-					<key>contentName</key>
-					<string>entity.name.type.class.python.3</string>
-					<key>end</key>
-					<string>(?!\w)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#entity_name_class</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#class_entity_name</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>contentName</key>
-					<string>meta.class.inheritance.python.3</string>
-					<key>end</key>
-					<string>\)|:</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>(?&lt;=\(|,)\s*</string>
-							<key>contentName</key>
-							<string>entity.other.inherited-class.python.3</string>
-							<key>end</key>
-							<string>\s*(?:,|(?=\)))</string>
-							<key>endCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.separator.inheritance.python.3</string>
-								</dict>
-							</dict>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>$self</string>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#class_inheritance</string>
 				</dict>
 			</array>
 		</dict>
@@ -227,149 +201,16 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?=[a-zA-Z_]\w*)</string>
-					<key>contentName</key>
-					<string>entity.name.function.python.3</string>
-					<key>end</key>
-					<string>(?!\w)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#entity_name_function</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_entity_name</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>end</key>
-					<string>(?=\))</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>match</key>
-							<string>#.*</string>
-							<key>name</key>
-							<string>comment.block.regex.python.3</string>
-						</dict>
-						<dict>
-							<key>begin</key>
-							<string>\b([a-zA-Z_]\w*)\s*(=)</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.function.python.3</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.operator.assignment.python.3</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=,|[\n)])</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=(=))\s*</string>
-									<key>beginCaptures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>keyword.operator.assignment.python.3</string>
-										</dict>
-									</dict>
-									<key>end</key>
-									<string>(?=,|[\n)])</string>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=:)\s*</string>
-									<key>end</key>
-									<string>(?=,|(=)|[\n)])</string>
-									<key>endCaptures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>keyword.operator.assignment.python.3</string>
-										</dict>
-									</dict>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>begin</key>
-							<string>\b([a-zA-Z_]\w*)\s*</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.function.python.3</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=,|[\n)])</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=:)\s*</string>
-									<key>end</key>
-									<string>(?=,|[\n)])</string>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_arguments</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(?&lt;=\))\s*(-&gt;)\s*</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.annotation.assignment.python.3</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?=\s*:)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_annotation</string>
 				</dict>
 			</array>
 		</dict>
@@ -651,6 +492,64 @@
 			<key>name</key>
 			<string>support.type.python.3</string>
 		</dict>
+		<key>class_entity_name</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=[a-zA-Z_]\w*)</string>
+			<key>contentName</key>
+			<string>entity.name.type.class.python.3</string>
+			<key>end</key>
+			<string>(?!\w)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#entity_name_class</string>
+				</dict>
+			</array>
+		</dict>
+		<key>class_inheritance</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>contentName</key>
+			<string>meta.class.inheritance.python.3</string>
+			<key>end</key>
+			<string>\)|:</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=\(|,)\s*</string>
+					<key>contentName</key>
+					<string>entity.other.inherited-class.python.3</string>
+					<key>end</key>
+					<string>\s*(?:,|(?=\)))</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.inheritance.python.3</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>comment</key>
+		<dict>
+			<key>match</key>
+			<string>#.*$\n?</string>
+			<key>name</key>
+			<string>comment.line.hashmark.python.3</string>
+		</dict>
 		<key>constant_placeholder</key>
 		<dict>
 			<key>match</key>
@@ -713,6 +612,152 @@
 					<string>\{\}</string>
 					<key>name</key>
 					<string>constant.other.placeholder.format.python.3</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function_annotation</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=\))\s*(-&gt;)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.annotation.assignment.python.3</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=\s*:)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function_arguments</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>(?=\))</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.function.python.3</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.assignment.python.3</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=,|[\n)])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=(=))\s*</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.python.3</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=,|[\n)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=:)\s*</string>
+							<key>end</key>
+							<string>(?=,|(=)|[\n)])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.python.3</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b([a-zA-Z_]\w*)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.function.python.3</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=,|[\n)])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=:)\s*</string>
+							<key>end</key>
+							<string>(?=,|[\n)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>function_entity_name</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=[a-zA-Z_]\w*)</string>
+			<key>contentName</key>
+			<string>entity.name.function.python.3</string>
+			<key>end</key>
+			<string>(?!\w)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#entity_name_function</string>
 				</dict>
 			</array>
 		</dict>
@@ -800,7 +845,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
+					<string>(?&lt;=\()\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
 					<key>name</key>
 					<string>constant.character.escape.python.3</string>
 				</dict>
@@ -924,13 +969,6 @@
 			<key>name</key>
 			<string>constant.character.escaped.special.regex.python.3</string>
 		</dict>
-		<key>regular_expressions_multiline_comment</key>
-		<dict>
-			<key>match</key>
-			<string>#.*</string>
-			<key>name</key>
-			<string>comment.block.regex.python.3</string>
-		</dict>
 		<key>string_patterns</key>
 		<dict>
 			<key>patterns</key>
@@ -1003,7 +1041,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#regular_expressions_multiline_comment</string>
+							<string>#comment</string>
 						</dict>
 					</array>
 				</dict>
@@ -1123,7 +1161,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#regular_expressions_multiline_comment</string>
+							<string>#comment</string>
 						</dict>
 					</array>
 				</dict>
