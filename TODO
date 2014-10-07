@@ -3,7 +3,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.051 (20141007)                       ##
+##                       Version: 2.0.00.052 (20141007)                       ##
 ##                                 File: TODO                                 ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -150,24 +150,24 @@ TODO:
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 18
-  - file: src/convert.py
-    line: 141
-    note: |
-          Add "Automatically Generated, Don't Change" label to files
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 19
   - file: etc/archive/to_css.py
     line: 1
     note: |
           Add this functionality src.convert.Theme
 
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 20
+  # 19
   - file: etc/archive/to_css.py
     line: 5
     note: |
           decide if we need `word-wrap: break-word;` or not?
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 20
+  - file: src/convert.py
+    line: 141
+    note: |
+          Add "Automatically Generated, Don't Change" label to files
 
 
 

@@ -4,7 +4,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.049 (20141007)                       ##
+##                       Version: 2.0.00.052 (20141007)                       ##
 ##                            File: src/convert.py                            ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -139,7 +139,7 @@ class TMFile:
 
     #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     # TODO: Add "Automatically Generated, Don't Change" label to files
-    def write(self, kind):
+    def write(self, kind, extension):
         # If write comments-tmpreferences too
         comments = self._comments
         if comments:
@@ -153,7 +153,7 @@ class TMFile:
             real_path = expanduser(file_path)
             makedirs(real_path, exist_ok=True)
             # Create full path to file
-            full_path = join(real_path, file_name + LANG_EXT)
+            full_path = join(real_path, file_name + extension)
             # Write out the property-list file
             with open(full_path, 'w+b') as file:
                 plistlib.writePlist(definition, file)
@@ -199,7 +199,7 @@ class Language(TMFile):
     #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     def write(self):
         # Call parent's method
-        super().write('Syntax')
+        super().write('Syntax', LANG_EXT)
 
 
 
@@ -224,7 +224,7 @@ class Theme(TMFile):
     #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
     def write(self, css=False):
         # Call parent's method
-        super().write('Style')
+        super().write('Style', THEME_EXT)
         # If CSS output needed
         if css:
             pass
