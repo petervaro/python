@@ -4,8 +4,25 @@
 <dict>
 	<key>comment</key>
 	<string>
-		Written by Peter Varo (c)2013-2014
-		http://github.com/petervaro/python
+		Copyright (C) 2013 - 2014 Peter Varo
+		&lt;http://github.com/petervaro/python&gt;
+
+		This program is free software: you can redistribute it
+		and/or modify it under the terms of the GNU General
+		Public License as published by the Free Software
+		Foundation, either version 3 of the License, or (at your
+		option) any later version.
+
+		This program is distributed in the hope that it will be
+		useful, but WITHOUT ANY WARRANTY; without even the
+		implied warranty of MERCHANTABILITY or FITNESS FOR A
+		PARTICULAR PURPOSE. See the GNU General Public License
+		for more details.
+
+		You should have received a copy of the GNU General Public
+		License along with this program, most likely a file in
+		the root directory, called "LICENSE". If not, see
+		&lt;http://www.gnu.org/licenses&gt;.
 	</string>
 	<key>fileTypes</key>
 	<array>
@@ -26,10 +43,8 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>#.*$\n?</string>
-			<key>name</key>
-			<string>comment.line.hashmark.cython</string>
+			<key>include</key>
+			<string>#comment</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -164,53 +179,12 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?=[a-zA-Z_]\w*)</string>
-					<key>contentName</key>
-					<string>entity.name.type.class.cython</string>
-					<key>end</key>
-					<string>(?!\w)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#entity_name_class</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#class_entity_name</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>contentName</key>
-					<string>meta.class.inheritance.cython</string>
-					<key>end</key>
-					<string>\)|:</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>(?&lt;=\(|,)\s*</string>
-							<key>contentName</key>
-							<string>entity.other.inherited-class.cython</string>
-							<key>end</key>
-							<string>\s*(?:,|(?=\)))</string>
-							<key>endCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.separator.inheritance.cython</string>
-								</dict>
-							</dict>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>$self</string>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#class_inheritance</string>
 				</dict>
 			</array>
 		</dict>
@@ -240,128 +214,12 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?=[a-zA-Z_]\w*)</string>
-					<key>contentName</key>
-					<string>entity.name.function.cython</string>
-					<key>end</key>
-					<string>(?!\w)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#entity_name_function</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_entity_name</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\(</string>
-					<key>end</key>
-					<string>(?=\))</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>match</key>
-							<string>#.*</string>
-							<key>name</key>
-							<string>comment.block.regex.cython</string>
-						</dict>
-						<dict>
-							<key>begin</key>
-							<string>\b([a-zA-Z_]\w*)\s*(=)</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.function.cython</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.operator.assignment.cython</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=,|[\n)])</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=(=))\s*</string>
-									<key>beginCaptures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>keyword.operator.assignment.cython</string>
-										</dict>
-									</dict>
-									<key>end</key>
-									<string>(?=,|[\n)])</string>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=:)\s*</string>
-									<key>end</key>
-									<string>(?=,|(=)|[\n)])</string>
-									<key>endCaptures</key>
-									<dict>
-										<key>1</key>
-										<dict>
-											<key>name</key>
-											<string>keyword.operator.assignment.cython</string>
-										</dict>
-									</dict>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>begin</key>
-							<string>\b([a-zA-Z_]\w*)\s*</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.function.cython</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>(?=,|[\n)])</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>begin</key>
-									<string>(?&lt;=:)\s*</string>
-									<key>end</key>
-									<string>(?=,|[\n)])</string>
-									<key>patterns</key>
-									<array>
-										<dict>
-											<key>include</key>
-											<string>$self</string>
-										</dict>
-									</array>
-								</dict>
-							</array>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_arguments</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -378,25 +236,8 @@
 					<string>\s*((-&gt;)|:|\n+)</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>(?&lt;=\))\s*(-&gt;)\s*</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.annotation.assignment.cython</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(?=\s*:)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>$self</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#function_annotation</string>
 				</dict>
 			</array>
 		</dict>
@@ -589,7 +430,7 @@
 			<key>end</key>
 			<string>}</string>
 			<key>name</key>
-			<string>meta.structure.dictionary.python</string>
+			<string>meta.structure.dictionary.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -622,11 +463,11 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=,|=|\+|-|\*|/|\||:|&lt;|&gt;|~|%|\^|\\)\s*\(</string>
+			<string>(?&lt;=,|;|=|\+|-|\*|/|\||:|&lt;|&gt;|~|%|\^|\\)\s*\(</string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>meta.structure.group.python</string>
+			<string>meta.structure.group.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -641,7 +482,7 @@
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
-			<string>meta.function_call.python</string>
+			<string>meta.function_call.cython</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -688,6 +529,64 @@
 			<string>(?&lt;!\.)\b(bint|(long\s)?double|enum|float|struct|union|void|const|fused|((un)?signed\s)?(char|((short|long(\slong)?)\s)?int|short|long(\slong)?))\b</string>
 			<key>name</key>
 			<string>support.type.c_types.cython</string>
+		</dict>
+		<key>class_entity_name</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=[a-zA-Z_]\w*)</string>
+			<key>contentName</key>
+			<string>entity.name.type.class.cython</string>
+			<key>end</key>
+			<string>(?!\w)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#entity_name_class</string>
+				</dict>
+			</array>
+		</dict>
+		<key>class_inheritance</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>contentName</key>
+			<string>meta.class.inheritance.cython</string>
+			<key>end</key>
+			<string>\)|:</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=\(|,)\s*</string>
+					<key>contentName</key>
+					<string>entity.other.inherited-class.cython</string>
+					<key>end</key>
+					<string>\s*(?:,|(?=\)))</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.inheritance.cython</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>$self</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>comment</key>
+		<dict>
+			<key>match</key>
+			<string>#.*$\n?</string>
+			<key>name</key>
+			<string>comment.line.hashmark.cython</string>
 		</dict>
 		<key>constant_placeholder</key>
 		<dict>
@@ -751,6 +650,152 @@
 					<string>\{\}</string>
 					<key>name</key>
 					<string>constant.other.placeholder.format.cython</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function_annotation</key>
+		<dict>
+			<key>begin</key>
+			<string>(?&lt;=\))\s*(-&gt;)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.annotation.assignment.cython</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=\s*:)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function_arguments</key>
+		<dict>
+			<key>begin</key>
+			<string>\(</string>
+			<key>end</key>
+			<string>(?=\))</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b([a-zA-Z_]\w*)\s*(=)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.function.cython</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.assignment.cython</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=,|[\n)])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=(=))\s*</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.cython</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>(?=,|[\n)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=:)\s*</string>
+							<key>end</key>
+							<string>(?=,|(=)|[\n)])</string>
+							<key>endCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>keyword.operator.assignment.cython</string>
+								</dict>
+							</dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\b([a-zA-Z_]\w*)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.function.cython</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(?=,|[\n)])</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>begin</key>
+							<string>(?&lt;=:)\s*</string>
+							<key>end</key>
+							<string>(?=,|[\n)])</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>$self</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>function_entity_name</key>
+		<dict>
+			<key>begin</key>
+			<string>(?=[a-zA-Z_]\w*)</string>
+			<key>contentName</key>
+			<string>entity.name.function.cython</string>
+			<key>end</key>
+			<string>(?!\w)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#entity_name_function</string>
 				</dict>
 			</array>
 		</dict>
@@ -838,7 +883,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
+					<string>(?&lt;=\()\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
 					<key>name</key>
 					<string>constant.character.escape.cython</string>
 				</dict>
@@ -960,14 +1005,7 @@
 			<key>match</key>
 			<string>\\(\\|\?|\.|\*|\+|\{|\}|\||\(|\)|\[|\]|\^|\$)</string>
 			<key>name</key>
-			<string>constant.character.escaped.special.regex.python</string>
-		</dict>
-		<key>regular_expressions_multiline_comment</key>
-		<dict>
-			<key>match</key>
-			<string>#.*</string>
-			<key>name</key>
-			<string>comment.block.regex.cython</string>
+			<string>constant.character.escaped.special.regex.cython</string>
 		</dict>
 		<key>string_patterns</key>
 		<dict>
@@ -1038,6 +1076,10 @@
 						<dict>
 							<key>include</key>
 							<string>#regular_expressions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
 						</dict>
 					</array>
 				</dict>
@@ -1154,6 +1196,10 @@
 						<dict>
 							<key>include</key>
 							<string>#regular_expressions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
 						</dict>
 					</array>
 				</dict>

@@ -1,7 +1,19 @@
-*.pyc
 *.DS_Store
+*.pyc
+*.pyo
+*.sublime-workspace
+*.sublime-project
+*.idraw
+
 __old__.json
 __old__.xml
-*.pyo
 
-*.idraw
+.ccom_cache
+.clic_cache
+.cdoc_cache
+
+.ccom_todo
+.cdoc_toc
+
+build
+readme.html
