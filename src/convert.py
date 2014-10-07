@@ -4,7 +4,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.052 (20141007)                       ##
+##                       Version: 2.0.00.066 (20141007)                       ##
 ##                            File: src/convert.py                            ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -156,13 +156,13 @@ class TMFile:
             full_path = join(real_path, file_name + extension)
             # Write out the property-list file
             with open(full_path, 'w+b') as file:
-                plistlib.writePlist(definition, file)
+                plistlib.dump(definition, file)
                 print('{} dictionary has been converted and placed:'.format(kind),
                       '\t{!r}'.format(full_path), sep='\n')
             if comments:
                 full_path = join(real_path, comment_name)
                 with open(full_path, 'w+b') as file:
-                    plistlib.writePlist(preference, file)
+                    plistlib.dump(preference, file)
                     print('Comments preference has been converted and placed:',
                           '\t{!r}'.format(full_path), sep='\n')
 

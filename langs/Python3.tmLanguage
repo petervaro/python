@@ -395,18 +395,18 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>{</string>
+			<string>\{</string>
 			<key>end</key>
-			<string>}</string>
+			<string>\}</string>
 			<key>name</key>
 			<string>meta.structure.dictionary.python.3</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?&lt;={|,|^)\s*(?![,}])</string>
+					<string>(?&lt;=\{|,|^)\s*(?![,}])</string>
 					<key>end</key>
-					<string>\s*(?:(?=\})|(\:))</string>
+					<string>\s*(?:(?=\})|:)</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -419,7 +419,7 @@
 					<key>begin</key>
 					<string>(?&lt;=:|^)\s*</string>
 					<key>end</key>
-					<string>\s*(?:(?=\}|,))</string>
+					<string>\s*(?:(?=\})|,)</string>
 					<key>patterns</key>
 					<array>
 						<dict>

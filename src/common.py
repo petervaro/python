@@ -3,7 +3,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.025 (20141007)                       ##
+##                       Version: 2.0.00.069 (20141007)                       ##
 ##                            File: src/common.py                             ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -317,31 +317,27 @@ syntax = {
         0x0230:
         {
             'name': 'meta.structure.dictionary.{SCOPE}',
-            'begin': r'{',
+            'begin': r'\{',
             'patterns':
             [
                 {
-                    'begin': r'(?<={|,|^)\s*(?![,}])',
+                    'begin': r'(?<=\{|,|^)\s*(?![,}])',
                     'patterns':
                     [
-                        {
-                            'include': '$self'
-                        }
+                        {'include': '$self'}
                     ],
-                    'end'  : r'\s*(?:(?=\})|(\:))'
+                    'end'  : r'\s*(?:(?=\})|:)'
                 },
                 {
                     'begin': r'(?<=:|^)\s*',
                     'patterns':
                     [
-                        {
-                            'include': '$self'
-                        }
+                        {'include': '$self'}
                     ],
-                    'end'  : r'\s*(?:(?=\}|,))'
+                    'end'  : r'\s*(?:(?=\})|,)'
                 }
             ],
-            'end'  : r'}'
+            'end'  : r'\}'
         },
 
         0x0240:
