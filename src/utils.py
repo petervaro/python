@@ -3,7 +3,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.051 (20141007)                       ##
+##                       Version: 2.0.00.053 (20141007)                       ##
 ##                             File: src/utils.py                             ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -25,11 +25,6 @@
 ##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
 ##                                                                            ##
 ######################################################################## INFO ##
-
-#                       5) Clean-up all branches
-#                       6) Commit
-#                       7) GitHub tag-version
-#                       8) Write email to GvR
 
 
 #------------------------------------------------------------------------------#
