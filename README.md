@@ -1,14 +1,16 @@
-# Python and Cython language bundles
+Python and Cython language bundles
+==================================
 
 ***THE MOST POPULAR (AND FEATURE RICH) PYTHON SYNTAX HIGHLIGHTER FOR SUBLIME
-(OVER 11,000 DOWNLOADS!)***
+([OVER 11,000 DOWNLOADS!](https://sublime.wbond.net/packages/Python%203))***
 
 This repo is about python 3.3+ and cython 0.19.1+ related bundles for Sublime
 Text 2/3 and TextMate editors and for online usage.
 
 ![Preview](img/preview.png)
 
-### Python 3.3
+Python 3.3
+----------
 
 Python 3.3 is a truly powerful version of python, with a lot new and creative
 features -- and some of them are actually bringing new or different syntaxes!
@@ -22,16 +24,17 @@ much help as the auto-completion pop-up or a code linter script in a text
 editor.
 
 That's why I have implemented a new syntax definition from scratch that is
-created especially for python 3.3 and above. I did this with a python
-structures, converters and buiuld scripts. *(I found editing `JSON` files with
-their ugly double escape characters or editing `XML`/`tmLanguage`s directly
-pretty annoying.)*
+created especially for python 3.3 and above. I did this with pure python
+structures, some converters and build scripts. *(I found editing `JSON` files
+with their ugly double escape characters or editing `XML`/`tmLanguage`s directly
+could be pretty annoying on the long run.)*
 
 The end result is very flexible, dynamic, reuseable and easy to read and write
 (syntax highlighted regexes -- with comments and variables). It is also simple
 to maintain and pretty short too (the new version is only 35% of the old one)!
 
-### Cython support
+Cython support
+--------------
 
 Unfortunately cython syntax highlighter definitions also lack of updated,
 fully-working and 100% python compatible syntax definitions! I have created a
@@ -40,7 +43,8 @@ python one. With this tool, it is quite easy to keep up-to-date both the cython
 and the python definitions, and as a plus, I only have to maintain a single
 code-base. *Viva la* modularity!
 
-### Highlight on web
+Highlight on web
+----------------
 
 ***WORK IN PROGRESS***
 
@@ -61,7 +65,8 @@ nothing!)*
 `etc/archive/js/Python.js`, but as before, it is still work-in-progress state,
 and it is very unlikely that I will finish it and/or support it in the future.
 
-### New is better
+New is better
+-------------
 
 Below are some of the most important improvements:
 
@@ -83,12 +88,14 @@ Below are some of the most important improvements:
 - All the unused built-in and magic functions/methods are now removed.
 - All the unused keywords and notations are now removed.
 
-### Future plans
+Future plans
+------------
 
 - Support format mini-language in strings.
 - Create a better Twilight-based theme file.
 
-### Installation
+Installation
+------------
 
 ***Via Package Control***
 
@@ -122,7 +129,8 @@ repository. Navigate to your `Packages` folder and create a `Python3` and/or a
 folder and copy `Gloom.tmTheme` into it. Then go to user-settings, and change
 your old color theme to the new one.*
 
-### Contribute
+Contribute
+----------
 
 Any help is appreciated and more than welcome -- my goal is to make this the
 *'de facto'* language bundle for python 3. If you want to submit a change,
@@ -136,14 +144,22 @@ please use the following conventions when editing the original python files:
 - comment separators can be easily generated with the `src.utils.separator()`
 function
 
-### Appreciation
+Appreciation
+------------
 
-*Thank you very much Jon Clements for all the support and answers about python
-and regexes in general, Kevin, Ffisegydd, Zero Piraeus and Poke for the support,
-and of course thanks for all the wonderful members of the
-[sopython](http://sopython.com) chat room! May the Cabbage be with us ;)*
+*Thank you very much @joncle (Jon Clements) for all the support and answers
+about python and regexes in general, @kms70847 (Kevin), @Ffisegydd (Keiron
+Pizzey), @schesis (Zero Piraeus) and @poke (Patrick Westerhoff) for the
+feedbacks, and of course thanks for all the wonderful members of the
+[sopython](http://sopython.com) chat room for supporting me in any ways! May the
+Cabbage be with us ;)*
 
-### LICENSE
+*I also want to thank for all the loyal users of this package, and especially
+@rahul-ramadas (Rahul Ramadas) and @bordaigorl (Emanuele D'Osualdo) who were
+very active on giving me feedbacks, reports, etc.*
+
+LICENSE
+-------
 
 Copyright (C) 2013 - 2014 Peter Varo
 
