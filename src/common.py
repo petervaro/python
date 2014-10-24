@@ -3,7 +3,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.069 (20141007)                       ##
+##                       Version: 2.0.00.071 (20141024)                       ##
 ##                            File: src/common.py                             ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -857,7 +857,8 @@ syntax = {
                     # (?P<id> group)
                     # (?(id/name)yes-pattern|no-pattern)
                     'name' : 'constant.character.escape.{SCOPE}',
-                    'match': r'(?<=\()\?(=|!|<=|<!|:|P<[a-z]\w*?>|\(([1-9]\d?|[a-zA-Z_]\w*)\))'
+                    'match': r'(?<=\()\?(=|!|<=|<!|:|P<[a-zA-Z_]\w*?>|'
+                             r'\(([1-9]\d?|[a-zA-Z_]\w*)\))'
                     # NOTE: the problem of making this to be a begin/end block
                     #       is that the patterns needs to include the multiline-
                     #       comments only if the expression is in multline

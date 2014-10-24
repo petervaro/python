@@ -883,7 +883,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=\()\?(=|!|&lt;=|&lt;!|:|P&lt;[a-z]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
+					<string>(?&lt;=\()\?(=|!|&lt;=|&lt;!|:|P&lt;[a-zA-Z_]\w*?&gt;|\(([1-9]\d?|[a-zA-Z_]\w*)\))</string>
 					<key>name</key>
 					<string>constant.character.escape.cython</string>
 				</dict>
