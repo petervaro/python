@@ -4,7 +4,7 @@
 ##                   Python and Cython Syntax Highlighters                    ##
 ##                   =====================================                    ##
 ##                                                                            ##
-##                       Version: 2.0.00.070 (20141023)                       ##
+##                       Version: 2.0.00.081 (20141101)                       ##
 ##                               File: build.py                               ##
 ##                                                                            ##
 ##            For more information about the project, please visit            ##
@@ -48,10 +48,17 @@ try:
     # Update header comments
     cutils.clic.header(CURRENT_DIR)
 except ImportError:
-    print('[WARNING] cutils modules are missing: install it from http://www.cutils.org')
+    print('[WARNING] cutils modules are missing: '
+          'install it from http://www.cutils.org')
 
 # Import tmtools modules
-from tmtools.convert import Language, Theme
+try:
+    from tmtools.convert import Language, Theme
+except ImportError:
+    from sys import exit
+    print('[ ERROR ] tmtools modules are missing: '
+          'install it from http://github.com/petervaro/tmtools')
+    exit(-1)
 
 #------------------------------------------------------------------------------#
 # Import user modules

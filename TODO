@@ -1,5 +1,30 @@
-## INFO ##
-## INFO ##
+## INFO ########################################################################
+##                                                                            ##
+##                   Python and Cython Syntax Highlighters                    ##
+##                   =====================================                    ##
+##                                                                            ##
+##                       Version: 2.0.00.085 (20141101)                       ##
+##                                 File: TODO                                 ##
+##                                                                            ##
+##            For more information about the project, please visit            ##
+##                   <https://github.com/petervaro/python>.                   ##
+##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
+##                                                                            ##
+##  This program is free software: you can redistribute it and/or modify it   ##
+##   under the terms of the GNU General Public License as published by the    ##
+##       Free Software Foundation, either version 3 of the License, or        ##
+##                    (at your option) any later version.                     ##
+##                                                                            ##
+##    This program is distributed in the hope that it will be useful, but     ##
+##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
+##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
+##            See the GNU General Public License for more details.            ##
+##                                                                            ##
+##     You should have received a copy of the GNU General Public License      ##
+##     along with this program, most likely a file in the root directory,     ##
+##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
+##                                                                            ##
+######################################################################## INFO ##
 
 #---------------------------- 11 POSTS IN 4 FILES -----------------------------#
 TODO:
@@ -87,14 +112,6 @@ TODO:
 NOTE:
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
   # 1
-  - file: build.py
-    line: 85
-    note: |
-          Old path to theme files => DO NOT SUPPORT IT:
-          '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default'
-
-  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
-  # 2
   - file: src/common.py
     line: 862
     note: |
@@ -102,5 +119,13 @@ NOTE:
           is that the patterns needs to include the multiline-
           comments only if the expression is in multline
           quotes otherwise it should be exclude it...
+
+  #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
+  # 2
+  - file: build.py
+    line: 93
+    note: |
+          Old path to theme files => DO NOT SUPPORT IT:
+          '~/Library/Application Support/Sublime Text 3/Packages/Color Scheme - Default'
 
 
