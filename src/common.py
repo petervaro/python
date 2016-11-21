@@ -145,7 +145,7 @@ syntax = {
         0x0130:
         {
             'name' : 'meta.function.anonymous.{SCOPE}',
-            'begin': r'\b(lambda)',
+            'begin': r'\b(lambda)\b',
             'beginCaptures':
             {
                 1: {'name': 'storage.type.function.anonymous.{SCOPE}'}
