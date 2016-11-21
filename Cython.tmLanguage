@@ -254,7 +254,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\b(lambda)</string>
+			<string>\b(lambda)\b</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
