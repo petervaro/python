@@ -45,14 +45,14 @@ from src.gloom   import style  as gl_style
 py_details = {'name' : 'Python3',
               'path' : LANG_PATH,
               'scope': 'python.3',
-              'comments' : {'lines': '# '},
+              'comments' : {'lines': '#'},
               'test_name': 'Python3_TEST',
               'test_path': '~/.config/sublime-text-3/Packages/User/Python3_TEST'}
 
 cy_details = {'name' : 'Cython',
               'path' : LANG_PATH,
               'scope': 'cython',
-              'comments' : {'lines': '# '},
+              'comments' : {'lines': '#'},
               'test_name': 'Cython_TEST',
               'test_path': '~/.config/sublime-text-3/Packages/User/Cython_TEST'}
 
