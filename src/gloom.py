@@ -1,33 +1,9 @@
-## INFO ########################################################################
-##                                                                            ##
-##                   Python and Cython Syntax Highlighters                    ##
-##                   =====================================                    ##
-##                                                                            ##
-##                       Version: 2.0.00.036 (20141007)                       ##
-##                             File: src/gloom.py                             ##
-##                                                                            ##
-##            For more information about the project, please visit            ##
-##                   <https://github.com/petervaro/python>.                   ##
-##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
-##                                                                            ##
-##  This program is free software: you can redistribute it and/or modify it   ##
-##   under the terms of the GNU General Public License as published by the    ##
-##       Free Software Foundation, either version 3 of the License, or        ##
-##                    (at your option) any later version.                     ##
-##                                                                            ##
-##    This program is distributed in the hope that it will be useful, but     ##
-##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
-##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
-##            See the GNU General Public License for more details.            ##
-##                                                                            ##
-##     You should have received a copy of the GNU General Public License      ##
-##     along with this program, most likely a file in the root directory,     ##
-##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
-##                                                                            ##
-######################################################################## INFO ##
+## INFO ##
+## INFO ##
 
 # Import user modules
-from src.utils import hsba
+from itertools import chain
+from colorsys  import hsv_to_rgb
 
 # Keyword constants
 bg = 'background'
@@ -39,10 +15,15 @@ font   = 'fontStyle'
 bold   = 'bold'
 italic = 'italic'
 
+def hsba(h, s, b, a=1.0):
+    # syntax:fmt
+    return '#' + ''.join('{:0>2X}'.format(int(v*255)) for v in (hsv_to_rgb(h/360, s, b) + (a,)))
+    # end:fmt
+
 #------------------------------------------------------------------------------#
 style = {
-    'author': 'Peter Varo (c)2013-2014',
-    'comment': ('\n\t\tCopyright (C) 2013 - 2014 Peter Varo'
+    'author': 'Peter Varo (c)2013-2017',
+    'comment': ('\n\t\tCopyright (C) 2013 - 2017 Peter Varo'
                 '\n\t\t<http://github.com/petervaro/python>'
                 '\n'
                 '\n\t\tBased on the Twilight theme of Michael Sheets.'

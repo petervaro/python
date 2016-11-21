@@ -1,30 +1,5 @@
-## INFO ########################################################################
-##                                                                            ##
-##                   Python and Cython Syntax Highlighters                    ##
-##                   =====================================                    ##
-##                                                                            ##
-##                       Version: 2.0.00.015 (20141006)                       ##
-##                            File: src/cython.py                             ##
-##                                                                            ##
-##            For more information about the project, please visit            ##
-##                   <https://github.com/petervaro/python>.                   ##
-##                    Copyright (C) 2013 - 2014 Peter Varo                    ##
-##                                                                            ##
-##  This program is free software: you can redistribute it and/or modify it   ##
-##   under the terms of the GNU General Public License as published by the    ##
-##       Free Software Foundation, either version 3 of the License, or        ##
-##                    (at your option) any later version.                     ##
-##                                                                            ##
-##    This program is distributed in the hope that it will be useful, but     ##
-##         WITHOUT ANY WARRANTY; without even the implied warranty of         ##
-##            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.            ##
-##            See the GNU General Public License for more details.            ##
-##                                                                            ##
-##     You should have received a copy of the GNU General Public License      ##
-##     along with this program, most likely a file in the root directory,     ##
-##        called 'LICENSE'. If not, see <http://www.gnu.org/licenses>.        ##
-##                                                                            ##
-######################################################################## INFO ##
+## INFO ##
+## INFO ##
 
 #-- CHEATSHEET ----------------------------------------------------------------#
 # HOWTO: http://sublimetext.info/docs/en/reference/syntaxdefs.html
@@ -128,10 +103,11 @@ syntax['patterns'].update({
         0x0120:
         {
             'name' : 'meta.function.{SCOPE}',
-            'begin': r'^\s*((cp?)?def)\s+(?=[a-zA-Z_]\w*\s*\()',
+            'begin': r'^\s*(async\s)?\s*((cp?)?def)\s+(?=[a-zA-Z_]\w*\s*\()',
             'beginCaptures':
             {
-                1: {'name': 'storage.type.function.{SCOPE}'}
+                1: {'name': 'storage.modifier.coroutine.{SCOPE}'},
+                2: {'name': 'storage.type.function.{SCOPE}'}
             },
             'patterns':
             [
@@ -291,13 +267,13 @@ syntax['repository'].update({
             'match':
             (
                 r'\b__('
-                r'abs|add|and|bool|bytes|call|ceil|complex|contains|copy|'
-                r'dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|enter|'
-                r'eq|exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
+                r'abs|add|and|await|bool|bytes|call|ceil|complex|contains|copy|'
+                r'dealloc|deepcopy|del|delattr|delete|delitem|dir|div|divmod|a?enter|'
+                r'eq|a?exit|float|floor|floordiv|format|ge|get|getattr|getattribute|'
                 r'getinitargs|getitem|getnewargs|getstate|gt|hash|hex|iadd|'
                 r'iand|idiv|ifloordiv|ilshift|imul|index|c?init|instancecheck|'
-                r'int|invert|ior|ipow|irshift|isub|iter|itruediv|ixor|le|len|'
-                r'lshift|lt|metaclass|missing|mod|mul|ne|neg|new|next|oct|or|'
+                r'int|invert|ior|ipow|irshift|isub|a?iter|itruediv|ixor|le|len|'
+                r'lshift|lt|metaclass|missing|mod|mul|ne|neg|new|a?next|oct|or|'
                 r'pos|pow|prepare|radd|rand|rdiv|rdivmod|reduce|reduce_ex|'
                 r'repr|reversed|rfloordiv|rlshift|rmod|rmul|ror|round|rpow|'
                 r'rrshift|rshift|rsub|rtruediv|rxor|set|setattr|setitem|'
