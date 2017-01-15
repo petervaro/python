@@ -43,7 +43,7 @@ class Class(Klass):
         r'''(?<!\d+)
             \s*?\W # multiline regex comment
             \d$'''
-        x, y, z, path = r'[[]', R'[]]', r'[^a-zA-Z_]', r'C:\Users\Wilson\new'
+        x, y, z, path = f(r'[[]'), R'[]]', r'[^a-zA-Z_]', r'C:\Users\Wilson\new'
         # end:re
 
         # Unhighlighted regular expression
