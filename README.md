@@ -2,8 +2,8 @@ Python and Cython language bundles
 ==================================
 
 ***THE MOST POPULAR AND MOST FEATURE RICH PYTHON SYNTAX HIGHLIGHTER FOR
-SUBLIME TEXT AS OF TIME,
-[OVER 75,000 DOWNLOADS](https://sublime.wbond.net/packages/Python%203))!***
+SUBLIME TEXT WITH [OVER 125,000 DOWNLOADS AND BEING IN THE TOP 100 PACKAGES](
+https://sublime.wbond.net/packages/Python%203))!***
 
 Bleeding-egde Python and Cython syntax highlighters and other goodies for
 Sublime Text 2/3 and TextMate editors.
@@ -48,9 +48,6 @@ syntax highlighters:
 Future plans
 ------------
 
-- Combine optional-comment-based string highlighters, eg. `# syntax:re+fmt`
-- Add optional-comment-based external language support, eg: `# syntax:sql`, for
-  starters these should be SQL, HTML and JSON
 - Create a better Twilight-based theme file.
 
 

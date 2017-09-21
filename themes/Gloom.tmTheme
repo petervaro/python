@@ -3,13 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>author</key>
-	<string>Peter Varo (c)2013-2017</string>
+	<string>Peter Varo (C) 2013 - 2017</string>
 	<key>comment</key>
 	<string>
 		Copyright (C) 2013 - 2017 Peter Varo
-		&lt;http://github.com/petervaro/python&gt;
-
-		Based on the Twilight theme of Michael Sheets.
+		&lt;http://github.com/petervaro/d2&gt;
+		&lt;http://petervaro.com&gt;
 
 		This program is free software: you can redistribute it
 		and/or modify it under the terms of the GNU General

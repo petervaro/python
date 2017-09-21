@@ -22,11 +22,10 @@ def hsba(h, s, b, a=1.0):
 
 #------------------------------------------------------------------------------#
 style = {
-    'author': 'Peter Varo (c)2013-2017',
+    'author': 'Peter Varo (C) 2013 - 2017',
     'comment': ('\n\t\tCopyright (C) 2013 - 2017 Peter Varo'
-                '\n\t\t<http://github.com/petervaro/python>'
-                '\n'
-                '\n\t\tBased on the Twilight theme of Michael Sheets.'
+                '\n\t\t<http://github.com/petervaro/d2>'
+                '\n\t\t<http://petervaro.com>'
                 '\n'
                 '\n\t\tThis program is free software: you can redistribute it'
                 '\n\t\tand/or modify it under the terms of the GNU General'

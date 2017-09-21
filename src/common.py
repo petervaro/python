@@ -6,7 +6,6 @@
 # REGEX: http://manual.macromates.com/en/regular_expressions
 
 # Syntax Definition
-# syntax:re
 syntax = {
     'name': '{NAME}',
     'comment': ('\n\t\tCopyright (C) 2013 - 2017 Peter Varo'
@@ -358,12 +357,12 @@ syntax = {
 #-- STRING --------------------------------------------------------------------#
         0x0260:
         {
-            'include': '#fstring_quoted'
+            'include': '#f_string_quoted'
         },
 
         0x0270:
         {
-            'include': '#rstring_quoted'
+            'include': '#string_quoted_regex'
         },
 
         0x0280:
@@ -380,10 +379,6 @@ syntax = {
         {
             'patterns':
             [
-                {'include': '#comment_extended_re'},
-                {'include': '#comment_extended_old'},
-                {'include': '#comment_extended_fmt'},
-                {'include': '#comment_extended_tmp'},
                 {
                     'name' : 'comment.line.hashmark.{SCOPE}',
                     'match': r'#.*$\n?'
@@ -779,7 +774,7 @@ syntax = {
                 },
             ]
         },
-        'rstring_quoted':
+        'r_string_quoted':
         {
             'patterns':
             [
@@ -853,7 +848,7 @@ syntax = {
                 },
             ]
         },
-        'fstring_quoted':
+        'f_string_quoted':
         {
             'patterns':
             [
@@ -2149,4 +2144,3 @@ syntax = {
         }
     },
 }
-# end:re
