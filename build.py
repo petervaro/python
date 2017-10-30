@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 ## INFO ##
-## INFO ##
+## INFO ###
 
 # Import python modules
 from os.path import join
