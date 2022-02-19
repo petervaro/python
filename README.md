@@ -2,7 +2,7 @@ Python and Cython language bundles
 ==================================
 
 ***THE MOST POPULAR AND MOST FEATURE RICH PYTHON SYNTAX HIGHLIGHTER FOR
-SUBLIME TEXT WITH [OVER 125,000 DOWNLOADS AND BEING IN THE TOP 100 PACKAGES](
+SUBLIME TEXT WITH [OVER 450,000+ DOWNLOADS AND BEING IN THE TOP 100 PACKAGES](
 https://sublime.wbond.net/packages/Python%203))!***
 
 Bleeding-egde Python and Cython syntax highlighters and other goodies for
